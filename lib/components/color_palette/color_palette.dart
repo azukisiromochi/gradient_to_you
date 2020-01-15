@@ -13,6 +13,19 @@ class _ColorPaletteState extends State<ColorPalette> {
   static const double _lightness = 0.7;
   static const double _saturation = 0.9;
 
+  static final Color _color0 = const HSLColor.fromAHSL(1, 0, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color30 = const HSLColor.fromAHSL(1, 30, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color60 = const HSLColor.fromAHSL(1, 60, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color90 = const HSLColor.fromAHSL(1, 90, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color120 = const HSLColor.fromAHSL(1, 120, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color150 = const HSLColor.fromAHSL(1, 150, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color180 = const HSLColor.fromAHSL(1, 180, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color210 = const HSLColor.fromAHSL(1, 210, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color240 = const HSLColor.fromAHSL(1, 240, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color270 = const HSLColor.fromAHSL(1, 270, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color300 = const HSLColor.fromAHSL(1, 300, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color330 = const HSLColor.fromAHSL(1, 330, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,92 +52,147 @@ class _ColorPaletteState extends State<ColorPalette> {
         children: <Widget>[
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 0, _saturation, _lightness)
-                  .toColor(),
+              color: _color0,
               child: InkWell(
                 splashColor: Colors.white.withAlpha(30),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      settings: const RouteSettings(name: '/gradient'),
-                      builder: (context) => GradientBuilder(
-                          backgroundColor: const HSLColor.fromAHSL(
-                                  1, 0, _saturation, _lightness)
-                              .toColor()),
-                    ),
-                  );
+                  nextPage(_color0);
                 },
               ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 30, _saturation, _lightness)
-                  .toColor(),
+              color: _color30,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color30);
+                },
+              ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 60, _saturation, _lightness)
-                  .toColor(),
+              color: _color60,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color60);
+                },
+              ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 90, _saturation, _lightness)
-                  .toColor(),
+              color: _color90,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color90);
+                },
+              ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 120, _saturation, _lightness)
-                  .toColor(),
+              color: _color120,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color120);
+                },
+              ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 150, _saturation, _lightness)
-                  .toColor(),
+              color: _color150,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color150);
+                },
+              ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 180, _saturation, _lightness)
-                  .toColor(),
+              color: _color180,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color180);
+                },
+              ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 210, _saturation, _lightness)
-                  .toColor(),
+              color: _color210,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color210);
+                },
+              ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 240, _saturation, _lightness)
-                  .toColor(),
+              color: _color240,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color240);
+                },
+              ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 270, _saturation, _lightness)
-                  .toColor(),
+              color: _color270,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color270);
+                },
+              ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 300, _saturation, _lightness)
-                  .toColor(),
+              color: _color300,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color300);
+                },
+              ),
             ),
           ),
           Container(
             child: Card(
-              color: const HSLColor.fromAHSL(1, 330, _saturation, _lightness)
-                  .toColor(),
+              color: _color330,
+              child: InkWell(
+                splashColor: Colors.white.withAlpha(30),
+                onTap: () {
+                  nextPage(_color330);
+                },
+              ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void nextPage(Color backgroundColor) {
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+        settings: const RouteSettings(name: '/gradient'),
+        builder: (context) => GradientBuilder(backgroundColor: backgroundColor),
       ),
     );
   }

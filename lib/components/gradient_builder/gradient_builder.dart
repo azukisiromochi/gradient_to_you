@@ -13,13 +13,16 @@ class GradientBuilder extends StatefulWidget {
 class _GradientBuilderState extends State<GradientBuilder> {
   @override
   Widget build(BuildContext context) {
+    final _themeColor =
+        HSLColor.fromColor(widget.backgroundColor).withLightness(0.2).toColor();
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: _themeColor),
         title: Text(
           'Gradient to you',
           style: GoogleFonts.charmonman(
             textStyle: TextStyle(
-              color: Colors.white,
+              color: _themeColor,
               decoration: TextDecoration.none,
             ),
             fontWeight: FontWeight.bold,
@@ -30,5 +33,4 @@ class _GradientBuilderState extends State<GradientBuilder> {
       body: Placeholder(),
     );
   }
-
 }
