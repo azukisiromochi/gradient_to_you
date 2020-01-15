@@ -11,7 +11,7 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   @override
-  Future<void> initState() {
+  void initState() {
     super.initState();
 
     Future<void>.delayed(const Duration(seconds: 3))
