@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_to_you/components/gradient_builder/gradient_builder.dart';
 
 class ColorPalette extends StatefulWidget {
@@ -13,23 +14,36 @@ class _ColorPaletteState extends State<ColorPalette> {
   static const double _lightness = 0.7;
   static const double _saturation = 0.9;
 
-  static final Color _color0 = const HSLColor.fromAHSL(1, 0, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color30 = const HSLColor.fromAHSL(1, 30, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color60 = const HSLColor.fromAHSL(1, 60, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color90 = const HSLColor.fromAHSL(1, 90, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color120 = const HSLColor.fromAHSL(1, 120, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color150 = const HSLColor.fromAHSL(1, 150, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color180 = const HSLColor.fromAHSL(1, 180, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color210 = const HSLColor.fromAHSL(1, 210, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color240 = const HSLColor.fromAHSL(1, 240, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color270 = const HSLColor.fromAHSL(1, 270, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color300 = const HSLColor.fromAHSL(1, 300, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
-  static final Color _color330 = const HSLColor.fromAHSL(1, 330, _saturation, _lightness).toColor(); // ignore: lines_longer_than_80_chars
+  static final Color _color0 =
+      const HSLColor.fromAHSL(1, 0, _saturation, _lightness).toColor();
+  static final Color _color30 =
+      const HSLColor.fromAHSL(1, 30, _saturation, _lightness).toColor();
+  static final Color _color60 =
+      const HSLColor.fromAHSL(1, 60, _saturation, _lightness).toColor();
+  static final Color _color90 =
+      const HSLColor.fromAHSL(1, 90, _saturation, _lightness).toColor();
+  static final Color _color120 =
+      const HSLColor.fromAHSL(1, 120, _saturation, _lightness).toColor();
+  static final Color _color150 =
+      const HSLColor.fromAHSL(1, 150, _saturation, _lightness).toColor();
+  static final Color _color180 =
+      const HSLColor.fromAHSL(1, 180, _saturation, _lightness).toColor();
+  static final Color _color210 =
+      const HSLColor.fromAHSL(1, 210, _saturation, _lightness).toColor();
+  static final Color _color240 =
+      const HSLColor.fromAHSL(1, 240, _saturation, _lightness).toColor();
+  static final Color _color270 =
+      const HSLColor.fromAHSL(1, 270, _saturation, _lightness).toColor();
+  static final Color _color300 =
+      const HSLColor.fromAHSL(1, 300, _saturation, _lightness).toColor();
+  static final Color _color330 =
+      const HSLColor.fromAHSL(1, 330, _saturation, _lightness).toColor();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: GradientAppBar(
+        centerTitle: true,
         title: Text(
           'Gradient to you',
           style: GoogleFonts.charmonman(
@@ -40,7 +54,8 @@ class _ColorPaletteState extends State<ColorPalette> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.black.withOpacity(0.3),
+        backgroundColorStart: const Color(0xffe4a972).withOpacity(0.6),
+        backgroundColorEnd: const Color(0xff9941d8).withOpacity(0.6),
       ),
       body: GridView.count(
         primary: false,
