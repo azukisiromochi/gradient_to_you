@@ -13,16 +13,17 @@ class GradientBuilder extends StatefulWidget {
 
 class _GradientBuilderState extends State<GradientBuilder> {
   final _random = Random();
+  Color primary;
+  Color secondary;
 
   @override
   Widget build(BuildContext context) {
     final _themeColor =
         HSLColor.fromColor(widget.backgroundColor).withLightness(0.2).toColor();
 
-    print(_randomHue());
-    print(_randomHue(HSLColor.fromColor(widget.backgroundColor).hue));
-    print(_randomSaturation());
-    print(_randomLightness());
+    primary =
+        _randomHsl(HSLColor.fromColor(widget.backgroundColor).hue).toColor();
+    secondary = _randomHsl().toColor();
 
     return Scaffold(
       appBar: AppBar(
@@ -40,8 +41,36 @@ class _GradientBuilderState extends State<GradientBuilder> {
         ),
         backgroundColor: widget.backgroundColor,
       ),
-      body: Placeholder(),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: FractionalOffset.topLeft,
+            end: FractionalOffset.bottomRight,
+            colors: [
+              primary,
+              secondary,
+            ],
+            stops: const [
+              0.0,
+              1.0,
+            ],
+          ),
+        ),
+        child: InkWell(
+          splashColor: Colors.white.withAlpha(30),
+          onTap: () {
+            setState(() {});
+          },
+        ),
+      ),
     );
+  }
+
+  HSLColor _randomHsl([double hue]) {
+    return HSLColor.fromAHSL(
+        1, _randomHue(hue), _randomSaturation(), _randomLightness());
   }
 
   double _randomHue([double hue]) {
