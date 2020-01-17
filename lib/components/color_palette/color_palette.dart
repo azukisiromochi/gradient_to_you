@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_to_you/components/gradient_builder/gradient_builder.dart';
+import 'package:gradient_to_you/configs/g_2_u_colors.dart';
 
 class ColorPalette extends StatefulWidget {
   const ColorPalette({Key key}) : super(key: key);
@@ -11,34 +12,6 @@ class ColorPalette extends StatefulWidget {
 }
 
 class _ColorPaletteState extends State<ColorPalette> {
-  static const double _lightness = 0.7;
-  static const double _saturation = 0.9;
-
-  static final Color _color0 =
-      const HSLColor.fromAHSL(1, 0, _saturation, _lightness).toColor();
-  static final Color _color30 =
-      const HSLColor.fromAHSL(1, 30, _saturation, _lightness).toColor();
-  static final Color _color60 =
-      const HSLColor.fromAHSL(1, 60, _saturation, _lightness).toColor();
-  static final Color _color90 =
-      const HSLColor.fromAHSL(1, 90, _saturation, _lightness).toColor();
-  static final Color _color120 =
-      const HSLColor.fromAHSL(1, 120, _saturation, _lightness).toColor();
-  static final Color _color150 =
-      const HSLColor.fromAHSL(1, 150, _saturation, _lightness).toColor();
-  static final Color _color180 =
-      const HSLColor.fromAHSL(1, 180, _saturation, _lightness).toColor();
-  static final Color _color210 =
-      const HSLColor.fromAHSL(1, 210, _saturation, _lightness).toColor();
-  static final Color _color240 =
-      const HSLColor.fromAHSL(1, 240, _saturation, _lightness).toColor();
-  static final Color _color270 =
-      const HSLColor.fromAHSL(1, 270, _saturation, _lightness).toColor();
-  static final Color _color300 =
-      const HSLColor.fromAHSL(1, 300, _saturation, _lightness).toColor();
-  static final Color _color330 =
-      const HSLColor.fromAHSL(1, 330, _saturation, _lightness).toColor();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,150 +37,50 @@ class _ColorPaletteState extends State<ColorPalette> {
         mainAxisSpacing: 10,
         crossAxisCount: 3,
         childAspectRatio: 3 / 4,
-        children: <Widget>[
-          Container(
-            child: Card(
-              color: _color0,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color0);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color30,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color30);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color60,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color60);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color90,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color90);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color120,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color120);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color150,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color150);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color180,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color180);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color210,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color210);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color240,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color240);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color270,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color270);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color300,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color300);
-                },
-              ),
-            ),
-          ),
-          Container(
-            child: Card(
-              color: _color330,
-              child: InkWell(
-                splashColor: Colors.white.withAlpha(30),
-                onTap: () {
-                  nextPage(_color330);
-                },
-              ),
-            ),
-          ),
+        children: const <Widget>[
+          Palette(paletteColor: G2UColors.hslFromHue000),
+          Palette(paletteColor: G2UColors.hslFromHue030),
+          Palette(paletteColor: G2UColors.hslFromHue060),
+          Palette(paletteColor: G2UColors.hslFromHue090),
+          Palette(paletteColor: G2UColors.hslFromHue120),
+          Palette(paletteColor: G2UColors.hslFromHue150),
+          Palette(paletteColor: G2UColors.hslFromHue180),
+          Palette(paletteColor: G2UColors.hslFromHue210),
+          Palette(paletteColor: G2UColors.hslFromHue240),
+          Palette(paletteColor: G2UColors.hslFromHue270),
+          Palette(paletteColor: G2UColors.hslFromHue300),
+          Palette(paletteColor: G2UColors.hslFromHue330),
         ],
       ),
     );
   }
+}
 
-  void nextPage(Color backgroundColor) {
+class Palette extends StatelessWidget {
+  const Palette({Key key, this.paletteColor}) : super(key: key);
+
+  final HSLColor paletteColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Card(
+        color: paletteColor.toColor(),
+        child: InkWell(
+          onTap: () {
+            _nextPage(context, paletteColor.toColor());
+          },
+        ),
+      ),
+    );
+  }
+
+  void _nextPage(BuildContext context, Color paletteColor) {
     Navigator.push(
       context,
       MaterialPageRoute<void>(
         settings: const RouteSettings(name: '/gradient'),
-        builder: (context) => GradientBuilder(backgroundColor: backgroundColor),
+        builder: (context) => GradientBuilder(backgroundColor: paletteColor),
       ),
     );
   }
