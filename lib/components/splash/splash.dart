@@ -2,24 +2,14 @@ import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Splash extends StatefulWidget {
+class Splash extends StatelessWidget {
   const Splash({Key key}) : super(key: key);
 
   @override
-  _SplashState createState() => _SplashState();
-}
-
-class _SplashState extends State<Splash> {
-  @override
-  void initState() {
-    super.initState();
-
-    Future<void>.delayed(const Duration(seconds: 3))
-        .then((_) => nextPage());
-  }
-
-  @override
   Widget build(BuildContext context) {
+    Future<void>.delayed(const Duration(seconds: 3)).then(
+        (_) => {Navigator.of(context).pushReplacementNamed('/color_palette')});
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -68,9 +58,5 @@ class _SplashState extends State<Splash> {
         ],
       ),
     );
-  }
-
-  void nextPage() {
-    Navigator.of(context).pushReplacementNamed('/color_palette');
   }
 }
