@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_to_you/components/gradient_builder/gradient_builder.dart';
 import 'package:gradient_to_you/configs/g_2_u_colors.dart';
+import '../importer.dart';
 
 class ColorPalette extends StatefulWidget {
   const ColorPalette({Key key}) : super(key: key);
@@ -20,7 +19,7 @@ class _ColorPaletteState extends State<ColorPalette> {
         title: Text(
           'Gradient to you',
           style: GoogleFonts.charmonman(
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
               color: Colors.white,
               decoration: TextDecoration.none,
             ),

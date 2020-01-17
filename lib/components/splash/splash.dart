@@ -1,6 +1,5 @@
 import 'dart:async' show Future;
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../importer.dart';
 
 class Splash extends StatelessWidget {
   const Splash({Key key}) : super(key: key);
@@ -46,7 +45,7 @@ class Splash extends StatelessWidget {
             child: Text(
               'Gradient to you',
               style: GoogleFonts.charmonman(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   color: Colors.white,
                   decoration: TextDecoration.none,
                 ),

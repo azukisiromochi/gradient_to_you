@@ -1,6 +1,5 @@
 import 'dart:math';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../importer.dart';
 
 class GradientBuilder extends StatefulWidget {
   const GradientBuilder({Key key, this.backgroundColor}) : super(key: key);
