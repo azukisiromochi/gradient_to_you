@@ -1,28 +1,15 @@
-import 'dart:math';
+import 'dart:math' show Random;
 import '../importer.dart';
 
-class GradientBuilder extends StatefulWidget {
-  const GradientBuilder({Key key, this.backgroundColor}) : super(key: key);
+class GradientBuilder extends StatelessWidget {
+  const GradientBuilder({Key key, this.baseColor}) : super(key: key);
 
-  final Color backgroundColor;
-
-  @override
-  _GradientBuilderState createState() => _GradientBuilderState();
-}
-
-class _GradientBuilderState extends State<GradientBuilder> {
-  final _random = Random();
-  Color primary;
-  Color secondary;
+  final Color baseColor;
 
   @override
   Widget build(BuildContext context) {
     final _themeColor =
-        HSLColor.fromColor(widget.backgroundColor).withLightness(0.2).toColor();
-
-    primary =
-        _randomHsl(HSLColor.fromColor(widget.backgroundColor).hue).toColor();
-    secondary = _randomHsl().toColor();
+        HSLColor.fromColor(baseColor).withLightness(0.2).toColor();
 
     return Scaffold(
       appBar: AppBar(
@@ -38,33 +25,112 @@ class _GradientBuilderState extends State<GradientBuilder> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: widget.backgroundColor,
+        backgroundColor: baseColor,
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: FractionalOffset.topLeft,
-            end: FractionalOffset.bottomRight,
-            colors: [
-              primary,
-              secondary,
-            ],
-            stops: const [
-              0.0,
-              1.0,
-            ],
-          ),
-        ),
-        child: InkWell(
-          splashColor: Colors.white.withAlpha(30),
-          onTap: () {
-            setState(() {});
-          },
-        ),
-      ),
+      body: GradientBody(backgroundColor: baseColor),
     );
+  }
+}
+
+class GradientBody extends StatefulWidget {
+  const GradientBody({Key key, this.backgroundColor}) : super(key: key);
+
+  final Color backgroundColor;
+
+  @override
+  _GradientBodyState createState() => _GradientBodyState();
+}
+
+class _GradientBodyState extends State<GradientBody> {
+  final _random = Random();
+  Color primary;
+  Color secondary;
+  List<FractionalOffset> gradientBeginEnd;
+
+  @override
+  Widget build(BuildContext context) {
+    primary =
+        _randomHsl(HSLColor.fromColor(widget.backgroundColor).hue).toColor();
+    secondary = _randomHsl().toColor();
+    gradientBeginEnd = _randomGradientBeginEnd();
+
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: gradientBeginEnd.first,
+          end: gradientBeginEnd.last,
+          colors: [
+            primary,
+            secondary,
+          ],
+          stops: const [
+            0.0,
+            1.0,
+          ],
+        ),
+      ),
+      child: InkWell(onTap: () => setState(() {})),
+    );
+  }
+
+  List<FractionalOffset> _randomGradientBeginEnd() {
+    switch (_random.nextInt(6)) {
+      case 0:
+        {
+          return const [
+            FractionalOffset.topLeft,
+            FractionalOffset.bottomRight,
+          ];
+        }
+        break;
+
+      case 1:
+        {
+          return const [
+            FractionalOffset.topCenter,
+            FractionalOffset.bottomCenter,
+          ];
+        }
+        break;
+
+      case 2:
+        {
+          return const [
+            FractionalOffset.topRight,
+            FractionalOffset.bottomLeft,
+          ];
+        }
+        break;
+
+      case 3:
+        {
+          return const [
+            FractionalOffset.bottomLeft,
+            FractionalOffset.topRight,
+          ];
+        }
+        break;
+
+      case 4:
+        {
+          return const [
+            FractionalOffset.bottomCenter,
+            FractionalOffset.topCenter,
+          ];
+        }
+        break;
+
+      case 5:
+        {
+          return const [
+            FractionalOffset.bottomRight,
+            FractionalOffset.topLeft,
+          ];
+        }
+        break;
+    }
   }
 
   HSLColor _randomHsl([double hue]) {

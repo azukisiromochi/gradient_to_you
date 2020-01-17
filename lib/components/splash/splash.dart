@@ -1,4 +1,6 @@
 import 'dart:async' show Future;
+import 'dart:math' show Random;
+import 'package:gradient_to_you/utils/app_theme_utils.dart';
 import '../importer.dart';
 
 class Splash extends StatelessWidget {
@@ -9,15 +11,17 @@ class Splash extends StatelessWidget {
     Future<void>.delayed(const Duration(seconds: 3)).then(
         (_) => {Navigator.of(context).pushReplacementNamed('/color_palette')});
 
+    final _themeNo = Random().nextInt(2) + 1;
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
           Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/splash1.webp'),
+                image: AppThemeUtils.splashImage(_themeNo),
                 fit: BoxFit.cover,
               ),
             ),
@@ -29,10 +33,7 @@ class Splash extends StatelessWidget {
               gradient: LinearGradient(
                 begin: FractionalOffset.topLeft,
                 end: FractionalOffset.bottomRight,
-                colors: [
-                  const Color(0xffe4a972).withOpacity(0.6),
-                  const Color(0xff9941d8).withOpacity(0.6),
-                ],
+                colors: AppThemeUtils.gradientColors(_themeNo),
                 stops: const [
                   0.0,
                   1.0,
@@ -44,14 +45,7 @@ class Splash extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               'Gradient to you',
-              style: GoogleFonts.charmonman(
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  decoration: TextDecoration.none,
-                ),
-                fontSize: 48,
-                fontWeight: FontWeight.bold,
-              ),
+              style: AppThemeUtils.logoStyle(_themeNo),
             ),
           ),
         ],

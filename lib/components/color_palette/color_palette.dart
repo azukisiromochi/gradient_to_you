@@ -3,14 +3,11 @@ import 'package:gradient_to_you/components/gradient_builder/gradient_builder.dar
 import 'package:gradient_to_you/configs/g_2_u_colors.dart';
 import '../importer.dart';
 
-class ColorPalette extends StatefulWidget {
-  const ColorPalette({Key key}) : super(key: key);
+class ColorPalette extends StatelessWidget {
+  const ColorPalette({Key key, this.themeNo}) : super(key: key);
 
-  @override
-  _ColorPaletteState createState() => _ColorPaletteState();
-}
+  final int themeNo;
 
-class _ColorPaletteState extends State<ColorPalette> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +32,7 @@ class _ColorPaletteState extends State<ColorPalette> {
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         crossAxisCount: 3,
-        childAspectRatio: 3 / 4,
+//        childAspectRatio: 3 / 4,
         children: const <Widget>[
           Palette(paletteColor: G2UColors.hslFromHue000),
           Palette(paletteColor: G2UColors.hslFromHue030),
@@ -55,19 +52,25 @@ class _ColorPaletteState extends State<ColorPalette> {
   }
 }
 
-class Palette extends StatelessWidget {
+class Palette extends StatefulWidget {
   const Palette({Key key, this.paletteColor}) : super(key: key);
 
-  final HSLColor paletteColor;
+  @override
+  _PaletteState createState() => _PaletteState();
 
+  final HSLColor paletteColor;
+}
+
+class _PaletteState extends State<Palette> {
   @override
   Widget build(BuildContext context) {
+    final _paletteColor = widget.paletteColor.toColor();
     return Container(
       child: Card(
-        color: paletteColor.toColor(),
+        color: _paletteColor,
         child: InkWell(
           onTap: () {
-            _nextPage(context, paletteColor.toColor());
+            _nextPage(context, _paletteColor);
           },
         ),
       ),
@@ -79,7 +82,7 @@ class Palette extends StatelessWidget {
       context,
       MaterialPageRoute<void>(
         settings: const RouteSettings(name: '/gradient'),
-        builder: (context) => GradientBuilder(backgroundColor: paletteColor),
+        builder: (context) => GradientBuilder(baseColor: paletteColor),
       ),
     );
   }
