@@ -71,4 +71,32 @@ class AppThemeUtils {
     }
   }
 
+  static TextStyle appBarStyle(int no) {
+    switch (no) {
+      case 1:
+        {
+          return GoogleFonts.charmonman(
+            textStyle: const TextStyle(
+              color: Colors.white,
+              decoration: TextDecoration.none,
+            ),
+            fontWeight: FontWeight.bold,
+          );
+        }
+        break;
+
+      case 2:
+        {
+          return GoogleFonts.balooBhai(
+            textStyle: const TextStyle(
+              color: Colors.white,
+              decoration: TextDecoration.none,
+            ),
+            fontWeight: FontWeight.bold,
+          );
+        }
+        break;
+    }
+  }
+
 }

@@ -1,6 +1,5 @@
 import 'dart:async' show Future;
-import 'dart:math' show Random;
-import 'package:gradient_to_you/utils/app_theme_utils.dart';
+import 'package:gradient_to_you/app_theme_store.dart';
 import '../importer.dart';
 
 class Splash extends StatelessWidget {
@@ -8,47 +7,60 @@ class Splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final store = AppThemeStore();
+
     Future<void>.delayed(const Duration(seconds: 3)).then(
         (_) => {Navigator.of(context).pushReplacementNamed('/color_palette')});
 
-    final _themeNo = Random().nextInt(2) + 1;
-
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AppThemeUtils.splashImage(_themeNo),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: FractionalOffset.topLeft,
-                end: FractionalOffset.bottomRight,
-                colors: AppThemeUtils.gradientColors(_themeNo),
-                stops: const [
-                  0.0,
-                  1.0,
-                ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              'Gradient to you',
-              style: AppThemeUtils.logoStyle(_themeNo),
-            ),
-          ),
-        ],
+      body: FutureBuilder<int>(
+        future: store.get(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            // while data is loading:
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            // data loaded:
+            return Stack(
+              children: <Widget>[
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: store.splashImage,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: FractionalOffset.topLeft,
+                      end: FractionalOffset.bottomRight,
+                      colors: store.gradientColors,
+                      stops: const [
+                        0.0,
+                        1.0,
+                      ],
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Gradient to you',
+                    style: store.logoStyle,
+                  ),
+                ),
+              ],
+            );
+          }
+        },
       ),
     );
   }
