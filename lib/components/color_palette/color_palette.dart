@@ -1,7 +1,6 @@
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_to_you/components/gradient_builder/gradient_builder.dart';
 import 'package:gradient_to_you/configs/g_2_u_colors.dart';
-import 'package:gradient_to_you/app_theme_store.dart';
 import '../importer.dart';
 
 class ColorPalette extends StatelessWidget {
@@ -11,17 +10,21 @@ class ColorPalette extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final store = AppThemeStore()..get();
-
     return Scaffold(
       appBar: GradientAppBar(
         centerTitle: true,
         title: Text(
           'Gradient to you',
-          style: store.appBarStyle,
+          style: GoogleFonts.charmonman(
+            textStyle: const TextStyle(
+              color: Colors.white,
+              decoration: TextDecoration.none,
+            ),
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        backgroundColorStart: store.gradientColors.first.withOpacity(0.6),
-        backgroundColorEnd: store.gradientColors.last.withOpacity(0.6),
+        backgroundColorStart: const Color(0xffe4a972).withOpacity(0.6),
+        backgroundColorEnd: const Color(0xff9941d8).withOpacity(0.6),
       ),
       body: GridView.count(
         primary: false,
