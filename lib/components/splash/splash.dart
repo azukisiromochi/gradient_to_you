@@ -1,7 +1,7 @@
 import 'dart:async' show Future;
 import 'dart:math' show Random;
+import 'package:flutter/material.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
-import '../importer.dart';
 
 class Splash extends StatelessWidget {
   const Splash({Key key}) : super(key: key);
@@ -9,7 +9,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<void>.delayed(const Duration(seconds: 3)).then(
-            (_) => {Navigator.of(context).pushReplacementNamed('/color_palette')});
+        (_) => {Navigator.of(context).pushReplacementNamed('/color_palette')});
 
     final _themeNo = Random().nextInt(2) + 1;
 

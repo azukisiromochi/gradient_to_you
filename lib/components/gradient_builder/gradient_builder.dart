@@ -1,5 +1,6 @@
 import 'dart:math' show Random;
-import '../importer.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GradientBuilder extends StatelessWidget {
   const GradientBuilder({Key key, this.baseColor}) : super(key: key);

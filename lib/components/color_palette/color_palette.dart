@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_to_you/components/gradient_builder/gradient_builder.dart';
 import 'package:gradient_to_you/configs/g_2_u_colors.dart';
-import '../importer.dart';
 
 class ColorPalette extends StatelessWidget {
   const ColorPalette({Key key, this.themeNo}) : super(key: key);
