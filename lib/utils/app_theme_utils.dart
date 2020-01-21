@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppThemeUtils {
-
   static AssetImage splashImage(int no) {
     switch (no) {
       case 1:
@@ -14,6 +13,12 @@ class AppThemeUtils {
       case 2:
         {
           return const AssetImage('assets/images/splash2.webp');
+        }
+        break;
+
+      default:
+        {
+          return const AssetImage('assets/images/splash1.webp');
         }
         break;
     }
@@ -38,6 +43,15 @@ class AppThemeUtils {
           ];
         }
         break;
+
+      default:
+        {
+          return [
+            const Color(0xffe4a972).withOpacity(0.6),
+            const Color(0xff9941d8).withOpacity(0.6),
+          ];
+        }
+        break;
     }
   }
 
@@ -59,6 +73,19 @@ class AppThemeUtils {
       case 2:
         {
           return GoogleFonts.balooBhai(
+            textStyle: const TextStyle(
+              color: Colors.white,
+              decoration: TextDecoration.none,
+            ),
+            fontSize: 48,
+            fontWeight: FontWeight.bold,
+          );
+        }
+        break;
+
+      default:
+        {
+          return GoogleFonts.charmonman(
             textStyle: const TextStyle(
               color: Colors.white,
               decoration: TextDecoration.none,
@@ -96,7 +123,18 @@ class AppThemeUtils {
           );
         }
         break;
+
+      default:
+        {
+          return GoogleFonts.charmonman(
+            textStyle: const TextStyle(
+              color: Colors.white,
+              decoration: TextDecoration.none,
+            ),
+            fontWeight: FontWeight.bold,
+          );
+        }
+        break;
     }
   }
-
 }

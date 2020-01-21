@@ -130,6 +130,15 @@ class _GradientBodyState extends State<GradientBody> {
           ];
         }
         break;
+
+      default:
+        {
+          return const [
+            FractionalOffset.topLeft,
+            FractionalOffset.bottomRight,
+          ];
+        }
+        break;
     }
   }
 
