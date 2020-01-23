@@ -5,24 +5,20 @@ import 'package:gradient_to_you/utils/app_theme_utils.dart';
 import '../../app_store.dart';
 
 class GradientBuilder extends StatelessWidget {
-  const GradientBuilder({Key key, @required this.store})
-      : super(key: key);
+  const GradientBuilder({Key key, @required this.store}) : super(key: key);
 
   final AppStore store;
 
   @override
   Widget build(BuildContext context) {
-    final _themeColor =
-        HSLColor.fromColor(store.baseColor).withLightness(0.2).toColor();
+    final _themeColor = store.paletteColor.withLightness(0.2).toColor();
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         iconTheme: IconThemeData(color: _themeColor),
-        title: Text(
-          'Gradient to you',
-          style: AppThemeUtils.appBarStyle(store.themeNo, _themeColor)
-        ),
+        title: Text('Gradient to you',
+            style: AppThemeUtils.appBarStyle(store.themeNo, _themeColor)),
         backgroundColor: store.baseColor,
       ),
       body: GradientBody(backgroundColor: store.baseColor),

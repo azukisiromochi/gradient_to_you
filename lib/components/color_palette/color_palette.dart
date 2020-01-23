@@ -69,7 +69,7 @@ class _PaletteState extends State<Palette> {
         color: _paletteColor,
         child: InkWell(
           onTap: () {
-            widget.store.setBaseColor(_paletteColor);
+            widget.store.setPaletteColor(widget.paletteColor);
             Navigator.of(context).pushNamed('/gradient');
           },
         ),

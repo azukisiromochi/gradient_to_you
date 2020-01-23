@@ -17,11 +17,14 @@ abstract class _AppStore with Store {
   List<Color> gradientColors;
 
   @observable
-  Color baseColor;
+  HSLColor paletteColor = HSLColor.fromColor(Colors.black);
+
+  @computed
+  Color get baseColor => paletteColor?.toColor() ?? Colors.black;
 
   // ignore: use_setters_to_change_properties
   @action
-  void setBaseColor(Color value) {
-    baseColor = value;
+  void setPaletteColor(HSLColor value) {
+    paletteColor = value;
   }
 }
