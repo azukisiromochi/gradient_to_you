@@ -35,7 +35,7 @@ dependencies:
   flutter_mobx: ^0.3.4
 
   # https://pub.dev/packages/image_picker
-  image_picker:
+  image_picker: 0.4.12+1
 
 dev_dependencies:
   flutter_test:
