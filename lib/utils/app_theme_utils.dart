@@ -56,83 +56,47 @@ class AppThemeUtils {
   }
 
   static TextStyle logoStyle(int no) {
-    switch (no) {
-      case 1:
-        {
-          return GoogleFonts.charmonman(
-            textStyle: const TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
-            ),
-            fontSize: 48,
-            fontWeight: FontWeight.bold,
-          );
-        }
-        break;
-
-      case 2:
-        {
-          return GoogleFonts.balooBhai(
-            textStyle: const TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
-            ),
-            fontSize: 48,
-            fontWeight: FontWeight.bold,
-          );
-        }
-        break;
-
-      default:
-        {
-          return GoogleFonts.charmonman(
-            textStyle: const TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
-            ),
-            fontSize: 48,
-            fontWeight: FontWeight.bold,
-          );
-        }
-        break;
-    }
+    return googleFonts(no)(
+      textStyle: const TextStyle(
+        color: Colors.white,
+        decoration: TextDecoration.none,
+      ),
+      fontSize: 48,
+      fontWeight: FontWeight.bold,
+    );
   }
 
-  static TextStyle appBarStyle(int no) {
+  static TextStyle appBarStyle(int no, [Color titleColor]) {
+    return googleFonts(no)(
+      textStyle: TextStyle(
+        color: titleColor ?? Colors.white,
+        decoration: TextDecoration.none,
+      ),
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle Function(
+      {double fontSize,
+      FontStyle fontStyle,
+      FontWeight fontWeight,
+      TextStyle textStyle}) googleFonts(int no) {
     switch (no) {
       case 1:
         {
-          return GoogleFonts.charmonman(
-            textStyle: const TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
-            ),
-            fontWeight: FontWeight.bold,
-          );
+          return GoogleFonts.charmonman;
         }
         break;
 
       case 2:
         {
-          return GoogleFonts.balooBhai(
-            textStyle: const TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
-            ),
-            fontWeight: FontWeight.bold,
-          );
+          return GoogleFonts.balooBhai;
         }
         break;
 
       default:
         {
-          return GoogleFonts.charmonman(
-            textStyle: const TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
-            ),
-            fontWeight: FontWeight.bold,
-          );
+          return GoogleFonts.charmonman;
         }
         break;
     }
