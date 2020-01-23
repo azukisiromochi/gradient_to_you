@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'package:gradient_to_you/components/gradient_builder/gradient_builder.dart';
 import 'package:gradient_to_you/configs/g_2_u_colors.dart';
+import 'package:gradient_to_you/utils/app_theme_utils.dart';
+
+import '../../app_store.dart';
 
 class ColorPalette extends StatelessWidget {
-  const ColorPalette({Key key, this.themeNo}) : super(key: key);
+  const ColorPalette({Key key, @required this.store}) : super(key: key);
 
-  final int themeNo;
+  final AppStore store;
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +17,10 @@ class ColorPalette extends StatelessWidget {
         centerTitle: true,
         title: Text(
           'Gradient to you',
-          style: GoogleFonts.charmonman(
-            textStyle: const TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
-            ),
-            fontWeight: FontWeight.bold,
-          ),
+          style: AppThemeUtils.appBarStyle(store.themeNo),
         ),
-        backgroundColorStart: const Color(0xffe4a972).withOpacity(0.6),
-        backgroundColorEnd: const Color(0xff9941d8).withOpacity(0.6),
+        backgroundColorStart: store.gradientColors.first.withOpacity(0.6),
+        backgroundColorEnd: store.gradientColors.last.withOpacity(0.6),
       ),
       body: GridView.count(
         primary: false,
@@ -34,19 +29,19 @@ class ColorPalette extends StatelessWidget {
         mainAxisSpacing: 10,
         crossAxisCount: 3,
 //        childAspectRatio: 3 / 4,
-        children: const <Widget>[
-          Palette(paletteColor: G2UColors.hslFromHue000),
-          Palette(paletteColor: G2UColors.hslFromHue030),
-          Palette(paletteColor: G2UColors.hslFromHue060),
-          Palette(paletteColor: G2UColors.hslFromHue090),
-          Palette(paletteColor: G2UColors.hslFromHue120),
-          Palette(paletteColor: G2UColors.hslFromHue150),
-          Palette(paletteColor: G2UColors.hslFromHue180),
-          Palette(paletteColor: G2UColors.hslFromHue210),
-          Palette(paletteColor: G2UColors.hslFromHue240),
-          Palette(paletteColor: G2UColors.hslFromHue270),
-          Palette(paletteColor: G2UColors.hslFromHue300),
-          Palette(paletteColor: G2UColors.hslFromHue330),
+        children: <Widget>[
+          Palette(store: store, paletteColor: G2UColors.hslFromHue000),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue030),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue060),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue090),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue120),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue150),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue180),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue210),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue240),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue270),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue300),
+          Palette(store: store, paletteColor: G2UColors.hslFromHue330),
         ],
       ),
     );
@@ -54,11 +49,13 @@ class ColorPalette extends StatelessWidget {
 }
 
 class Palette extends StatefulWidget {
-  const Palette({Key key, this.paletteColor}) : super(key: key);
+  const Palette({Key key, @required this.store, @required this.paletteColor})
+      : super(key: key);
 
   @override
   _PaletteState createState() => _PaletteState();
 
+  final AppStore store;
   final HSLColor paletteColor;
 }
 
@@ -66,24 +63,16 @@ class _PaletteState extends State<Palette> {
   @override
   Widget build(BuildContext context) {
     final _paletteColor = widget.paletteColor.toColor();
+
     return Container(
       child: Card(
         color: _paletteColor,
         child: InkWell(
           onTap: () {
-            _nextPage(context, _paletteColor);
+            widget.store.setBaseColor(_paletteColor);
+            Navigator.of(context).pushNamed('/gradient');
           },
         ),
-      ),
-    );
-  }
-
-  void _nextPage(BuildContext context, Color paletteColor) {
-    Navigator.push(
-      context,
-      MaterialPageRoute<void>(
-        settings: const RouteSettings(name: '/gradient'),
-        builder: (context) => GradientBuilder(baseColor: paletteColor),
       ),
     );
   }

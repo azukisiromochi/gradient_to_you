@@ -1,16 +1,19 @@
 import 'dart:math' show Random;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_to_you/utils/app_theme_utils.dart';
+
+import '../../app_store.dart';
 
 class GradientBuilder extends StatelessWidget {
-  const GradientBuilder({Key key, this.baseColor}) : super(key: key);
+  const GradientBuilder({Key key, @required this.store})
+      : super(key: key);
 
-  final Color baseColor;
+  final AppStore store;
 
   @override
   Widget build(BuildContext context) {
     final _themeColor =
-        HSLColor.fromColor(baseColor).withLightness(0.2).toColor();
+        HSLColor.fromColor(store.baseColor).withLightness(0.2).toColor();
 
     return Scaffold(
       appBar: AppBar(
@@ -18,17 +21,11 @@ class GradientBuilder extends StatelessWidget {
         iconTheme: IconThemeData(color: _themeColor),
         title: Text(
           'Gradient to you',
-          style: GoogleFonts.charmonman(
-            textStyle: TextStyle(
-              color: _themeColor,
-              decoration: TextDecoration.none,
-            ),
-            fontWeight: FontWeight.bold,
-          ),
+          style: AppThemeUtils.appBarStyle(store.themeNo, _themeColor)
         ),
-        backgroundColor: baseColor,
+        backgroundColor: store.baseColor,
       ),
-      body: GradientBody(backgroundColor: baseColor),
+      body: GradientBody(backgroundColor: store.baseColor),
     );
   }
 }

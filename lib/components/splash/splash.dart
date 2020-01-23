@@ -1,17 +1,18 @@
 import 'dart:async' show Future;
-import 'dart:math' show Random;
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
 
+import '../../app_store.dart';
+
 class Splash extends StatelessWidget {
-  const Splash({Key key}) : super(key: key);
+  const Splash({Key key, @required this.store}) : super(key: key);
+
+  final AppStore store;
 
   @override
   Widget build(BuildContext context) {
     Future<void>.delayed(const Duration(seconds: 3)).then(
         (_) => {Navigator.of(context).pushReplacementNamed('/color_palette')});
-
-    final _themeNo = Random().nextInt(2) + 1;
 
     return Scaffold(
       body: Stack(
@@ -21,7 +22,7 @@ class Splash extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AppThemeUtils.splashImage(_themeNo),
+                image: AppThemeUtils.splashImage(store.themeNo),
                 fit: BoxFit.cover,
               ),
             ),
@@ -33,7 +34,7 @@ class Splash extends StatelessWidget {
               gradient: LinearGradient(
                 begin: FractionalOffset.topLeft,
                 end: FractionalOffset.bottomRight,
-                colors: AppThemeUtils.gradientColors(_themeNo),
+                colors: store.gradientColors,
                 stops: const [
                   0.0,
                   1.0,
@@ -45,7 +46,7 @@ class Splash extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               'Gradient to you',
-              style: AppThemeUtils.logoStyle(_themeNo),
+              style: AppThemeUtils.logoStyle(store.themeNo),
             ),
           ),
         ],
