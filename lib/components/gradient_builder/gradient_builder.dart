@@ -22,6 +22,26 @@ class GradientBuilder extends StatelessWidget {
         backgroundColor: store.baseColor,
       ),
       body: GradientBody(backgroundColor: store.baseColor),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).pushNamed('/image_picker'),
+        tooltip: 'Increment',
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+              begin: FractionalOffset.topLeft,
+              end: FractionalOffset.bottomRight,
+              colors: [
+                store.gradientColors.first,
+                store.gradientColors.last,
+              ],
+            ),
+          ),
+          child: Icon(Icons.add),
+        ),
+      ),
     );
   }
 }

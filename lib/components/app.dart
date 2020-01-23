@@ -5,6 +5,7 @@ import 'package:gradient_to_you/components/color_palette/color_palette.dart';
 import 'package:gradient_to_you/components/splash/splash.dart';
 
 import '../app_store.dart';
+import 'bg_image_picker/bg_image_picker.dart';
 import 'gradient_builder/gradient_builder.dart';
 
 class App extends StatelessWidget {
@@ -18,6 +19,7 @@ class App extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/color_palette': (_) => ColorPalette(store: store),
         '/gradient': (_) => GradientBuilder(store: store),
+        '/image_picker': (_) => BgImagePicker(store: store),
       },
     );
   }
