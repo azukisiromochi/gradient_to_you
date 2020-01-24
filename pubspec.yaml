@@ -37,6 +37,9 @@ dependencies:
   # https://pub.dev/packages/image_picker
   image_picker: 0.4.12+1
 
+  # https://pub.dev/packages/photo_view
+  photo_view:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

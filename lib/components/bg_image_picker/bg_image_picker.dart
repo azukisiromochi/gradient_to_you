@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:photo_view/photo_view.dart';
 
 import '../../app_store.dart';
 
@@ -20,7 +21,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
   File _image;
 
   Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    final image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       _image = image;
@@ -41,7 +42,12 @@ class _BgImagePickerState extends State<BgImagePicker> {
         backgroundColorEnd: widget.store.gradientColors.last.withOpacity(0.6),
       ),
       body: Center(
-        child: _image == null ? Text('No image selected.') : Image.file(_image),
+        child: _image == null
+            ? const Text('No image selected.')
+            : Container(
+                child: PhotoView(
+                imageProvider: FileImage(_image),
+              )),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
