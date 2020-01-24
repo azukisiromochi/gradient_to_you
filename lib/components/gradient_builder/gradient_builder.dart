@@ -25,22 +25,8 @@ class GradientBuilder extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).pushNamed('/image_picker'),
         tooltip: 'Increment',
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: FractionalOffset.topLeft,
-              end: FractionalOffset.bottomRight,
-              colors: [
-                store.gradientColors.first,
-                store.gradientColors.last,
-              ],
-            ),
-          ),
-          child: Icon(Icons.add),
-        ),
+        backgroundColor: store.baseColor,
+        child: Icon(Icons.check, color: _themeColor),
       ),
     );
   }

@@ -20,7 +20,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
   File _image;
 
   Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       _image = image;
@@ -46,7 +46,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
         tooltip: 'Pick Image',
-        child: Icon(Icons.add_a_photo),
+        child: Icon(Icons.collections),
       ),
     );
   }
