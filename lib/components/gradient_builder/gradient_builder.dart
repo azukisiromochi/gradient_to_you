@@ -21,7 +21,7 @@ class GradientBuilder extends StatelessWidget {
             style: AppThemeUtils.appBarStyle(store.themeNo, _themeColor)),
         backgroundColor: store.baseColor,
       ),
-      body: GradientBody(backgroundColor: store.baseColor),
+      body: GradientBody(store: store),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).pushNamed('/image_picker'),
         tooltip: 'select!',
@@ -33,9 +33,9 @@ class GradientBuilder extends StatelessWidget {
 }
 
 class GradientBody extends StatefulWidget {
-  const GradientBody({Key key, this.backgroundColor}) : super(key: key);
+  const GradientBody({Key key, this.store}) : super(key: key);
 
-  final Color backgroundColor;
+  final AppStore store;
 
   @override
   _GradientBodyState createState() => _GradientBodyState();
@@ -43,27 +43,26 @@ class GradientBody extends StatefulWidget {
 
 class _GradientBodyState extends State<GradientBody> {
   final _random = Random();
-  Color primary;
-  Color secondary;
-  List<FractionalOffset> gradientBeginEnd;
 
   @override
   Widget build(BuildContext context) {
-    primary =
-        _randomHsl(HSLColor.fromColor(widget.backgroundColor).hue).toColor();
-    secondary = _randomHsl().toColor();
-    gradientBeginEnd = _randomGradientBeginEnd();
+    if (widget.store.primary == null) {
+      widget.store.setPrimary(
+          _randomHsl(HSLColor.fromColor(widget.store.baseColor).hue).toColor());
+      widget.store.setSecondary(_randomHsl().toColor());
+      widget.store.setGradientBeginEnd(_randomGradientBeginEnd());
+    }
 
     return Container(
       height: double.infinity,
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: gradientBeginEnd.first,
-          end: gradientBeginEnd.last,
+          begin: widget.store.gradientBeginEnd.first,
+          end: widget.store.gradientBeginEnd.last,
           colors: [
-            primary,
-            secondary,
+            widget.store.primary,
+            widget.store.secondary,
           ],
           stops: const [
             0.0,
@@ -71,7 +70,10 @@ class _GradientBodyState extends State<GradientBody> {
           ],
         ),
       ),
-      child: InkWell(onTap: () => setState(() {})),
+      child: InkWell(
+          onTap: () => setState(() {
+                widget.store.clearGradient();
+              })),
     );
   }
 

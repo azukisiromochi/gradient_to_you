@@ -19,6 +19,15 @@ abstract class _AppStore with Store {
   @observable
   HSLColor paletteColor = HSLColor.fromColor(Colors.black);
 
+  @observable
+  Color primary;
+
+  @observable
+  Color secondary;
+
+  @observable
+  List<FractionalOffset> gradientBeginEnd;
+
   @computed
   Color get baseColor => paletteColor?.toColor() ?? Colors.black;
 
@@ -26,5 +35,30 @@ abstract class _AppStore with Store {
   @action
   void setPaletteColor(HSLColor value) {
     paletteColor = value;
+  }
+
+  // ignore: use_setters_to_change_properties
+  @action
+  void setPrimary(Color value) {
+    primary = value;
+  }
+
+  // ignore: use_setters_to_change_properties
+  @action
+  void setSecondary(Color value) {
+    secondary = value;
+  }
+
+  // ignore: use_setters_to_change_properties
+  @action
+  void setGradientBeginEnd(List<FractionalOffset> value) {
+    gradientBeginEnd = value;
+  }
+
+  @action
+  void clearGradient() {
+    primary = null;
+    secondary = null;
+    gradientBeginEnd = null;
   }
 }
