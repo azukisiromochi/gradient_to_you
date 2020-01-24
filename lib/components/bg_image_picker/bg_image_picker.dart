@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_view/photo_view.dart';
@@ -30,16 +29,16 @@ class _BgImagePickerState extends State<BgImagePicker> {
 
   @override
   Widget build(BuildContext context) {
+    final _themeColor = widget.store.paletteColor.withLightness(0.2).toColor();
+
     return Scaffold(
-      appBar: GradientAppBar(
+      appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          'Gradient to you',
-          style: AppThemeUtils.appBarStyle(widget.store.themeNo),
-        ),
-        backgroundColorStart:
-            widget.store.gradientColors.first.withOpacity(0.6),
-        backgroundColorEnd: widget.store.gradientColors.last.withOpacity(0.6),
+        iconTheme: IconThemeData(color: _themeColor),
+        title: Text('Gradient to you',
+            style:
+                AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
+        backgroundColor: widget.store.baseColor,
       ),
       body: Center(
         child: _image == null
@@ -52,7 +51,8 @@ class _BgImagePickerState extends State<BgImagePicker> {
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
         tooltip: 'Pick Image',
-        child: Icon(Icons.collections),
+        backgroundColor: widget.store.baseColor,
+        child: Icon(Icons.collections, color: _themeColor),
       ),
     );
   }
