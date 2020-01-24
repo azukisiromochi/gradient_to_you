@@ -40,6 +40,9 @@ dependencies:
   # https://pub.dev/packages/photo_view
   photo_view:
 
+  # https://pub.dev/packages/image_cropper
+  image_cropper: ^1.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

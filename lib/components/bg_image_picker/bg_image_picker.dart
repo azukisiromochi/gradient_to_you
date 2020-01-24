@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_view/photo_view.dart';
 
@@ -21,9 +22,28 @@ class _BgImagePickerState extends State<BgImagePicker> {
 
   Future getImage() async {
     final image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    final croppedFile = await ImageCropper.cropImage(
+      sourcePath: image.path,
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio16x9
+      ],
+      androidUiSettings: AndroidUiSettings(
+          toolbarTitle: 'Cropper',
+          toolbarColor: Colors.deepOrange,
+          toolbarWidgetColor: Colors.white,
+          initAspectRatio: CropAspectRatioPreset.original,
+          lockAspectRatio: false),
+      iosUiSettings: const IOSUiSettings(
+        minimumAspectRatio: 1,
+      ),
+    );
 
     setState(() {
-      _image = image;
+      _image = croppedFile;
     });
   }
 
