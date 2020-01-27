@@ -48,7 +48,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
 
   @override
   Widget build(BuildContext context) {
-    final _themeColor = widget.store.paletteColor.withLightness(0.2).toColor();
+    final _themeColor = widget.store.baseTextColor;
 
     return Scaffold(
       appBar: AppBar(
@@ -61,17 +61,25 @@ class _BgImagePickerState extends State<BgImagePicker> {
       ),
       body: Center(
         child: _image == null
-            ? const Text('No image selected.')
-            : Container(
-                child: Image.file(_image),
-              ),
+            ? GestureDetector(
+                onTap: getImage,
+                child: Icon(
+                  Icons.collections,
+                  color: widget.store.baseColor,
+                  size: 100,
+                ),
+              )
+            : Image.file(_image),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
-        tooltip: 'Pick Image',
-        backgroundColor: widget.store.baseColor,
-        child: Icon(Icons.collections, color: _themeColor),
-      ),
+      floatingActionButton: _image == null
+          ? null
+          : FloatingActionButton(
+              onPressed: () =>
+                  Navigator.of(context).pushNamed('/gradient_filter'),
+              tooltip: 'select!',
+              backgroundColor: widget.store.baseColor,
+              child: Icon(Icons.check, color: _themeColor),
+            ),
     );
   }
 }

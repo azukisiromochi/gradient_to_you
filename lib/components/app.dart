@@ -7,6 +7,7 @@ import 'package:gradient_to_you/components/splash/splash.dart';
 import '../app_store.dart';
 import 'bg_image_picker/bg_image_picker.dart';
 import 'gradient_builder/gradient_builder.dart';
+import 'gradient_filter/gradient_filter.dart';
 
 class App extends StatelessWidget {
   @override
@@ -20,6 +21,7 @@ class App extends StatelessWidget {
         '/color_palette': (_) => ColorPalette(store: store),
         '/gradient': (_) => GradientBuilder(store: store),
         '/image_picker': (_) => BgImagePicker(store: store),
+        '/gradient_filter': (_) => GradientFilter(store: store),
       },
     );
   }
