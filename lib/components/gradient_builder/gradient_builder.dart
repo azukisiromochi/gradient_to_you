@@ -24,7 +24,7 @@ class GradientBuilder extends StatelessWidget {
       body: GradientBody(store: store),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).pushNamed('/image_picker'),
-        tooltip: 'select!',
+        tooltip: 'select gradient',
         backgroundColor: store.baseColor,
         child: Icon(Icons.check, color: _themeColor),
       ),

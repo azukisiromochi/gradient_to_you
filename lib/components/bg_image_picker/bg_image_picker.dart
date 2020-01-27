@@ -58,6 +58,12 @@ class _BgImagePickerState extends State<BgImagePicker> {
             style:
                 AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
         backgroundColor: widget.store.baseColor,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.collections, color: _themeColor),
+            onPressed: getImage,
+          ),
+        ],
       ),
       body: Center(
         child: _image == null
@@ -76,7 +82,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
           : FloatingActionButton(
               onPressed: () =>
                   Navigator.of(context).pushNamed('/gradient_filter'),
-              tooltip: 'select!',
+              tooltip: 'select image',
               backgroundColor: widget.store.baseColor,
               child: Icon(Icons.check, color: _themeColor),
             ),
