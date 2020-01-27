@@ -26,9 +26,26 @@ class _GradientFilterState extends State<GradientFilter> {
                 AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
         backgroundColor: widget.store.baseColor,
       ),
-      body: const Center(
-        child: Text('gradient_filter'),
-      ),
+      body: Center(
+        child: ShaderMask(
+          child: Image(
+            image: FileImage(widget.store.bgImage),
+          ),
+          shaderCallback: (Rect bounds) {
+            return LinearGradient(
+              colors: [
+                widget.store.primary.withOpacity(0.6),
+                widget.store.secondary.withOpacity(0.6),
+              ],
+              stops: const [
+                0.0,
+                1.0,
+              ],
+            ).createShader(bounds);
+          },
+          blendMode: BlendMode.srcATop,
+        ),
+      )
     );
   }
 }
