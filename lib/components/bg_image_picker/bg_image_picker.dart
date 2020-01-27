@@ -19,35 +19,42 @@ class BgImagePicker extends StatefulWidget {
 class _BgImagePickerState extends State<BgImagePicker> {
   File _image;
 
-  Future getImage() async {
-    final image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    final croppedFile = await ImageCropper.cropImage(
-      sourcePath: image.path,
-      aspectRatioPresets: [
-        CropAspectRatioPreset.square,
-        CropAspectRatioPreset.ratio3x2,
-        CropAspectRatioPreset.original,
-        CropAspectRatioPreset.ratio4x3,
-        CropAspectRatioPreset.ratio16x9
-      ],
-      androidUiSettings: AndroidUiSettings(
-          toolbarTitle: '',
-          toolbarColor: widget.store.baseColor,
-          toolbarWidgetColor: widget.store.baseTextColor,
-          initAspectRatio: CropAspectRatioPreset.original,
-          lockAspectRatio: false),
-      iosUiSettings: const IOSUiSettings(
-        minimumAspectRatio: 1,
-      ),
-    );
+  Future getImage({bool forceUpdate = false}) async {
+    if (forceUpdate || widget.store.bgImage == null) {
+      widget.store.setBgImage(null);
 
-    setState(() {
-      _image = croppedFile;
-    });
+      final image = await ImagePicker.pickImage(source: ImageSource.gallery);
+      final croppedFile = await ImageCropper.cropImage(
+        sourcePath: image.path,
+        aspectRatioPresets: [
+          CropAspectRatioPreset.square,
+          CropAspectRatioPreset.ratio3x2,
+          CropAspectRatioPreset.original,
+          CropAspectRatioPreset.ratio4x3,
+          CropAspectRatioPreset.ratio16x9
+        ],
+        androidUiSettings: AndroidUiSettings(
+            toolbarTitle: '',
+            toolbarColor: widget.store.baseColor,
+            toolbarWidgetColor: widget.store.baseTextColor,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false),
+        iosUiSettings: const IOSUiSettings(
+          minimumAspectRatio: 1,
+        ),
+      );
+
+      setState(() {
+        _image = croppedFile;
+        widget.store.setBgImage(croppedFile);
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    _image = widget.store.bgImage;
+
     final _themeColor = widget.store.baseTextColor;
 
     return Scaffold(
@@ -61,7 +68,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.collections, color: _themeColor),
-            onPressed: getImage,
+            onPressed: () => getImage(forceUpdate: true),
           ),
         ],
       ),

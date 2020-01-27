@@ -123,6 +123,23 @@ mixin _$AppStore on _AppStore, Store {
     }, _$gradientBeginEndAtom, name: '${_$gradientBeginEndAtom.name}_set');
   }
 
+  final _$bgImageAtom = Atom(name: '_AppStore.bgImage');
+
+  @override
+  File get bgImage {
+    _$bgImageAtom.context.enforceReadPolicy(_$bgImageAtom);
+    _$bgImageAtom.reportObserved();
+    return super.bgImage;
+  }
+
+  @override
+  set bgImage(File value) {
+    _$bgImageAtom.context.conditionallyRunInAction(() {
+      super.bgImage = value;
+      _$bgImageAtom.reportChanged();
+    }, _$bgImageAtom, name: '${_$bgImageAtom.name}_set');
+  }
+
   final _$_AppStoreActionController = ActionController(name: '_AppStore');
 
   @override
@@ -170,6 +187,16 @@ mixin _$AppStore on _AppStore, Store {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
       return super.clearGradient();
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setBgImage(File value) {
+    final _$actionInfo = _$_AppStoreActionController.startAction();
+    try {
+      return super.setBgImage(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

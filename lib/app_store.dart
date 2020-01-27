@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
@@ -27,6 +29,9 @@ abstract class _AppStore with Store {
 
   @observable
   List<FractionalOffset> gradientBeginEnd;
+
+  @observable
+  File bgImage;
 
   @computed
   Color get baseColor => paletteColor?.toColor() ?? Colors.black;
@@ -64,5 +69,11 @@ abstract class _AppStore with Store {
     primary = null;
     secondary = null;
     gradientBeginEnd = null;
+  }
+
+  // ignore: use_setters_to_change_properties
+  @action
+  void setBgImage(File value) {
+    bgImage = value;
   }
 }
