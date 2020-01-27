@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:photo_view/photo_view.dart';
 
 import '../../app_store.dart';
 
@@ -64,9 +63,8 @@ class _BgImagePickerState extends State<BgImagePicker> {
         child: _image == null
             ? const Text('No image selected.')
             : Container(
-                child: PhotoView(
-                imageProvider: FileImage(_image),
-              )),
+                child: Image.file(_image),
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
