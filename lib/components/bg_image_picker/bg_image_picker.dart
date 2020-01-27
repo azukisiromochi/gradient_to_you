@@ -31,9 +31,9 @@ class _BgImagePickerState extends State<BgImagePicker> {
         CropAspectRatioPreset.ratio16x9
       ],
       androidUiSettings: AndroidUiSettings(
-          toolbarTitle: 'Cropper',
-          toolbarColor: Colors.deepOrange,
-          toolbarWidgetColor: Colors.white,
+          toolbarTitle: '',
+          toolbarColor: widget.store.baseColor,
+          toolbarWidgetColor: widget.store.baseTextColor,
           initAspectRatio: CropAspectRatioPreset.original,
           lockAspectRatio: false),
       iosUiSettings: const IOSUiSettings(

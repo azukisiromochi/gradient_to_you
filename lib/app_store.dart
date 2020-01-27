@@ -31,6 +31,10 @@ abstract class _AppStore with Store {
   @computed
   Color get baseColor => paletteColor?.toColor() ?? Colors.black;
 
+  @computed
+  Color get baseTextColor =>
+      paletteColor?.withLightness(0.2)?.toColor() ?? Colors.white;
+
   // ignore: use_setters_to_change_properties
   @action
   void setPaletteColor(HSLColor value) {

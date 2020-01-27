@@ -14,6 +14,12 @@ mixin _$AppStore on _AppStore, Store {
   @override
   Color get baseColor =>
       (_$baseColorComputed ??= Computed<Color>(() => super.baseColor)).value;
+  Computed<Color> _$baseTextColorComputed;
+
+  @override
+  Color get baseTextColor =>
+      (_$baseTextColorComputed ??= Computed<Color>(() => super.baseTextColor))
+          .value;
 
   final _$themeNoAtom = Atom(name: '_AppStore.themeNo');
 

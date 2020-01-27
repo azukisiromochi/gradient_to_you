@@ -11,7 +11,7 @@ class GradientBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _themeColor = store.paletteColor.withLightness(0.2).toColor();
+    final _themeColor = store.baseTextColor;
 
     return Scaffold(
       appBar: AppBar(
