@@ -24,24 +24,27 @@ class _GradientFilterState extends State<GradientFilter> {
     final _themeColor = widget.store.baseTextColor;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: IconThemeData(color: _themeColor),
-        title: Text('Gradient to you',
-            style:
-                AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
-        backgroundColor: widget.store.baseColor,
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: ShaderMask(
+        appBar: AppBar(
+          centerTitle: true,
+          iconTheme: IconThemeData(color: _themeColor),
+          title: Text('Gradient to you',
+              style:
+                  AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
+          backgroundColor: widget.store.baseColor,
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              ShaderMask(
                 child: Image(
                   image: FileImage(widget.store.bgImage),
                 ),
                 shaderCallback: (Rect bounds) {
                   return LinearGradient(
+                    begin: widget.store.gradientBeginEnd.first,
+                    end: widget.store.gradientBeginEnd.last,
                     colors: [
                       widget.store.primary.withOpacity(_opacity),
                       widget.store.secondary.withOpacity(_opacity),
@@ -54,20 +57,18 @@ class _GradientFilterState extends State<GradientFilter> {
                 },
                 blendMode: BlendMode.srcATop,
               ),
-            ),
-            Slider(
-              label: '${_opacity.toStringAsFixed(2)}',
-              min: 0.1,
-              max: 0.9,
-              value: _opacity,
-              activeColor: widget.store.baseColor,
-              inactiveColor: _themeColor,
-              divisions: 80,
-              onChanged: _changeSlider,
-            )
-          ],
-        ),
-      )
-    );
+              Slider(
+                label: '${_opacity.toStringAsFixed(2)}',
+                min: 0.1,
+                max: 0.9,
+                value: _opacity,
+                activeColor: widget.store.baseColor,
+                inactiveColor: _themeColor,
+                divisions: 80,
+                onChanged: _changeSlider,
+              )
+            ],
+          ),
+        ));
   }
 }
