@@ -43,6 +43,28 @@ abstract class _AppStore with Store {
   Color get baseTextColor =>
       paletteColor?.withLightness(0.2)?.toColor() ?? Colors.white;
 
+  @computed
+  Widget get gradientImage => ShaderMask(
+    child: Image(
+      image: FileImage(bgImage),
+    ),
+    shaderCallback: (Rect bounds) {
+      return LinearGradient(
+        begin: gradientBeginEnd.first,
+        end: gradientBeginEnd.last,
+        colors: [
+          primary.withOpacity(opacity),
+          secondary.withOpacity(opacity),
+        ],
+        stops: const [
+          0.0,
+          1.0,
+        ],
+      ).createShader(bounds);
+    },
+    blendMode: BlendMode.srcATop,
+  );
+
   // ignore: use_setters_to_change_properties
   @action
   void setPaletteColor(HSLColor value) {

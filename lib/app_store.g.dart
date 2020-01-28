@@ -20,6 +20,12 @@ mixin _$AppStore on _AppStore, Store {
   Color get baseTextColor =>
       (_$baseTextColorComputed ??= Computed<Color>(() => super.baseTextColor))
           .value;
+  Computed<Widget> _$gradientImageComputed;
+
+  @override
+  Widget get gradientImage =>
+      (_$gradientImageComputed ??= Computed<Widget>(() => super.gradientImage))
+          .value;
 
   final _$themeNoAtom = Atom(name: '_AppStore.themeNo');
 

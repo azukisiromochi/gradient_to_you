@@ -13,6 +13,14 @@ class WriteMessage extends StatefulWidget {
 }
 
 class _WriteMessageState extends State<WriteMessage> {
+  String _text = 'Enter something...';
+
+  void _messageChanged(String value) {
+    setState(() {
+      _text = '$value';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final _themeColor = widget.store.baseTextColor;
@@ -26,8 +34,29 @@ class _WriteMessageState extends State<WriteMessage> {
                 AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
         backgroundColor: widget.store.baseColor,
       ),
-      body: Container(
-        child: const Placeholder(),
+      body: Center(
+        child: Wrap(
+          direction: Axis.horizontal,
+          spacing: 8,
+          runSpacing: 4,
+          children: <Widget>[
+            widget.store.gradientImage,
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: '',
+                  hintText: 'Message',
+                  icon: Icon(Icons.message),
+                ),
+                autocorrect: false,
+                autofocus: true,
+                keyboardType: TextInputType.text,
+                onChanged: _messageChanged,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

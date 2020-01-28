@@ -19,7 +19,7 @@ class _GradientFilterState extends State<GradientFilter> {
 
   @override
   Widget build(BuildContext context) {
-    final _opacity = widget.store.opacity ?? 0.6;
+    final _opacity = widget.store.opacity;
 
     final _themeColor = widget.store.baseTextColor;
 
@@ -33,30 +33,12 @@ class _GradientFilterState extends State<GradientFilter> {
         backgroundColor: widget.store.baseColor,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: Wrap(
+          direction: Axis.horizontal,
+          spacing: 8,
+          runSpacing: 4,
           children: <Widget>[
-            ShaderMask(
-              child: Image(
-                image: FileImage(widget.store.bgImage),
-              ),
-              shaderCallback: (Rect bounds) {
-                return LinearGradient(
-                  begin: widget.store.gradientBeginEnd.first,
-                  end: widget.store.gradientBeginEnd.last,
-                  colors: [
-                    widget.store.primary.withOpacity(_opacity),
-                    widget.store.secondary.withOpacity(_opacity),
-                  ],
-                  stops: const [
-                    0.0,
-                    1.0,
-                  ],
-                ).createShader(bounds);
-              },
-              blendMode: BlendMode.srcATop,
-            ),
+            widget.store.gradientImage,
             Slider(
               label: '${_opacity.toStringAsFixed(2)}',
               min: 0.1,
