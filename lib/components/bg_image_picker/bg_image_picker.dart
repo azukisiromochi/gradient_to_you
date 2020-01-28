@@ -82,7 +82,12 @@ class _BgImagePickerState extends State<BgImagePicker> {
                   size: 100,
                 ),
               )
-            : Image.file(_image),
+            : ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxHeight: 400,
+                ),
+                child: Image.file(_image),
+              ),
       ),
       floatingActionButton: _image == null
           ? null

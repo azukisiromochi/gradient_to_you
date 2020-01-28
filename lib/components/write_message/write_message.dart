@@ -42,12 +42,11 @@ class _WriteMessageState extends State<WriteMessage> {
           children: <Widget>[
             ConstrainedBox(
               constraints: const BoxConstraints(
-                maxWidth: 500,
-                maxHeight: 432,
+                maxHeight: 400,
               ),
               child: Stack(
                 children: <Widget>[
-                  widget.store.gradientImage,
+                  Center(child: widget.store.gradientImage),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Text(

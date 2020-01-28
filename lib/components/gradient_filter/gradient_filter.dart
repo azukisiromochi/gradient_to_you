@@ -38,7 +38,12 @@ class _GradientFilterState extends State<GradientFilter> {
           spacing: 8,
           runSpacing: 4,
           children: <Widget>[
-            widget.store.gradientImage,
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxHeight: 400,
+              ),
+              child: Center(child: widget.store.gradientImage),
+            ),
             Slider(
               label: '${_opacity.toStringAsFixed(2)}',
               min: 0.1,

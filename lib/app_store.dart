@@ -111,9 +111,13 @@ abstract class _AppStore with Store {
       decodeImageFromList(value.readAsBytesSync()).then((decodedImage) {
         var _width = decodedImage.width;
         var _height = decodedImage.height;
-        if (deviceSize.width < bgImageWidth) {
+        if (deviceSize.width < _width) {
           _width = deviceSize.width.toInt();
-          _height = deviceSize.height.toInt();
+          _height = _width * decodedImage.height ~/ decodedImage.width;
+        }
+        if (400 < _height) {
+          _height = 400;
+          _width = _height * decodedImage.width ~/ decodedImage.height;
         }
         bgImageWidth = _width;
         bgImageHeight = _height;
