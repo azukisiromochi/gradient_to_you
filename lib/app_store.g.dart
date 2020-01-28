@@ -140,6 +140,23 @@ mixin _$AppStore on _AppStore, Store {
     }, _$bgImageAtom, name: '${_$bgImageAtom.name}_set');
   }
 
+  final _$opacityAtom = Atom(name: '_AppStore.opacity');
+
+  @override
+  double get opacity {
+    _$opacityAtom.context.enforceReadPolicy(_$opacityAtom);
+    _$opacityAtom.reportObserved();
+    return super.opacity;
+  }
+
+  @override
+  set opacity(double value) {
+    _$opacityAtom.context.conditionallyRunInAction(() {
+      super.opacity = value;
+      _$opacityAtom.reportChanged();
+    }, _$opacityAtom, name: '${_$opacityAtom.name}_set');
+  }
+
   final _$_AppStoreActionController = ActionController(name: '_AppStore');
 
   @override
@@ -183,20 +200,30 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void clearGradient() {
+  void setBgImage(File value) {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
-      return super.clearGradient();
+      return super.setBgImage(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void setBgImage(File value) {
+  void setOpacity(double value) {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
-      return super.setBgImage(value);
+      return super.setOpacity(value);
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearGradient() {
+    final _$actionInfo = _$_AppStoreActionController.startAction();
+    try {
+      return super.clearGradient();
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

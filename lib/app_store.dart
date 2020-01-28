@@ -33,6 +33,9 @@ abstract class _AppStore with Store {
   @observable
   File bgImage;
 
+  @observable
+  double opacity = 0.6;
+
   @computed
   Color get baseColor => paletteColor?.toColor() ?? Colors.black;
 
@@ -64,16 +67,22 @@ abstract class _AppStore with Store {
     gradientBeginEnd = value;
   }
 
+  // ignore: use_setters_to_change_properties
+  @action
+  void setBgImage(File value) {
+    bgImage = value;
+  }
+
+  // ignore: use_setters_to_change_properties
+  @action
+  void setOpacity(double value) {
+    opacity = value;
+  }
+
   @action
   void clearGradient() {
     primary = null;
     secondary = null;
     gradientBeginEnd = null;
-  }
-
-  // ignore: use_setters_to_change_properties
-  @action
-  void setBgImage(File value) {
-    bgImage = value;
   }
 }

@@ -13,14 +13,14 @@ class GradientFilter extends StatefulWidget {
 }
 
 class _GradientFilterState extends State<GradientFilter> {
-  double _opacity = 0.6;
-
   void _changeSlider(double e) => setState(() {
-        _opacity = e;
+        widget.store.setOpacity(e);
       });
 
   @override
   Widget build(BuildContext context) {
+    final _opacity = widget.store.opacity ?? 0.6;
+
     final _themeColor = widget.store.baseTextColor;
 
     return Scaffold(
@@ -71,7 +71,9 @@ class _GradientFilterState extends State<GradientFilter> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed('/write_message'),
+        onPressed: () {
+          Navigator.of(context).pushNamed('/write_message');
+        },
         tooltip: 'select gradient',
         backgroundColor: widget.store.baseColor,
         child: Icon(Icons.check, color: _themeColor),
