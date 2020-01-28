@@ -41,17 +41,20 @@ class _WriteMessageState extends State<WriteMessage> {
           runSpacing: 4,
           children: <Widget>[
             ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxHeight: 400,
+              constraints: BoxConstraints.expand(
+                height: widget.store.bgImageHeight.toDouble(),
+                width: widget.store.bgImageWidth.toDouble(),
               ),
               child: Stack(
                 children: <Widget>[
                   Center(child: widget.store.gradientImage),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Text(
-                      _text,
-                      style: AppThemeUtils.logoStyle(widget.store.themeNo),
+                  Center(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        _text,
+                        style: AppThemeUtils.logoStyle(widget.store.themeNo),
+                      ),
                     ),
                   ),
                 ],
