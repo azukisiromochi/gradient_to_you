@@ -21,7 +21,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
 
   Future getImage({bool forceUpdate = false}) async {
     if (forceUpdate || widget.store.bgImage == null) {
-      widget.store.setBgImage(null);
+      widget.store.setBgImage(null, MediaQuery.of(context).size);
 
       final image = await ImagePicker.pickImage(source: ImageSource.gallery);
       final croppedFile = await ImageCropper.cropImage(
@@ -46,7 +46,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
 
       setState(() {
         _image = croppedFile;
-        widget.store.setBgImage(croppedFile);
+        widget.store.setBgImage(croppedFile, MediaQuery.of(context).size);
       });
     }
   }

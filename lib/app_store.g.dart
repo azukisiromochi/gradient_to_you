@@ -146,6 +146,40 @@ mixin _$AppStore on _AppStore, Store {
     }, _$bgImageAtom, name: '${_$bgImageAtom.name}_set');
   }
 
+  final _$bgImageWidthAtom = Atom(name: '_AppStore.bgImageWidth');
+
+  @override
+  int get bgImageWidth {
+    _$bgImageWidthAtom.context.enforceReadPolicy(_$bgImageWidthAtom);
+    _$bgImageWidthAtom.reportObserved();
+    return super.bgImageWidth;
+  }
+
+  @override
+  set bgImageWidth(int value) {
+    _$bgImageWidthAtom.context.conditionallyRunInAction(() {
+      super.bgImageWidth = value;
+      _$bgImageWidthAtom.reportChanged();
+    }, _$bgImageWidthAtom, name: '${_$bgImageWidthAtom.name}_set');
+  }
+
+  final _$bgImageHeightAtom = Atom(name: '_AppStore.bgImageHeight');
+
+  @override
+  int get bgImageHeight {
+    _$bgImageHeightAtom.context.enforceReadPolicy(_$bgImageHeightAtom);
+    _$bgImageHeightAtom.reportObserved();
+    return super.bgImageHeight;
+  }
+
+  @override
+  set bgImageHeight(int value) {
+    _$bgImageHeightAtom.context.conditionallyRunInAction(() {
+      super.bgImageHeight = value;
+      _$bgImageHeightAtom.reportChanged();
+    }, _$bgImageHeightAtom, name: '${_$bgImageHeightAtom.name}_set');
+  }
+
   final _$opacityAtom = Atom(name: '_AppStore.opacity');
 
   @override
@@ -206,10 +240,10 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void setBgImage(File value) {
+  void setBgImage(File value, Size deviceSize) {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
-      return super.setBgImage(value);
+      return super.setBgImage(value, deviceSize);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

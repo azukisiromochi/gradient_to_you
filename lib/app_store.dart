@@ -34,6 +34,12 @@ abstract class _AppStore with Store {
   File bgImage;
 
   @observable
+  int bgImageWidth;
+
+  @observable
+  int bgImageHeight;
+
+  @observable
   double opacity = 0.6;
 
   @computed
@@ -45,25 +51,32 @@ abstract class _AppStore with Store {
 
   @computed
   Widget get gradientImage => ShaderMask(
-    child: Image(
-      image: FileImage(bgImage),
-    ),
-    shaderCallback: (Rect bounds) {
-      return LinearGradient(
-        begin: gradientBeginEnd.first,
-        end: gradientBeginEnd.last,
-        colors: [
-          primary.withOpacity(opacity),
-          secondary.withOpacity(opacity),
-        ],
-        stops: const [
-          0.0,
-          1.0,
-        ],
-      ).createShader(bounds);
-    },
-    blendMode: BlendMode.srcATop,
-  );
+        child: Image(
+          image: FileImage(bgImage),
+        ),
+        shaderCallback: (Rect bounds) {
+          return LinearGradient(
+            begin: gradientBeginEnd.first,
+            end: gradientBeginEnd.last,
+            colors: [
+              primary.withOpacity(opacity),
+              secondary.withOpacity(opacity),
+            ],
+            stops: const [
+              0.0,
+              1.0,
+            ],
+          ).createShader(
+            Rect.fromLTWH(
+              0,
+              0,
+              bgImageWidth.toDouble(),
+              bgImageHeight.toDouble(),
+            ),
+          );
+        },
+        blendMode: BlendMode.srcATop,
+      );
 
   // ignore: use_setters_to_change_properties
   @action
@@ -91,8 +104,21 @@ abstract class _AppStore with Store {
 
   // ignore: use_setters_to_change_properties
   @action
-  void setBgImage(File value) {
+  void setBgImage(File value, Size deviceSize) {
     bgImage = value;
+
+    if (value != null) {
+      decodeImageFromList(value.readAsBytesSync()).then((decodedImage) {
+        var _width = decodedImage.width;
+        var _height = decodedImage.height;
+        if (deviceSize.width < bgImageWidth) {
+          _width = deviceSize.width.toInt();
+          _height = deviceSize.height.toInt();
+        }
+        bgImageWidth = _width;
+        bgImageHeight = _height;
+      });
+    }
   }
 
   // ignore: use_setters_to_change_properties

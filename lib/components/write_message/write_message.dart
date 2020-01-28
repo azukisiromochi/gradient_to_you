@@ -40,7 +40,24 @@ class _WriteMessageState extends State<WriteMessage> {
           spacing: 8,
           runSpacing: 4,
           children: <Widget>[
-            widget.store.gradientImage,
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 500,
+                maxHeight: 432,
+              ),
+              child: Stack(
+                children: <Widget>[
+                  widget.store.gradientImage,
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Text(
+                      _text,
+                      style: AppThemeUtils.logoStyle(widget.store.themeNo),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(30),
               child: TextField(
