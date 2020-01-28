@@ -9,7 +9,7 @@ class GradientFilter extends StatefulWidget {
   final AppStore store;
 
   @override
-  State<StatefulWidget> createState() => _GradientFilterState();
+  _GradientFilterState createState() => _GradientFilterState();
 }
 
 class _GradientFilterState extends State<GradientFilter> {
@@ -24,51 +24,58 @@ class _GradientFilterState extends State<GradientFilter> {
     final _themeColor = widget.store.baseTextColor;
 
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          iconTheme: IconThemeData(color: _themeColor),
-          title: Text('Gradient to you',
-              style:
-                  AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
-          backgroundColor: widget.store.baseColor,
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              ShaderMask(
-                child: Image(
-                  image: FileImage(widget.store.bgImage),
-                ),
-                shaderCallback: (Rect bounds) {
-                  return LinearGradient(
-                    begin: widget.store.gradientBeginEnd.first,
-                    end: widget.store.gradientBeginEnd.last,
-                    colors: [
-                      widget.store.primary.withOpacity(_opacity),
-                      widget.store.secondary.withOpacity(_opacity),
-                    ],
-                    stops: const [
-                      0.0,
-                      1.0,
-                    ],
-                  ).createShader(bounds);
-                },
-                blendMode: BlendMode.srcATop,
+      appBar: AppBar(
+        centerTitle: true,
+        iconTheme: IconThemeData(color: _themeColor),
+        title: Text('Gradient to you',
+            style:
+                AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
+        backgroundColor: widget.store.baseColor,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            ShaderMask(
+              child: Image(
+                image: FileImage(widget.store.bgImage),
               ),
-              Slider(
-                label: '${_opacity.toStringAsFixed(2)}',
-                min: 0.1,
-                max: 0.9,
-                value: _opacity,
-                activeColor: widget.store.baseColor,
-                inactiveColor: _themeColor,
-                divisions: 80,
-                onChanged: _changeSlider,
-              )
-            ],
-          ),
-        ));
+              shaderCallback: (Rect bounds) {
+                return LinearGradient(
+                  begin: widget.store.gradientBeginEnd.first,
+                  end: widget.store.gradientBeginEnd.last,
+                  colors: [
+                    widget.store.primary.withOpacity(_opacity),
+                    widget.store.secondary.withOpacity(_opacity),
+                  ],
+                  stops: const [
+                    0.0,
+                    1.0,
+                  ],
+                ).createShader(bounds);
+              },
+              blendMode: BlendMode.srcATop,
+            ),
+            Slider(
+              label: '${_opacity.toStringAsFixed(2)}',
+              min: 0.1,
+              max: 0.9,
+              value: _opacity,
+              activeColor: widget.store.baseColor,
+              inactiveColor: _themeColor,
+              divisions: 80,
+              onChanged: _changeSlider,
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).pushNamed('/write_message'),
+        tooltip: 'select gradient',
+        backgroundColor: widget.store.baseColor,
+        child: Icon(Icons.check, color: _themeColor),
+      ),
+    );
   }
 }

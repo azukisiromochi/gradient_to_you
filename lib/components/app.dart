@@ -3,6 +3,7 @@ import 'dart:math' show Random;
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/components/color_palette/color_palette.dart';
 import 'package:gradient_to_you/components/splash/splash.dart';
+import 'package:gradient_to_you/components/write_message/write_message.dart';
 
 import '../app_store.dart';
 import 'bg_image_picker/bg_image_picker.dart';
@@ -22,6 +23,7 @@ class App extends StatelessWidget {
         '/gradient': (_) => GradientBuilder(store: store),
         '/image_picker': (_) => BgImagePicker(store: store),
         '/gradient_filter': (_) => GradientFilter(store: store),
+        '/write_message': (_) => WriteMessage(store: store),
       },
     );
   }
