@@ -13,6 +13,12 @@ class GradientFilter extends StatefulWidget {
 }
 
 class _GradientFilterState extends State<GradientFilter> {
+  double _opacity = 0.6;
+
+  void _changeSlider(double e) => setState(() {
+        _opacity = e;
+      });
+
   @override
   Widget build(BuildContext context) {
     final _themeColor = widget.store.baseTextColor;
@@ -27,23 +33,39 @@ class _GradientFilterState extends State<GradientFilter> {
         backgroundColor: widget.store.baseColor,
       ),
       body: Center(
-        child: ShaderMask(
-          child: Image(
-            image: FileImage(widget.store.bgImage),
-          ),
-          shaderCallback: (Rect bounds) {
-            return LinearGradient(
-              colors: [
-                widget.store.primary.withOpacity(0.6),
-                widget.store.secondary.withOpacity(0.6),
-              ],
-              stops: const [
-                0.0,
-                1.0,
-              ],
-            ).createShader(bounds);
-          },
-          blendMode: BlendMode.srcATop,
+        child: Column(
+          children: <Widget>[
+            Container(
+              child: ShaderMask(
+                child: Image(
+                  image: FileImage(widget.store.bgImage),
+                ),
+                shaderCallback: (Rect bounds) {
+                  return LinearGradient(
+                    colors: [
+                      widget.store.primary.withOpacity(_opacity),
+                      widget.store.secondary.withOpacity(_opacity),
+                    ],
+                    stops: const [
+                      0.0,
+                      1.0,
+                    ],
+                  ).createShader(bounds);
+                },
+                blendMode: BlendMode.srcATop,
+              ),
+            ),
+            Slider(
+              label: '${_opacity.toStringAsFixed(2)}',
+              min: 0.1,
+              max: 0.9,
+              value: _opacity,
+              activeColor: widget.store.baseColor,
+              inactiveColor: _themeColor,
+              divisions: 80,
+              onChanged: _changeSlider,
+            )
+          ],
         ),
       )
     );
