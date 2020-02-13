@@ -1,0 +1,10 @@
+{
+  "@@locale": "ja",
+  "@@last_modified": "2020-02-13T19:23:11.537478",
+  "hello": "こんにちは",
+  "@hello": {
+    "description": "挨拶",
+    "type": "text",
+    "placeholders": {}
+  }
+}
