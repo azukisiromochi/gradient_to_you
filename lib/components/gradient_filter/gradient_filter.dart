@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
 
 import '../../app_store.dart';
@@ -19,15 +20,16 @@ class _GradientFilterState extends State<GradientFilter> {
 
   @override
   Widget build(BuildContext context) {
-    final _opacity = widget.store.opacity;
+    final l10n = L10n.of(context);
 
+    final _opacity = widget.store.opacity;
     final _themeColor = widget.store.baseTextColor;
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         iconTheme: IconThemeData(color: _themeColor),
-        title: Text('Gradient to you',
+        title: Text(l10n.appName,
             style:
                 AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
         backgroundColor: widget.store.baseColor,

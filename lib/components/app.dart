@@ -1,9 +1,11 @@
 import 'dart:math' show Random;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gradient_to_you/components/color_palette/color_palette.dart';
 import 'package:gradient_to_you/components/splash/splash.dart';
 import 'package:gradient_to_you/components/write_message/write_message.dart';
+import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../app_store.dart';
 import 'bg_image_picker/bg_image_picker.dart';
@@ -25,6 +27,15 @@ class App extends StatelessWidget {
         '/gradient_filter': (_) => GradientFilter(store: store),
         '/write_message': (_) => WriteMessage(store: store),
       },
+      localizationsDelegates: [
+        L10n.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ja'),
+        Locale('en'),
+      ],
     );
   }
 }

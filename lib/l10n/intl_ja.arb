@@ -1,9 +1,9 @@
 {
   "@@locale": "ja",
-  "@@last_modified": "2020-02-13T19:23:11.537478",
-  "hello": "こんにちは",
-  "@hello": {
-    "description": "挨拶",
+  "@@last_modified": "2020-02-17T19:18:35.509127",
+  "appName": "Gradation to you",
+  "@appName": {
+    "description": "The name of this application",
     "type": "text",
     "placeholders": {}
   }

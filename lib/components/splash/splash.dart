@@ -1,5 +1,6 @@
 import 'dart:async' show Future;
 import 'package:flutter/material.dart';
+import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
 
 import '../../app_store.dart';
@@ -11,6 +12,7 @@ class Splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
     Future<void>.delayed(const Duration(seconds: 3)).then(
         (_) => {Navigator.of(context).pushReplacementNamed('/color_palette')});
 
@@ -45,7 +47,7 @@ class Splash extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: Text(
-              'Gradient to you',
+              l10n.appName,
               style: AppThemeUtils.logoStyle(store.themeNo),
             ),
           ),

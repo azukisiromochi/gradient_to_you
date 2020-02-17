@@ -34,9 +34,9 @@ class L10n {
 
   // 以下、Intl.messageを用いて必要な文言を返すgetter・メソッドを定義
 
-  String get hello => Intl.message(
-    'こんにちは',
-    name: 'hello',
-    desc: '挨拶', // オプション
+  String get appName => Intl.message(
+    'Gradient to you',
+    name: 'appName',
+    desc: 'The name of this application',
   );
 }
