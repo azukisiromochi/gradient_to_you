@@ -1,9 +1,39 @@
 {
   "@@locale": "messages",
-  "@@last_modified": "2020-02-17T19:18:35.509127",
+  "@@last_modified": "2020-02-18T16:51:46.929739",
   "appName": "Gradient to you",
   "@appName": {
-    "description": "The name of this application",
+    "description": "The name of this application.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooltipTextSelectImage": "Select image",
+  "@tooltipTextSelectImage": {
+    "description": "Tooltip text to be displayed on FloatingActionButton of BgImagePicker.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooltipTextSelectGradient": "Select gradient",
+  "@tooltipTextSelectGradient": {
+    "description": "Tooltip text to be displayed on FloatingActionButton of GradientBuilder.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooltipTextSetFilter": "Set filter",
+  "@tooltipTextSetFilter": {
+    "description": "Tooltip text to be displayed on FloatingActionButton of GradientFilter.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageDefault": "Enter something...",
+  "@messageDefault": {
+    "description": "Default value when putting a message on the image.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintText": "Message",
+  "@hintText": {
+    "description": "TextField hint text for message inputTextField hint text for message input.",
     "type": "text",
     "placeholders": {}
   }

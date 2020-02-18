@@ -96,7 +96,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
           : FloatingActionButton(
               onPressed: () =>
                   Navigator.of(context).pushNamed('/gradient_filter'),
-              tooltip: 'select image',
+              tooltip: l10n.tooltipTextSelectImage,
               backgroundColor: widget.store.baseColor,
               child: Icon(Icons.check, color: _themeColor),
             ),

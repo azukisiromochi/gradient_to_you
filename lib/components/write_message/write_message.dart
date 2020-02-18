@@ -14,7 +14,7 @@ class WriteMessage extends StatefulWidget {
 }
 
 class _WriteMessageState extends State<WriteMessage> {
-  String _text = 'Enter something...';
+  String _text;
 
   void _messageChanged(String value) {
     setState(() {
@@ -26,6 +26,8 @@ class _WriteMessageState extends State<WriteMessage> {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
 
+    //TODO: テキスト部分のみ state を更新するように widget 分割すること.
+    _text = _text ?? l10n.messageDefault;
     final _themeColor = widget.store.baseTextColor;
 
     return Scaffold(
@@ -68,7 +70,7 @@ class _WriteMessageState extends State<WriteMessage> {
               child: TextField(
                 decoration: InputDecoration(
                   labelText: '',
-                  hintText: 'Message',
+                  hintText: l10n.hintText,
                   icon: Icon(Icons.message),
                 ),
                 autocorrect: false,

@@ -6,5 +6,35 @@
     "description": "The name of this application",
     "type": "text",
     "placeholders": {}
+  },
+  "tooltipTextSelectImage": "画像を決定",
+  "@tooltipTextSelectImage": {
+    "description": "Tooltip text to be displayed on FloatingActionButton of BgImagePicker.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooltipTextSelectGradient": "グラデーションを決定",
+  "@tooltipTextSelectGradient": {
+    "description": "Tooltip text to be displayed on FloatingActionButton of GradientBuilder.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooltipTextSetFilter": "フィルターを設定",
+  "@tooltipTextSetFilter": {
+    "description": "Tooltip text to be displayed on FloatingActionButton of GradientFilter.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "messageDefault": "なにか入力してください...",
+  "@messageDefault": {
+    "description": "Default value when putting a message on the image.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintText": "Message",
+  "@hintText": {
+    "description": "TextField hint text for message inputTextField hint text for message input.",
+    "type": "text",
+    "placeholders": {}
   }
 }

@@ -63,7 +63,7 @@ class _GradientFilterState extends State<GradientFilter> {
         onPressed: () {
           Navigator.of(context).pushNamed('/write_message');
         },
-        tooltip: 'select gradient',
+        tooltip: l10n.tooltipTextSetFilter,
         backgroundColor: widget.store.baseColor,
         child: Icon(Icons.check, color: _themeColor),
       ),
