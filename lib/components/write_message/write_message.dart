@@ -82,6 +82,14 @@ class _WriteMessageState extends State<WriteMessage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed('/share');
+        },
+        tooltip: l10n.tooltipTextSetFilter,
+        backgroundColor: widget.store.baseColor,
+        child: Icon(Icons.check, color: _themeColor),
+      ),
     );
   }
 }
