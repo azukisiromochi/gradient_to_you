@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
 
@@ -14,12 +18,35 @@ class WriteMessage extends StatefulWidget {
 }
 
 class _WriteMessageState extends State<WriteMessage> {
+  GlobalKey _globalKey = GlobalKey();
   String _text;
 
   void _messageChanged(String value) {
     setState(() {
       _text = '$value';
     });
+  }
+
+  Future<void> _exportToImage() async {
+    // 現在描画されているWidgetを取得する
+    RenderRepaintBoundary boundary =
+    _globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
+
+    // 取得したWidgetからイメージファイルをキャプチャする
+    ui.Image image = await boundary.toImage(
+      pixelRatio: 3.0,
+    );
+
+    // 以下はお好みで
+    // PNG形式化
+    ByteData byteData = await image.toByteData(
+      format: ui.ImageByteFormat.png,
+    );
+    // バイトデータ化
+    final _pngBytes = byteData.buffer.asUint8List();
+    // BASE64形式化
+    final _base64 = base64Encode(_pngBytes);
+    print(_base64);
   }
 
   @override
@@ -45,24 +72,27 @@ class _WriteMessageState extends State<WriteMessage> {
           spacing: 8,
           runSpacing: 4,
           children: <Widget>[
-            ConstrainedBox(
-              constraints: BoxConstraints.expand(
-                height: widget.store.bgImageHeight.toDouble(),
-                width: widget.store.bgImageWidth.toDouble(),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Center(child: widget.store.gradientImage),
-                  Center(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        _text,
-                        style: AppThemeUtils.logoStyle(widget.store.themeNo),
+            RepaintBoundary(
+              key: _globalKey,
+              child: ConstrainedBox(
+                constraints: BoxConstraints.expand(
+                  height: widget.store.bgImageHeight.toDouble(),
+                  width: widget.store.bgImageWidth.toDouble(),
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    Center(child: widget.store.gradientImage),
+                    Center(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          _text,
+                          style: AppThemeUtils.logoStyle(widget.store.themeNo),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -84,6 +114,7 @@ class _WriteMessageState extends State<WriteMessage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          _exportToImage();
           Navigator.of(context).pushNamed('/share');
         },
         tooltip: l10n.tooltipTextSetFilter,
