@@ -1,10 +1,18 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
 
 part 'app_store.g.dart';
+
+/// ✨ Run the following command inside your project folder.
+///    This generates the code in app_store.g.dart,
+///    which we have already included as part file.
+///
+/// $ flutter packages pub run build_runner build
+///
 
 class AppStore = _AppStore with _$AppStore;
 
@@ -41,6 +49,9 @@ abstract class _AppStore with Store {
 
   @observable
   double opacity = 0.6;
+
+  @observable
+  ByteData pngImage;
 
   @computed
   Color get baseColor => paletteColor?.toColor() ?? Colors.black;
@@ -136,5 +147,11 @@ abstract class _AppStore with Store {
     primary = null;
     secondary = null;
     gradientBeginEnd = null;
+  }
+
+  // ignore: use_setters_to_change_properties
+  @action
+  void setPngImage(ByteData value) {
+    pngImage = value;
   }
 }

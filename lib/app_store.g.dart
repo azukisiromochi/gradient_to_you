@@ -197,6 +197,23 @@ mixin _$AppStore on _AppStore, Store {
     }, _$opacityAtom, name: '${_$opacityAtom.name}_set');
   }
 
+  final _$pngImageAtom = Atom(name: '_AppStore.pngImage');
+
+  @override
+  ByteData get pngImage {
+    _$pngImageAtom.context.enforceReadPolicy(_$pngImageAtom);
+    _$pngImageAtom.reportObserved();
+    return super.pngImage;
+  }
+
+  @override
+  set pngImage(ByteData value) {
+    _$pngImageAtom.context.conditionallyRunInAction(() {
+      super.pngImage = value;
+      _$pngImageAtom.reportChanged();
+    }, _$pngImageAtom, name: '${_$pngImageAtom.name}_set');
+  }
+
   final _$_AppStoreActionController = ActionController(name: '_AppStore');
 
   @override
@@ -264,6 +281,16 @@ mixin _$AppStore on _AppStore, Store {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
       return super.clearGradient();
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setPngImage(ByteData value) {
+    final _$actionInfo = _$_AppStoreActionController.startAction();
+    try {
+      return super.setPngImage(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }
