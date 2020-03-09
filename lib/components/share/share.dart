@@ -25,7 +25,24 @@ class Share extends StatelessWidget {
         backgroundColorStart: store.gradientColors.first.withOpacity(0.6),
         backgroundColorEnd: store.gradientColors.last.withOpacity(0.6),
       ),
-      body: Image.memory(pngBytes),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Image.memory(pngBytes),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.save_alt),
+            title: new Text("Save device"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.share),
+            title: new Text("Share"),
+          ),
+        ],
+      ),
     );
   }
 }
