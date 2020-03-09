@@ -6,7 +6,6 @@ import 'package:gradient_to_you/utils/app_theme_utils.dart';
 import '../../app_store.dart';
 
 class Share extends StatelessWidget {
-
   const Share({Key key, @required this.store}) : super(key: key);
 
   final AppStore store;
@@ -14,6 +13,7 @@ class Share extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
+    final pngBytes = store.pngImage.buffer.asUint8List();
 
     return Scaffold(
       appBar: GradientAppBar(
@@ -25,8 +25,7 @@ class Share extends StatelessWidget {
         backgroundColorStart: store.gradientColors.first.withOpacity(0.6),
         backgroundColorEnd: store.gradientColors.last.withOpacity(0.6),
       ),
-      body: Placeholder()
+      body: Image.memory(pngBytes),
     );
   }
-
 }

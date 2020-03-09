@@ -18,7 +18,7 @@ class WriteMessage extends StatefulWidget {
 }
 
 class _WriteMessageState extends State<WriteMessage> {
-  GlobalKey _globalKey = GlobalKey();
+  final GlobalKey _globalKey = GlobalKey();
   String _text;
 
   void _messageChanged(String value) {
@@ -29,24 +29,27 @@ class _WriteMessageState extends State<WriteMessage> {
 
   Future<void> _exportToImage() async {
     // 現在描画されているWidgetを取得する
-    RenderRepaintBoundary boundary =
-    _globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
+    final boundary =
+        _globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
 
     // 取得したWidgetからイメージファイルをキャプチャする
-    ui.Image image = await boundary.toImage(
-      pixelRatio: 3.0,
+    final image = await boundary.toImage(
+      pixelRatio: 3,
     );
 
     // 以下はお好みで
     // PNG形式化
-    ByteData byteData = await image.toByteData(
+    final byteData = await image.toByteData(
       format: ui.ImageByteFormat.png,
     );
+
+    widget.store.setPngImage(byteData);
+
     // バイトデータ化
     final _pngBytes = byteData.buffer.asUint8List();
     // BASE64形式化
     final _base64 = base64Encode(_pngBytes);
-    print(_base64);
+//    print(_base64);
   }
 
   @override
@@ -114,8 +117,8 @@ class _WriteMessageState extends State<WriteMessage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _exportToImage();
-          Navigator.of(context).pushNamed('/share');
+          _exportToImage()
+              .then((_) => Navigator.of(context).pushNamed('/share'));
         },
         tooltip: l10n.tooltipTextSetFilter,
         backgroundColor: widget.store.baseColor,
