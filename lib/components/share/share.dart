@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:ext_storage/ext_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
@@ -33,6 +34,15 @@ class Share extends StatelessWidget {
     print(filePath);
 
     await File(filePath).writeAsBytes(buffer.asUint8List());
+
+    await Fluttertoast.showToast(
+        msg: "Image saved !",
+        toastLength: Toast.LENGTH_LONG ,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 3,
+        backgroundColor: Colors.black12,
+        textColor: Colors.black,
+        fontSize: 16);
   }
 
   @override
