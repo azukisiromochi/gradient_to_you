@@ -44,6 +44,12 @@ dependencies:
   # https://pub.dev/packages/image_cropper
   image_cropper: ^1.2.0
 
+  # https://pub.dev/packages/ext_storage
+  ext_storage: ^1.0.2
+
+  # https://pub.dev/packages/permission_handler
+  permission_handler: '^4.4.0'
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
