@@ -75,26 +75,29 @@ class _WriteMessageState extends State<WriteMessage> {
           spacing: 8,
           runSpacing: 4,
           children: <Widget>[
-            RepaintBoundary(
-              key: _globalKey,
-              child: ConstrainedBox(
-                constraints: BoxConstraints.expand(
-                  height: widget.store.bgImageHeight.toDouble(),
-                  width: widget.store.bgImageWidth.toDouble(),
-                ),
-                child: Stack(
-                  children: <Widget>[
-                    Center(child: widget.store.gradientImage),
-                    Center(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          _text,
-                          style: AppThemeUtils.logoStyle(widget.store.themeNo),
+            Center(
+              child: RepaintBoundary(
+                key: _globalKey,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.expand(
+                    height: widget.store.bgImageHeight.toDouble(),
+                    width: widget.store.bgImageWidth.toDouble(),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Center(child: widget.store.gradientImage),
+                      Center(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            _text,
+                            style:
+                                AppThemeUtils.logoStyle(widget.store.themeNo),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
