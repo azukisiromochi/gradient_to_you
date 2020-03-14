@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -28,28 +26,16 @@ class _WriteMessageState extends State<WriteMessage> {
   }
 
   Future<void> _exportToImage() async {
-    // 現在描画されているWidgetを取得する
     final boundary =
         _globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
+    final image = await boundary.toImage(pixelRatio: 3);
 
-    // 取得したWidgetからイメージファイルをキャプチャする
-    final image = await boundary.toImage(
-      pixelRatio: 3,
-    );
-
-    // 以下はお好みで
-    // PNG形式化
+    // To PNG
     final byteData = await image.toByteData(
       format: ui.ImageByteFormat.png,
     );
 
     widget.store.setPngImage(byteData);
-
-    // バイトデータ化
-    final _pngBytes = byteData.buffer.asUint8List();
-    // BASE64形式化
-    final _base64 = base64Encode(_pngBytes);
-//    print(_base64);
   }
 
   @override
@@ -69,54 +55,51 @@ class _WriteMessageState extends State<WriteMessage> {
                 AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
         backgroundColor: widget.store.baseColor,
       ),
-      body: Center(
-        child: Wrap(
-          direction: Axis.horizontal,
-          spacing: 8,
-          runSpacing: 4,
-          children: <Widget>[
-            Center(
-              child: RepaintBoundary(
-                key: _globalKey,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints.expand(
-                    height: widget.store.bgImageHeight.toDouble(),
-                    width: widget.store.bgImageWidth.toDouble(),
-                  ),
-                  child: Stack(
-                    children: <Widget>[
-                      Center(child: widget.store.gradientImage),
-                      Center(
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            _text,
-                            style:
-                                AppThemeUtils.logoStyle(widget.store.themeNo),
-                          ),
+      body: Wrap(
+        direction: Axis.horizontal,
+        spacing: 8,
+        runSpacing: 4,
+        children: <Widget>[
+          Center(
+            child: RepaintBoundary(
+              key: _globalKey,
+              child: ConstrainedBox(
+                constraints: BoxConstraints.expand(
+                  height: widget.store.bgImageHeight.toDouble(),
+                  width: widget.store.bgImageWidth.toDouble(),
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    Center(child: widget.store.gradientImage),
+                    Center(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          _text,
+                          style: AppThemeUtils.logoStyle(widget.store.themeNo),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: '',
-                  hintText: l10n.hintText,
-                  icon: Icon(Icons.message),
-                ),
-                autocorrect: false,
-                autofocus: true,
-                keyboardType: TextInputType.text,
-                onChanged: _messageChanged,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(30),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: '',
+                hintText: l10n.hintText,
+                icon: Icon(Icons.message),
               ),
+              autocorrect: false,
+              autofocus: true,
+              keyboardType: TextInputType.text,
+              onChanged: _messageChanged,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

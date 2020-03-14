@@ -1,6 +1,6 @@
 {
   "@@locale": "messages",
-  "@@last_modified": "2020-02-18T16:51:46.929739",
+  "@@last_modified": "2020-03-14T13:11:52.697119",
   "appName": "Gradient to you",
   "@appName": {
     "description": "The name of this application.",
@@ -34,6 +34,24 @@
   "hintText": "Message",
   "@hintText": {
     "description": "TextField hint text for message inputTextField hint text for message input.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "toastSave": "Image saved !",
+  "@toastSave": {
+    "description": "Toast when pressing save button.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "buttonSave": "Save device",
+  "@buttonSave": {
+    "description": "Save button text.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "buttonShare": "Share",
+  "@buttonShare": {
+    "description": "Share button text.",
     "type": "text",
     "placeholders": {}
   }

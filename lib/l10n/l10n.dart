@@ -66,7 +66,7 @@ class L10n {
             'Tooltip text to be displayed on FloatingActionButton of GradientFilter.',
       );
 
-  /// ↓↓↓ Use with WriteMessage widget ↓↓↓
+  /// ↓↓↓ Use with WriteMessage page ↓↓↓
 
   String get messageDefault => Intl.message(
         'Enter something...',
@@ -80,5 +80,25 @@ class L10n {
         desc:
             // ignore: lines_longer_than_80_chars
             'TextField hint text for message inputTextField hint text for message input.',
+      );
+
+  /// ↓↓↓ Use with WriteMessage page ↓↓↓
+
+  String get toastSave => Intl.message(
+        'Image saved !',
+        name: 'toastSave',
+        desc: 'Toast when pressing save button.',
+      );
+
+  String get buttonSave => Intl.message(
+        'Save device',
+        name: 'buttonSave',
+        desc: 'Save button text.',
+      );
+
+  String get buttonShare => Intl.message(
+        'Share',
+        name: 'buttonShare',
+        desc: 'Share button text.',
       );
 }

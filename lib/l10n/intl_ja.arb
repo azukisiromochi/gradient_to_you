@@ -36,5 +36,23 @@
     "description": "TextField hint text for message inputTextField hint text for message input.",
     "type": "text",
     "placeholders": {}
+  },
+  "toastSave": "画像を保存しました！",
+  "@toastSave": {
+    "description": "Toast when pressing save button.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "buttonSave": "端末に保存",
+  "@buttonSave": {
+    "description": "Save button text.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "buttonShare": "共有",
+  "@buttonShare": {
+    "description": "Share button text.",
+    "type": "text",
+    "placeholders": {}
   }
 }

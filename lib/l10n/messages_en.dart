@@ -22,8 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "appName" : MessageLookupByLibrary.simpleMessage("Gradient to you"),
+    "buttonSave" : MessageLookupByLibrary.simpleMessage("Save device"),
+    "buttonShare" : MessageLookupByLibrary.simpleMessage("Share"),
     "hintText" : MessageLookupByLibrary.simpleMessage("Message"),
     "messageDefault" : MessageLookupByLibrary.simpleMessage("Enter something..."),
+    "toastSave" : MessageLookupByLibrary.simpleMessage("Image saved !"),
     "tooltipTextSelectGradient" : MessageLookupByLibrary.simpleMessage("Select gradient"),
     "tooltipTextSelectImage" : MessageLookupByLibrary.simpleMessage("Select image"),
     "tooltipTextSetFilter" : MessageLookupByLibrary.simpleMessage("Set filter")

@@ -22,8 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "appName" : MessageLookupByLibrary.simpleMessage("Gradation to you"),
+    "buttonSave" : MessageLookupByLibrary.simpleMessage("端末に保存"),
+    "buttonShare" : MessageLookupByLibrary.simpleMessage("共有"),
     "hintText" : MessageLookupByLibrary.simpleMessage("Message"),
     "messageDefault" : MessageLookupByLibrary.simpleMessage("なにか入力してください..."),
+    "toastSave" : MessageLookupByLibrary.simpleMessage("画像を保存しました！"),
     "tooltipTextSelectGradient" : MessageLookupByLibrary.simpleMessage("グラデーションを決定"),
     "tooltipTextSelectImage" : MessageLookupByLibrary.simpleMessage("画像を決定"),
     "tooltipTextSetFilter" : MessageLookupByLibrary.simpleMessage("フィルターを設定")

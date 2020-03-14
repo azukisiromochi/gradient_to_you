@@ -17,7 +17,7 @@ class Share extends StatelessWidget {
 
   String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
 
-  Future<void> _save() async {
+  Future<void> _save(String msg) async {
     final buffer = store.pngImage.buffer;
 
     final permissions =
@@ -36,7 +36,7 @@ class Share extends StatelessWidget {
     await File(filePath).writeAsBytes(buffer.asUint8List());
 
     await Fluttertoast.showToast(
-        msg: "Image saved !",
+        msg: msg,
         toastLength: Toast.LENGTH_LONG ,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIos: 3,
@@ -70,18 +70,18 @@ class Share extends StatelessWidget {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.save_alt),
-            title: new Text("Save device"),
+            title: Text(l10n.buttonSave),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.share),
-            title: new Text("Share"),
+            title: Text(l10n.buttonShare),
           ),
         ],
         onTap: (int index) {
           switch (index) {
             case 0:
               {
-                _save();
+                _save(l10n.toastSave);
               }
               break;
 

@@ -36,5 +36,23 @@
     "description": "TextField hint text for message inputTextField hint text for message input.",
     "type": "text",
     "placeholders": {}
+  },
+  "toastSave": "Image saved !",
+  "@toastSave": {
+    "description": "Toast when pressing save button.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "buttonSave": "Save device",
+  "@buttonSave": {
+    "description": "Save button text.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "buttonShare": "Share",
+  "@buttonShare": {
+    "description": "Share button text.",
+    "type": "text",
+    "placeholders": {}
   }
 }
