@@ -61,26 +61,36 @@ class _WriteMessageState extends State<WriteMessage> {
         runSpacing: 4,
         children: <Widget>[
           Center(
-            child: RepaintBoundary(
-              key: _globalKey,
-              child: ConstrainedBox(
-                constraints: BoxConstraints.expand(
-                  height: widget.store.bgImageHeight.toDouble(),
-                  width: widget.store.bgImageWidth.toDouble(),
-                ),
-                child: Stack(
-                  children: <Widget>[
-                    Center(child: widget.store.gradientImage),
-                    Center(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          _text,
-                          style: AppThemeUtils.logoStyle(widget.store.themeNo),
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: RepaintBoundary(
+                key: _globalKey,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.expand(
+                    height: widget.store.bgImageHeight.toDouble(),
+                    width: widget.store.bgImageWidth.toDouble(),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Center(child: widget.store.gradientImage),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              _text,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
