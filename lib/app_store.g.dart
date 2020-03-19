@@ -197,6 +197,23 @@ mixin _$AppStore on _AppStore, Store {
     }, _$opacityAtom, name: '${_$opacityAtom.name}_set');
   }
 
+  final _$messageAtom = Atom(name: '_AppStore.message');
+
+  @override
+  String get message {
+    _$messageAtom.context.enforceReadPolicy(_$messageAtom);
+    _$messageAtom.reportObserved();
+    return super.message;
+  }
+
+  @override
+  set message(String value) {
+    _$messageAtom.context.conditionallyRunInAction(() {
+      super.message = value;
+      _$messageAtom.reportChanged();
+    }, _$messageAtom, name: '${_$messageAtom.name}_set');
+  }
+
   final _$pngImageAtom = Atom(name: '_AppStore.pngImage');
 
   @override
@@ -281,6 +298,16 @@ mixin _$AppStore on _AppStore, Store {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
       return super.clearGradient();
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setMessage(String value) {
+    final _$actionInfo = _$_AppStoreActionController.startAction();
+    try {
+      return super.setMessage(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

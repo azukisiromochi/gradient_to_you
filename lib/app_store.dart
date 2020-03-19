@@ -51,6 +51,9 @@ abstract class _AppStore with Store {
   double opacity = 0.6;
 
   @observable
+  String message;
+
+  @observable
   ByteData pngImage;
 
   @computed
@@ -147,6 +150,12 @@ abstract class _AppStore with Store {
     primary = null;
     secondary = null;
     gradientBeginEnd = null;
+  }
+
+  // ignore: use_setters_to_change_properties
+  @action
+  void setMessage(String value) {
+    message = value;
   }
 
   // ignore: use_setters_to_change_properties

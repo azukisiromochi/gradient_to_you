@@ -3,29 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
+import 'package:mobx/mobx.dart';
 
 import '../../app_store.dart';
 
-class WriteMessage extends StatefulWidget {
+class WriteMessage extends StatelessWidget {
   const WriteMessage({Key key, @required this.store}) : super(key: key);
 
   final AppStore store;
 
-  @override
-  _WriteMessageState createState() => _WriteMessageState();
-}
-
-class _WriteMessageState extends State<WriteMessage> {
-  final GlobalKey _globalKey = GlobalKey();
-  String _text;
-
-  void _messageChanged(String value) {
-    setState(() {
-      _text = '$value';
-    });
-  }
-
-  Future<void> _exportToImage() async {
+  Future<void> _exportToImage(GlobalKey _globalKey) async {
     final boundary =
         _globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
     final image = await boundary.toImage(pixelRatio: 3);
@@ -35,25 +22,24 @@ class _WriteMessageState extends State<WriteMessage> {
       format: ui.ImageByteFormat.png,
     );
 
-    widget.store.setPngImage(byteData);
+    store.setPngImage(byteData);
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
+    final _globalKey = GlobalKey();
 
-    //TODO: テキスト部分のみ state を更新するように widget 分割すること.
-    _text = _text ?? l10n.messageDefault;
-    final _themeColor = widget.store.baseTextColor;
+    store.message = store.message ?? l10n.messageDefault;
+    final _themeColor = store.baseTextColor;
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         iconTheme: IconThemeData(color: _themeColor),
         title: Text(l10n.appName,
-            style:
-                AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
-        backgroundColor: widget.store.baseColor,
+            style: AppThemeUtils.appBarStyle(store.themeNo, _themeColor)),
+        backgroundColor: store.baseColor,
       ),
       body: Wrap(
         direction: Axis.horizontal,
@@ -67,28 +53,13 @@ class _WriteMessageState extends State<WriteMessage> {
                 key: _globalKey,
                 child: ConstrainedBox(
                   constraints: BoxConstraints.expand(
-                    height: widget.store.bgImageHeight.toDouble(),
-                    width: widget.store.bgImageWidth.toDouble(),
+                    height: store.bgImageHeight.toDouble(),
+                    width: store.bgImageWidth.toDouble(),
                   ),
                   child: Stack(
                     children: <Widget>[
-                      Center(child: widget.store.gradientImage),
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              _text,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      Center(child: store.gradientImage),
+                      Message(store: store),
                     ],
                   ),
                 ),
@@ -106,19 +77,69 @@ class _WriteMessageState extends State<WriteMessage> {
               autocorrect: false,
               autofocus: true,
               keyboardType: TextInputType.text,
-              onChanged: _messageChanged,
+              onChanged: (String value) {
+                store.message = '$value';
+              },
             ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _exportToImage()
+          _exportToImage(_globalKey)
               .then((_) => Navigator.of(context).pushNamed('/share'));
         },
         tooltip: l10n.tooltipTextSetFilter,
-        backgroundColor: widget.store.baseColor,
+        backgroundColor: store.baseColor,
         child: Icon(Icons.check, color: _themeColor),
+      ),
+    );
+  }
+}
+
+class Message extends StatefulWidget {
+  const Message({Key key, @required this.store}) : super(key: key);
+
+  @override
+  _MessageState createState() => _MessageState();
+
+  final AppStore store;
+}
+
+class _MessageState extends State<Message> {
+  ReactionDisposer reactionDispose;
+
+  @override
+  void initState() {
+    super.initState();
+    reactionDispose = reaction(
+      (_) => widget.store.message,
+      (String message) => setState(() {}),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    reactionDispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Align(
+          alignment: Alignment.center,
+          child: Text(
+            widget.store.message,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
+        ),
       ),
     );
   }
