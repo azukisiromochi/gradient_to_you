@@ -33,6 +33,8 @@ class WriteMessage extends StatelessWidget {
     store.message = store.message ?? l10n.messageDefault;
     final _themeColor = store.baseTextColor;
 
+    String dropdownValue;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -68,18 +70,50 @@ class WriteMessage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(30),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: '',
-                hintText: l10n.hintText,
-                icon: Icon(Icons.message),
-              ),
-              autocorrect: false,
-              autofocus: true,
-              keyboardType: TextInputType.text,
-              onChanged: (String value) {
-                store.message = '$value';
-              },
+            child: Wrap(
+              direction: Axis.horizontal,
+              spacing: 8,
+              runSpacing: 4,
+              children: <Widget>[
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: '',
+                    hintText: l10n.hintText,
+                    icon: Icon(Icons.message, color: store.baseColor),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: store.baseColor),
+                    ),
+                  ),
+                  autocorrect: false,
+                  keyboardType: TextInputType.text,
+                  onChanged: (String value) {
+                    store.message = '$value';
+                  },
+                ),
+                Center(
+                  child: DropdownButton<String>(
+                    value: dropdownValue,
+                    hint: const Text('Message align'),
+                    icon:
+                        Icon(Icons.format_line_spacing, color: store.baseColor),
+                    underline: Container(
+                      width: double.infinity,
+                      height: 1,
+                      color: store.baseColor,
+                    ),
+                    onChanged: (String newValue) {
+                      dropdownValue = newValue;
+                    },
+                    items: <String>['bottomCenter', 'Two', 'Free', 'Four']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
