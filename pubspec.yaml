@@ -56,6 +56,9 @@ dependencies:
   # https://pub.dev/packages/flutter_staggered_animations
   flutter_staggered_animations: "^0.1.2"
 
+  # https://pub.dev/packages/esys_flutter_share
+  esys_flutter_share: ^1.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

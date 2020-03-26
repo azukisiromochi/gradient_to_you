@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:ext_storage/ext_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,8 +11,8 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../app_store.dart';
 
-class Share extends StatelessWidget {
-  const Share({Key key, @required this.store}) : super(key: key);
+class SaveOrShare extends StatelessWidget {
+  const SaveOrShare({Key key, @required this.store}) : super(key: key);
 
   final AppStore store;
 
@@ -27,9 +28,9 @@ class Share extends StatelessWidget {
 
     final picturesPath = await ExtStorage.getExternalStoragePublicDirectory(
         ExtStorage.DIRECTORY_PICTURES);
-    final dirPath = '$picturesPath/gradient2u';
+    final dirPath = '$picturesPath/Gradient2u';
     await Directory(dirPath).create(recursive: true);
-    final filePath = '$dirPath/${timestamp()}.png';
+    final filePath = '$dirPath/Gradient2u_${timestamp()}.jpg';
 
     print(filePath);
 
@@ -37,7 +38,7 @@ class Share extends StatelessWidget {
 
     await Fluttertoast.showToast(
         msg: msg,
-        toastLength: Toast.LENGTH_LONG ,
+        toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIos: 3,
         backgroundColor: Colors.black12,
@@ -86,7 +87,9 @@ class Share extends StatelessWidget {
               break;
 
             case 1:
-              {}
+              {
+                Share.file(l10n.appName, 'Gradient2u_${timestamp()}.jpg', pngBytes, 'image/jpg');
+              }
               break;
 
             default:

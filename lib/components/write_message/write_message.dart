@@ -121,7 +121,7 @@ class WriteMessage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _exportToImage(_globalKey)
-              .then((_) => Navigator.of(context).pushNamed('/share'));
+              .then((_) => Navigator.of(context).pushNamed('/save_or_share'));
         },
         tooltip: l10n.tooltipTextSetFilter,
         backgroundColor: store.baseColor,
