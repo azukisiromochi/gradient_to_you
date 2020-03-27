@@ -37,7 +37,7 @@ class ColorPalette extends StatelessWidget {
           children: List.generate(
             12,
             (int index) {
-              return Palette(columnCount: 3, position: index, store: store);
+              return Palette(position: index, store: store);
             },
           ),
         ),
@@ -47,17 +47,12 @@ class ColorPalette extends StatelessWidget {
 }
 
 class Palette extends StatefulWidget {
-  const Palette(
-      {Key key,
-      @required this.columnCount,
-      @required this.position,
-      @required this.store})
+  const Palette({Key key, @required this.position, @required this.store})
       : super(key: key);
 
   @override
   _PaletteState createState() => _PaletteState();
 
-  final int columnCount;
   final int position;
   final AppStore store;
 }
@@ -71,7 +66,7 @@ class _PaletteState extends State<Palette> {
     return AnimationConfiguration.staggeredGrid(
       duration: const Duration(milliseconds: 500),
       position: widget.position,
-      columnCount: widget.columnCount,
+      columnCount: 3,
       child: ScaleAnimation(
         child: FadeInAnimation(
           child: Container(
