@@ -24,6 +24,28 @@ class AppThemeUtils {
     }
   }
 
+  static AssetImage thumbnailImage(int no) {
+    switch (no) {
+      case 1:
+        {
+          return const AssetImage('assets/images/thumbnail1.webp');
+        }
+        break;
+
+      case 2:
+        {
+          return const AssetImage('assets/images/thumbnail2.webp');
+        }
+        break;
+
+      default:
+        {
+          return const AssetImage('assets/images/thumbnail1.webp');
+        }
+        break;
+    }
+  }
+
   static List<Color> gradientColors(int no) {
     switch (no) {
       case 1:

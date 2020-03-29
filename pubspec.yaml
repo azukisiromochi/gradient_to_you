@@ -59,6 +59,9 @@ dependencies:
   # https://pub.dev/packages/esys_flutter_share
   esys_flutter_share: ^1.0.2
 
+  # https://pub.dev/packages/progressive_image
+  progressive_image: ^1.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -90,7 +93,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
    - assets/images/splash1.webp
+   - assets/images/thumbnail1.webp
    - assets/images/splash2.webp
+   - assets/images/thumbnail2.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -2,6 +2,7 @@ import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
+import 'package:progressive_image/progressive_image.dart';
 
 import '../../app_store.dart';
 
@@ -20,13 +21,13 @@ class Splash extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AppThemeUtils.splashImage(store.themeNo),
-                fit: BoxFit.cover,
-              ),
+            child: ProgressiveImage(
+              height: double.infinity,
+              width: double.infinity,
+              fit: BoxFit.cover,
+              placeholder: AppThemeUtils.thumbnailImage(store.themeNo),
+              thumbnail: AppThemeUtils.thumbnailImage(store.themeNo),
+              image: AppThemeUtils.splashImage(store.themeNo),
             ),
           ),
           Container(
