@@ -1,4 +1,5 @@
 import 'dart:async' show Future;
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
@@ -47,10 +48,19 @@ class Splash extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.center,
-            child: Text(
-              l10n.appName,
-              style: AppThemeUtils.logoStyle(store.themeNo),
+            child: FadeAnimatedTextKit(
+              text: <String>[
+                '',
+                l10n.appName,
+              ],
+              textStyle: AppThemeUtils.logoStyle(store.themeNo),
+              textAlign: TextAlign.start,
+              duration: const Duration(seconds: 2),
             ),
+//            child: Text(
+//              l10n.appName,
+//              style: AppThemeUtils.logoStyle(store.themeNo),
+//            ),
           ),
         ],
       ),
