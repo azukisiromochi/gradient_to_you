@@ -214,6 +214,40 @@ mixin _$AppStore on _AppStore, Store {
     }, _$messageAtom, name: '${_$messageAtom.name}_set');
   }
 
+  final _$alignmentNameAtom = Atom(name: '_AppStore.alignmentName');
+
+  @override
+  String get alignmentName {
+    _$alignmentNameAtom.context.enforceReadPolicy(_$alignmentNameAtom);
+    _$alignmentNameAtom.reportObserved();
+    return super.alignmentName;
+  }
+
+  @override
+  set alignmentName(String value) {
+    _$alignmentNameAtom.context.conditionallyRunInAction(() {
+      super.alignmentName = value;
+      _$alignmentNameAtom.reportChanged();
+    }, _$alignmentNameAtom, name: '${_$alignmentNameAtom.name}_set');
+  }
+
+  final _$alignmentAtom = Atom(name: '_AppStore.alignment');
+
+  @override
+  Alignment get alignment {
+    _$alignmentAtom.context.enforceReadPolicy(_$alignmentAtom);
+    _$alignmentAtom.reportObserved();
+    return super.alignment;
+  }
+
+  @override
+  set alignment(Alignment value) {
+    _$alignmentAtom.context.conditionallyRunInAction(() {
+      super.alignment = value;
+      _$alignmentAtom.reportChanged();
+    }, _$alignmentAtom, name: '${_$alignmentAtom.name}_set');
+  }
+
   final _$pngImageAtom = Atom(name: '_AppStore.pngImage');
 
   @override
@@ -308,6 +342,16 @@ mixin _$AppStore on _AppStore, Store {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
       return super.setMessage(value);
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setAlignment(String value) {
+    final _$actionInfo = _$_AppStoreActionController.startAction();
+    try {
+      return super.setAlignment(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

@@ -33,8 +33,6 @@ class WriteMessage extends StatelessWidget {
     store.message = store.message ?? l10n.messageDefault;
     final _themeColor = store.baseTextColor;
 
-    String dropdownValue;
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -43,80 +41,89 @@ class WriteMessage extends StatelessWidget {
             style: AppThemeUtils.appBarStyle(store.themeNo, _themeColor)),
         backgroundColor: store.baseColor,
       ),
-      body: Wrap(
-        direction: Axis.horizontal,
-        spacing: 8,
-        runSpacing: 4,
-        children: <Widget>[
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: RepaintBoundary(
-                key: _globalKey,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints.expand(
-                    height: store.bgImageHeight.toDouble(),
-                    width: store.bgImageWidth.toDouble(),
-                  ),
-                  child: Stack(
-                    children: <Widget>[
-                      Center(child: store.gradientImage),
-                      Message(store: store),
-                    ],
+      body: SingleChildScrollView(
+        child: Wrap(
+          direction: Axis.horizontal,
+          spacing: 8,
+          runSpacing: 4,
+          children: <Widget>[
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: RepaintBoundary(
+                  key: _globalKey,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.expand(
+                      height: store.bgImageHeight.toDouble(),
+                      width: store.bgImageWidth.toDouble(),
+                    ),
+                    child: Stack(
+                      children: <Widget>[
+                        Center(child: store.gradientImage),
+                        Message(store: store),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(30),
-            child: Wrap(
-              direction: Axis.horizontal,
-              spacing: 8,
-              runSpacing: 4,
-              children: <Widget>[
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: '',
-                    hintText: l10n.hintText,
-                    icon: Icon(Icons.message, color: store.baseColor),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: store.baseColor),
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: Wrap(
+                direction: Axis.horizontal,
+                spacing: 8,
+                runSpacing: 4,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: '',
+                      hintText: l10n.hintText,
+                      icon: Icon(Icons.message, color: store.baseColor),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: store.baseColor),
+                      ),
                     ),
-                  ),
-                  autocorrect: false,
-                  keyboardType: TextInputType.text,
-                  onChanged: (String value) {
-                    store.message = '$value';
-                  },
-                ),
-                Center(
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    hint: const Text('Message align'),
-                    icon:
-                        Icon(Icons.format_line_spacing, color: store.baseColor),
-                    underline: Container(
-                      width: double.infinity,
-                      height: 1,
-                      color: store.baseColor,
-                    ),
-                    onChanged: (String newValue) {
-                      dropdownValue = newValue;
+                    autocorrect: false,
+                    keyboardType: TextInputType.text,
+                    onChanged: (String value) {
+                      store.message = '$value';
                     },
-                    items: <String>['bottomCenter', 'Two', 'Free', 'Four']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
                   ),
-                ),
-              ],
+                  Center(
+                    child: DropdownButton<String>(
+                      value: store.alignmentName,
+                      hint: const Text('Message align'),
+                      icon: Icon(Icons.format_line_spacing,
+                          color: store.baseColor),
+                      underline: Container(
+                        width: double.infinity,
+                        height: 1,
+                        color: store.baseColor,
+                      ),
+                      onChanged: store.setAlignment,
+                      items: <String>[
+                        'bottomCenter',
+                        'bottomLeft',
+                        'bottomRight',
+                        'center',
+                        'centerLeft',
+                        'centerRight',
+                        'topCenter',
+                        'topLeft',
+                        'topRight',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -146,10 +153,12 @@ class _MessageState extends State<Message> {
   @override
   void initState() {
     super.initState();
-    reactionDispose = reaction(
-      (_) => widget.store.message,
-      (String message) => setState(() {}),
-    );
+    reactionDispose = autorun((_) => {
+      setState(() {
+        print(widget.store.message);
+        print(widget.store.alignmentName);
+      }),
+    });
   }
 
   @override
@@ -168,7 +177,7 @@ class _MessageState extends State<Message> {
           child: Text(
             widget.store.message,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 20,
             ),

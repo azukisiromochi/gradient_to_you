@@ -54,6 +54,12 @@ abstract class _AppStore with Store {
   String message;
 
   @observable
+  String alignmentName;
+
+  @observable
+  Alignment alignment;
+
+  @observable
   ByteData pngImage;
 
   @computed
@@ -160,7 +166,29 @@ abstract class _AppStore with Store {
 
   // ignore: use_setters_to_change_properties
   @action
+  void setAlignment(String value) {
+    alignmentName = value;
+    alignment = _stringToAlignment(value);
+  }
+
+  // ignore: use_setters_to_change_properties
+  @action
   void setPngImage(ByteData value) {
     pngImage = value;
+  }
+
+  Alignment _stringToAlignment(String alignmentName) {
+    final _mapper = {
+      'bottomCenter': Alignment.bottomCenter,
+      'bottomLeft': Alignment.bottomLeft,
+      'bottomRight': Alignment.bottomRight,
+      'center': Alignment.center,
+      'centerLeft': Alignment.centerLeft,
+      'centerRight': Alignment.centerRight,
+      'topCenter': Alignment.topCenter,
+      'topLeft': Alignment.topLeft,
+      'topRight': Alignment.topRight,
+    };
+    return _mapper[alignmentName];
   }
 }
