@@ -248,6 +248,23 @@ mixin _$AppStore on _AppStore, Store {
     }, _$alignmentAtom, name: '${_$alignmentAtom.name}_set');
   }
 
+  final _$textAlignAtom = Atom(name: '_AppStore.textAlign');
+
+  @override
+  TextAlign get textAlign {
+    _$textAlignAtom.context.enforceReadPolicy(_$textAlignAtom);
+    _$textAlignAtom.reportObserved();
+    return super.textAlign;
+  }
+
+  @override
+  set textAlign(TextAlign value) {
+    _$textAlignAtom.context.conditionallyRunInAction(() {
+      super.textAlign = value;
+      _$textAlignAtom.reportChanged();
+    }, _$textAlignAtom, name: '${_$textAlignAtom.name}_set');
+  }
+
   final _$pngImageAtom = Atom(name: '_AppStore.pngImage');
 
   @override
