@@ -90,6 +90,7 @@ class WriteMessage extends StatelessWidget {
                     onChanged: store.setMessage,
                   ),
                   AlignmentDropdown(store: store),
+                  FontSizeSlider(store: store),
                 ],
               ),
             ),
@@ -161,6 +162,41 @@ class _AlignmentDropdownState extends State<AlignmentDropdown> {
 
 }
 
+class FontSizeSlider extends StatefulWidget {
+  const FontSizeSlider({Key key, @required this.store}) : super(key: key);
+
+  @override
+  _FontSizeSliderState createState() => _FontSizeSliderState();
+
+  final AppStore store;
+}
+
+class _FontSizeSliderState extends State<FontSizeSlider> {
+
+  void _changeSlider(double e) => setState(() {
+    widget.store.setFontSize(e);
+  });
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    final _fontSize = widget.store.fontSize ?? 20;
+
+    return Slider(
+      label: '${_fontSize.toStringAsFixed(2)}',
+      min: 10,
+      max: 100,
+      value: _fontSize,
+      activeColor: widget.store.baseColor,
+      inactiveColor: widget.store.baseTextColor,
+      divisions: 90,
+      onChanged: _changeSlider,
+    );
+  }
+
+}
+
 class Message extends StatefulWidget {
   const Message({Key key, @required this.store}) : super(key: key);
 
@@ -176,6 +212,7 @@ class _MessageState extends State<Message> {
   String _message;
   Alignment _alignment;
   TextAlign _textAlign;
+  double _fontSize;
 
   @override
   void initState() {
@@ -185,6 +222,7 @@ class _MessageState extends State<Message> {
             _message = widget.store.message;
             _alignment = widget.store.alignment;
             _textAlign = widget.store.textAlign;
+            _fontSize = widget.store.fontSize;
           }),
         });
   }
@@ -200,6 +238,7 @@ class _MessageState extends State<Message> {
     _message = widget.store.message;
     _alignment = widget.store.alignment ?? Alignment.center;
     _textAlign = widget.store.textAlign ?? TextAlign.center;
+    _fontSize = widget.store.fontSize;
 
     return Center(
       child: Padding(
@@ -209,9 +248,9 @@ class _MessageState extends State<Message> {
           child: Text(
             _message,
             textAlign: _textAlign,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: _fontSize,
             ),
           ),
         ),
@@ -219,3 +258,5 @@ class _MessageState extends State<Message> {
     );
   }
 }
+
+

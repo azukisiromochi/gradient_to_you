@@ -55,7 +55,7 @@ class _GradientFilterState extends State<GradientFilter> {
               inactiveColor: _themeColor,
               divisions: 80,
               onChanged: _changeSlider,
-            )
+            ),
           ],
         ),
       ),

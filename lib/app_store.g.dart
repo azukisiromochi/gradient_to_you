@@ -265,6 +265,23 @@ mixin _$AppStore on _AppStore, Store {
     }, _$textAlignAtom, name: '${_$textAlignAtom.name}_set');
   }
 
+  final _$fontSizeAtom = Atom(name: '_AppStore.fontSize');
+
+  @override
+  double get fontSize {
+    _$fontSizeAtom.context.enforceReadPolicy(_$fontSizeAtom);
+    _$fontSizeAtom.reportObserved();
+    return super.fontSize;
+  }
+
+  @override
+  set fontSize(double value) {
+    _$fontSizeAtom.context.conditionallyRunInAction(() {
+      super.fontSize = value;
+      _$fontSizeAtom.reportChanged();
+    }, _$fontSizeAtom, name: '${_$fontSizeAtom.name}_set');
+  }
+
   final _$pngImageAtom = Atom(name: '_AppStore.pngImage');
 
   @override
@@ -369,6 +386,16 @@ mixin _$AppStore on _AppStore, Store {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
       return super.setAlignment(value);
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setFontSize(double value) {
+    final _$actionInfo = _$_AppStoreActionController.startAction();
+    try {
+      return super.setFontSize(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

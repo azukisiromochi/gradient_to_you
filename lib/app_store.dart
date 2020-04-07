@@ -63,6 +63,9 @@ abstract class _AppStore with Store {
   TextAlign textAlign;
 
   @observable
+  double fontSize;
+
+  @observable
   ByteData pngImage;
 
   @computed
@@ -173,6 +176,12 @@ abstract class _AppStore with Store {
     alignmentName = value;
     alignment = _stringToAlignment(value);
     textAlign = _stringToTextAlign(value);
+  }
+
+  // ignore: use_setters_to_change_properties
+  @action
+  void setFontSize(double value) {
+    fontSize = value;
   }
 
   // ignore: use_setters_to_change_properties
