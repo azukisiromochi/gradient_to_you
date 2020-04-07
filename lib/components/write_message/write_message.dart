@@ -30,7 +30,7 @@ class WriteMessage extends StatelessWidget {
     final l10n = L10n.of(context);
     final _globalKey = GlobalKey();
 
-    store.message = store.message ?? l10n.messageDefault;
+    store.setMessage(store.message ?? l10n.messageDefault);
     final _themeColor = store.baseTextColor;
 
     String _alignmentName;
@@ -141,15 +141,15 @@ class _AlignmentDropdownState extends State<AlignmentDropdown> {
           });
         },
         items: <String>[
-          'bottomCenter',
-          'bottomLeft',
-          'bottomRight',
-          'center',
-          'centerLeft',
-          'centerRight',
-          'topCenter',
           'topLeft',
+          'topCenter',
           'topRight',
+          'centerLeft',
+          'center',
+          'centerRight',
+          'bottomLeft',
+          'bottomCenter',
+          'bottomRight',
         ].map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
@@ -159,7 +159,6 @@ class _AlignmentDropdownState extends State<AlignmentDropdown> {
       ),
     );
   }
-
 }
 
 class FontSizeSlider extends StatefulWidget {
@@ -172,15 +171,12 @@ class FontSizeSlider extends StatefulWidget {
 }
 
 class _FontSizeSliderState extends State<FontSizeSlider> {
-
   void _changeSlider(double e) => setState(() {
-    widget.store.setFontSize(e);
-  });
-
+        widget.store.setFontSize(e);
+      });
 
   @override
   Widget build(BuildContext context) {
-
     final _fontSize = widget.store.fontSize ?? 20;
 
     return Slider(
@@ -194,7 +190,6 @@ class _FontSizeSliderState extends State<FontSizeSlider> {
       onChanged: _changeSlider,
     );
   }
-
 }
 
 class Message extends StatefulWidget {
@@ -258,5 +253,3 @@ class _MessageState extends State<Message> {
     );
   }
 }
-
-
