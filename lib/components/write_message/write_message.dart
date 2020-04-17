@@ -73,8 +73,8 @@ class WriteMessage extends StatelessWidget {
               padding: const EdgeInsets.all(30),
               child: Wrap(
                 direction: Axis.horizontal,
-                spacing: 8,
-                runSpacing: 4,
+                spacing: 10,
+                runSpacing: 10,
                 children: <Widget>[
                   TextField(
                     decoration: InputDecoration(
@@ -125,10 +125,16 @@ class _AlignmentDropdownState extends State<AlignmentDropdown> {
     return Center(
       child: DropdownButton<String>(
         value: widget.store.alignmentName,
-        hint: const Text('Message align'),
-        icon: Icon(
-          Icons.format_line_spacing,
-          color: widget.store.baseColor,
+        hint: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Icon(
+              Icons.format_line_spacing,
+              color: widget.store.baseColor,
+            ),
+            const SizedBox(width: 100),
+            const Text('Message align'),
+          ],
         ),
         underline: Container(
           width: double.infinity,
@@ -153,7 +159,17 @@ class _AlignmentDropdownState extends State<AlignmentDropdown> {
         ].map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Icon(
+                  Icons.format_line_spacing,
+                  color: widget.store.baseColor,
+                ),
+                const SizedBox(width: 100),
+                Text(value),
+              ],
+            ),
           );
         }).toList(),
       ),
