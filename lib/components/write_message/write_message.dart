@@ -29,9 +29,10 @@ class WriteMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
     final _globalKey = GlobalKey();
-
-    store.setMessage(store.message ?? l10n.messageDefault);
     final _themeColor = store.baseTextColor;
+
+    final _textEditingController =
+        TextEditingController(text: store.message ?? '');
 
     return Scaffold(
       appBar: AppBar(
@@ -60,7 +61,10 @@ class WriteMessage extends StatelessWidget {
                     child: Stack(
                       children: <Widget>[
                         Center(child: store.gradientImage),
-                        Message(store: store),
+                        Message(
+                          store: store,
+                          defaultMessage: l10n.messageDefault,
+                        ),
                       ],
                     ),
                   ),
@@ -75,6 +79,7 @@ class WriteMessage extends StatelessWidget {
                 runSpacing: 10,
                 children: <Widget>[
                   TextField(
+                    controller: _textEditingController,
                     decoration: InputDecoration(
                       labelText: '',
                       hintText: l10n.hintText,
@@ -87,7 +92,6 @@ class WriteMessage extends StatelessWidget {
                     keyboardType: TextInputType.text,
                     onChanged: store.setMessage,
                   ),
-                  AlignmentDropdown(store: store),
                   FontSizeSlider(store: store),
                 ],
               ),
@@ -103,73 +107,6 @@ class WriteMessage extends StatelessWidget {
         tooltip: l10n.tooltipTextSetFilter,
         backgroundColor: store.baseColor,
         child: Icon(Icons.check, color: _themeColor),
-      ),
-    );
-  }
-}
-
-class AlignmentDropdown extends StatefulWidget {
-  const AlignmentDropdown({Key key, @required this.store}) : super(key: key);
-
-  @override
-  _AlignmentDropdownState createState() => _AlignmentDropdownState();
-
-  final AppStore store;
-}
-
-class _AlignmentDropdownState extends State<AlignmentDropdown> {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: DropdownButton<String>(
-        value: widget.store.alignmentName,
-        hint: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Icon(
-              Icons.format_line_spacing,
-              color: widget.store.baseColor,
-            ),
-            const SizedBox(width: 100),
-            const Text('Message align'),
-          ],
-        ),
-        underline: Container(
-          width: double.infinity,
-          height: 1,
-          color: widget.store.baseColor,
-        ),
-        onChanged: (newValue) {
-          setState(() {
-            widget.store.setAlignment(newValue);
-          });
-        },
-        items: <String>[
-          'topLeft',
-          'topCenter',
-          'topRight',
-          'centerLeft',
-          'center',
-          'centerRight',
-          'bottomLeft',
-          'bottomCenter',
-          'bottomRight',
-        ].map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Icon(
-                  Icons.format_line_spacing,
-                  color: widget.store.baseColor,
-                ),
-                const SizedBox(width: 100),
-                Text(value),
-              ],
-            ),
-          );
-        }).toList(),
       ),
     );
   }
@@ -207,22 +144,25 @@ class _FontSizeSliderState extends State<FontSizeSlider> {
 }
 
 class Message extends StatefulWidget {
-  const Message({Key key, @required this.store}) : super(key: key);
+  const Message({
+    Key key,
+    @required this.store,
+    this.defaultMessage,
+  }) : super(key: key);
 
   @override
   _MessageState createState() => _MessageState();
 
   final AppStore store;
+  final String defaultMessage;
 }
 
 class _MessageState extends State<Message> {
   ReactionDisposer reactionDispose;
 
   String _message;
-  Alignment _alignment;
-  TextAlign _textAlign;
   double _fontSize;
-  Offset _offset = Offset.zero;
+  Offset _offset;
 
   @override
   void initState() {
@@ -230,9 +170,8 @@ class _MessageState extends State<Message> {
     reactionDispose = autorun((_) => {
           setState(() {
             _message = widget.store.message;
-            _alignment = widget.store.alignment;
-            _textAlign = widget.store.textAlign;
             _fontSize = widget.store.fontSize;
+            _offset = widget.store.offset;
           }),
         });
   }
@@ -245,16 +184,14 @@ class _MessageState extends State<Message> {
 
   @override
   Widget build(BuildContext context) {
-    _message = widget.store.message;
-    _alignment = widget.store.alignment ?? Alignment.center;
-    _textAlign = widget.store.textAlign ?? TextAlign.center;
+    _message = widget.store.message ?? widget.defaultMessage;
     _fontSize = widget.store.fontSize;
+    _offset = widget.store.offset ?? Offset.zero;
 
     final _displayText = Material(
       color: Colors.white.withOpacity(0),
       child: Text(
         _message,
-        textAlign: _textAlign,
         style: TextStyle(
           color: Colors.white,
           fontSize: _fontSize,
@@ -268,10 +205,10 @@ class _MessageState extends State<Message> {
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onPanUpdate: (details) {
-          setState(() {
-            _offset = Offset(
-                _offset.dx + details.delta.dx, _offset.dy + details.delta.dy);
-          });
+          widget.store.setOffset(Offset(
+            _offset.dx + details.delta.dx,
+            _offset.dy + details.delta.dy,
+          ));
         },
         child: Container(
           child: Padding(

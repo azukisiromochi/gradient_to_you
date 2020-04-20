@@ -214,55 +214,21 @@ mixin _$AppStore on _AppStore, Store {
     }, _$messageAtom, name: '${_$messageAtom.name}_set');
   }
 
-  final _$alignmentNameAtom = Atom(name: '_AppStore.alignmentName');
+  final _$offsetAtom = Atom(name: '_AppStore.offset');
 
   @override
-  String get alignmentName {
-    _$alignmentNameAtom.context.enforceReadPolicy(_$alignmentNameAtom);
-    _$alignmentNameAtom.reportObserved();
-    return super.alignmentName;
+  Offset get offset {
+    _$offsetAtom.context.enforceReadPolicy(_$offsetAtom);
+    _$offsetAtom.reportObserved();
+    return super.offset;
   }
 
   @override
-  set alignmentName(String value) {
-    _$alignmentNameAtom.context.conditionallyRunInAction(() {
-      super.alignmentName = value;
-      _$alignmentNameAtom.reportChanged();
-    }, _$alignmentNameAtom, name: '${_$alignmentNameAtom.name}_set');
-  }
-
-  final _$alignmentAtom = Atom(name: '_AppStore.alignment');
-
-  @override
-  Alignment get alignment {
-    _$alignmentAtom.context.enforceReadPolicy(_$alignmentAtom);
-    _$alignmentAtom.reportObserved();
-    return super.alignment;
-  }
-
-  @override
-  set alignment(Alignment value) {
-    _$alignmentAtom.context.conditionallyRunInAction(() {
-      super.alignment = value;
-      _$alignmentAtom.reportChanged();
-    }, _$alignmentAtom, name: '${_$alignmentAtom.name}_set');
-  }
-
-  final _$textAlignAtom = Atom(name: '_AppStore.textAlign');
-
-  @override
-  TextAlign get textAlign {
-    _$textAlignAtom.context.enforceReadPolicy(_$textAlignAtom);
-    _$textAlignAtom.reportObserved();
-    return super.textAlign;
-  }
-
-  @override
-  set textAlign(TextAlign value) {
-    _$textAlignAtom.context.conditionallyRunInAction(() {
-      super.textAlign = value;
-      _$textAlignAtom.reportChanged();
-    }, _$textAlignAtom, name: '${_$textAlignAtom.name}_set');
+  set offset(Offset value) {
+    _$offsetAtom.context.conditionallyRunInAction(() {
+      super.offset = value;
+      _$offsetAtom.reportChanged();
+    }, _$offsetAtom, name: '${_$offsetAtom.name}_set');
   }
 
   final _$fontSizeAtom = Atom(name: '_AppStore.fontSize');
@@ -382,10 +348,10 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void setAlignment(String value) {
+  void setOffset(Offset value) {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
-      return super.setAlignment(value);
+      return super.setOffset(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

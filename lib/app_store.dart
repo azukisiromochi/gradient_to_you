@@ -54,13 +54,7 @@ abstract class _AppStore with Store {
   String message;
 
   @observable
-  String alignmentName;
-
-  @observable
-  Alignment alignment;
-
-  @observable
-  TextAlign textAlign;
+  Offset offset;
 
   @observable
   double fontSize;
@@ -172,10 +166,8 @@ abstract class _AppStore with Store {
 
   // ignore: use_setters_to_change_properties
   @action
-  void setAlignment(String value) {
-    alignmentName = value;
-    alignment = _stringToAlignment(value);
-    textAlign = _stringToTextAlign(value);
+  void setOffset(Offset value) {
+    offset = value;
   }
 
   // ignore: use_setters_to_change_properties
@@ -190,33 +182,4 @@ abstract class _AppStore with Store {
     pngImage = value;
   }
 
-  Alignment _stringToAlignment(String alignmentName) {
-    final _mapper = {
-      'bottomCenter': Alignment.bottomCenter,
-      'bottomLeft': Alignment.bottomLeft,
-      'bottomRight': Alignment.bottomRight,
-      'center': Alignment.center,
-      'centerLeft': Alignment.centerLeft,
-      'centerRight': Alignment.centerRight,
-      'topCenter': Alignment.topCenter,
-      'topLeft': Alignment.topLeft,
-      'topRight': Alignment.topRight,
-    };
-    return _mapper[alignmentName];
-  }
-
-  TextAlign _stringToTextAlign(String alignmentName) {
-    final _mapper = {
-      'bottomCenter': TextAlign.center,
-      'bottomLeft': TextAlign.left,
-      'bottomRight': TextAlign.right,
-      'center': TextAlign.center,
-      'centerLeft': TextAlign.left,
-      'centerRight': TextAlign.right,
-      'topCenter': TextAlign.center,
-      'topLeft': TextAlign.left,
-      'topRight': TextAlign.right,
-    };
-    return _mapper[alignmentName];
-  }
 }
