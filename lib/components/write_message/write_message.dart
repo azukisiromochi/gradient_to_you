@@ -33,8 +33,6 @@ class WriteMessage extends StatelessWidget {
     store.setMessage(store.message ?? l10n.messageDefault);
     final _themeColor = store.baseTextColor;
 
-    String _alignmentName;
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -224,6 +222,7 @@ class _MessageState extends State<Message> {
   Alignment _alignment;
   TextAlign _textAlign;
   double _fontSize;
+  Offset _offset = Offset.zero;
 
   @override
   void initState() {
@@ -251,18 +250,33 @@ class _MessageState extends State<Message> {
     _textAlign = widget.store.textAlign ?? TextAlign.center;
     _fontSize = widget.store.fontSize;
 
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Align(
-          alignment: _alignment,
-          child: Text(
-            _message,
-            textAlign: _textAlign,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: _fontSize,
-            ),
+    final _displayText = Material(
+      color: Colors.white.withOpacity(0),
+      child: Text(
+        _message,
+        textAlign: _textAlign,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: _fontSize,
+        ),
+      ),
+    );
+
+    return Positioned(
+      left: _offset.dx,
+      top: _offset.dy,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onPanUpdate: (details) {
+          setState(() {
+            _offset = Offset(
+                _offset.dx + details.delta.dx, _offset.dy + details.delta.dy);
+          });
+        },
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: _displayText,
           ),
         ),
       ),
