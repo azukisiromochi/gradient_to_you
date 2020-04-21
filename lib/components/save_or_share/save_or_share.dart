@@ -68,6 +68,8 @@ class SaveOrShare extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.black54,
+          unselectedItemColor: Colors.black54,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.save_alt),
@@ -88,7 +90,8 @@ class SaveOrShare extends StatelessWidget {
 
             case 1:
               {
-                Share.file(l10n.appName, 'Gradient2u_${timestamp()}.jpg', pngBytes, 'image/jpg');
+                Share.file(l10n.appName, 'Gradient2u_${timestamp()}.jpg',
+                    pngBytes, 'image/jpg');
               }
               break;
 
