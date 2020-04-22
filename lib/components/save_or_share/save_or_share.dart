@@ -18,23 +18,17 @@ class SaveOrShare extends StatelessWidget {
 
   String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
 
-  Future<void> _save(String msg) async {
-    final buffer = store.pngImage.buffer;
+  Future<void> _save(String msg, String appName) async {
+    await PermissionHandler().requestPermissions([PermissionGroup.storage]);
 
-    final permissions =
-        await PermissionHandler().requestPermissions([PermissionGroup.storage]);
-
-    print(permissions);
-
-    final picturesPath = await ExtStorage.getExternalStoragePublicDirectory(
+    final _picturesPath = await ExtStorage.getExternalStoragePublicDirectory(
         ExtStorage.DIRECTORY_PICTURES);
-    final dirPath = '$picturesPath/Gradient2u';
+    final dirPath = '$_picturesPath/$appName';
     await Directory(dirPath).create(recursive: true);
-    final filePath = '$dirPath/Gradient2u_${timestamp()}.jpg';
+    final filePath = '$dirPath/g2u_${timestamp()}.jpg';
 
-    print(filePath);
-
-    await File(filePath).writeAsBytes(buffer.asUint8List());
+    final _buffer = store.pngImage.buffer;
+    await File(filePath).writeAsBytes(_buffer.asUint8List());
 
     await Fluttertoast.showToast(
         msg: msg,
@@ -69,7 +63,7 @@ class SaveOrShare extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.black54,
-          unselectedItemColor: Colors.black54,
+        unselectedItemColor: Colors.black54,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.save_alt),
@@ -84,14 +78,14 @@ class SaveOrShare extends StatelessWidget {
           switch (index) {
             case 0:
               {
-                _save(l10n.toastSave);
+                _save(l10n.toastSave, l10n.appName);
               }
               break;
 
             case 1:
               {
-                Share.file(l10n.appName, 'Gradient2u_${timestamp()}.jpg',
-                    pngBytes, 'image/jpg');
+                Share.file(l10n.appName, 'g2u_${timestamp()}.jpg', pngBytes,
+                    'image/jpg');
               }
               break;
 

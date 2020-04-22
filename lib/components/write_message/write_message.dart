@@ -17,7 +17,6 @@ class WriteMessage extends StatelessWidget {
         _globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
     final image = await boundary.toImage(pixelRatio: 3);
 
-    // To PNG
     final byteData = await image.toByteData(
       format: ui.ImageByteFormat.png,
     );
@@ -188,17 +187,6 @@ class _MessageState extends State<Message> {
     _fontSize = widget.store.fontSize;
     _offset = widget.store.offset ?? Offset.zero;
 
-    final _displayText = Material(
-      color: Colors.white.withOpacity(0),
-      child: Text(
-        _message,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: _fontSize,
-        ),
-      ),
-    );
-
     return Positioned(
       left: _offset.dx,
       top: _offset.dy,
@@ -213,7 +201,13 @@ class _MessageState extends State<Message> {
         child: Container(
           child: Padding(
             padding: const EdgeInsets.all(10),
-            child: _displayText,
+            child: Text(
+              _message,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: _fontSize,
+              ),
+            ),
           ),
         ),
       ),
