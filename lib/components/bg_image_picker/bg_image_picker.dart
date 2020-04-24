@@ -20,7 +20,7 @@ class BgImagePicker extends StatefulWidget {
 class _BgImagePickerState extends State<BgImagePicker> {
   File _image;
 
-  Future getImage({bool forceUpdate = false}) async {
+  Future _getImage({bool forceUpdate = false}) async {
     if (forceUpdate || widget.store.bgImage == null) {
       widget.store.setBgImage(null, MediaQuery.of(context).size);
 
@@ -65,14 +65,14 @@ class _BgImagePickerState extends State<BgImagePicker> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.collections, color: _themeColor),
-            onPressed: () => getImage(forceUpdate: true),
+            onPressed: () => _getImage(forceUpdate: true),
           ),
         ],
       ),
       body: Center(
         child: _image == null
             ? GestureDetector(
-                onTap: getImage,
+                onTap: _getImage,
                 child: Icon(
                   Icons.collections,
                   color: widget.store.baseColor,

@@ -1,7 +1,7 @@
-import 'dart:math' show Random;
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
+import 'package:gradient_to_you/utils/color_utils.dart';
 
 import '../../app_store.dart';
 
@@ -39,15 +39,14 @@ class GradientBody extends StatefulWidget {
 }
 
 class _GradientBodyState extends State<GradientBody> {
-  final _random = Random();
-
   @override
   Widget build(BuildContext context) {
     if (widget.store.primary == null) {
       widget.store.setPrimary(
-          _randomHsl(HSLColor.fromColor(widget.store.baseColor).hue).toColor());
-      widget.store.setSecondary(_randomHsl().toColor());
-      widget.store.setGradientBeginEnd(_randomGradientBeginEnd());
+          ColorUtils.randomHsl(HSLColor.fromColor(widget.store.baseColor).hue)
+              .toColor());
+      widget.store.setSecondary(ColorUtils.randomHsl().toColor());
+      widget.store.setGradientBeginEnd(ColorUtils.randomGradientBeginEnd());
     }
 
     return Container(
@@ -72,106 +71,5 @@ class _GradientBodyState extends State<GradientBody> {
                 widget.store.clearGradient();
               })),
     );
-  }
-
-  List<FractionalOffset> _randomGradientBeginEnd() {
-    switch (_random.nextInt(6)) {
-      case 0:
-        {
-          return const [
-            FractionalOffset.topLeft,
-            FractionalOffset.bottomRight,
-          ];
-        }
-        break;
-
-      case 1:
-        {
-          return const [
-            FractionalOffset.topCenter,
-            FractionalOffset.bottomCenter,
-          ];
-        }
-        break;
-
-      case 2:
-        {
-          return const [
-            FractionalOffset.topRight,
-            FractionalOffset.bottomLeft,
-          ];
-        }
-        break;
-
-      case 3:
-        {
-          return const [
-            FractionalOffset.bottomLeft,
-            FractionalOffset.topRight,
-          ];
-        }
-        break;
-
-      case 4:
-        {
-          return const [
-            FractionalOffset.bottomCenter,
-            FractionalOffset.topCenter,
-          ];
-        }
-        break;
-
-      case 5:
-        {
-          return const [
-            FractionalOffset.bottomRight,
-            FractionalOffset.topLeft,
-          ];
-        }
-        break;
-
-      default:
-        {
-          return const [
-            FractionalOffset.topLeft,
-            FractionalOffset.bottomRight,
-          ];
-        }
-        break;
-    }
-  }
-
-  HSLColor _randomHsl([double hue]) {
-    return HSLColor.fromAHSL(
-        1, _randomHue(hue), _randomSaturation(), _randomLightness());
-  }
-
-  double _randomHue([double hue]) {
-    if (hue == null) {
-      return _random.nextInt(360).toDouble();
-    }
-
-    final i = _random.nextInt(30);
-    if (hue == 0 && i < 15) {
-      return (360.0 - 1.0) - i;
-    } else {
-      return hue + (i - 15);
-    }
-  }
-
-  double _randomSaturation() {
-    var d = _random.nextDouble();
-    while (d < 0.2) {
-      d = _random.nextDouble();
-    }
-    return d;
-  }
-
-  double _randomLightness() {
-    var d = _random.nextDouble();
-    while (d < 0.1 || 0.9 < d) {
-      d = _random.nextDouble();
-    }
-    return d;
   }
 }

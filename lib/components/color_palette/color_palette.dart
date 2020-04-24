@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'package:gradient_to_you/configs/g_2_u_colors.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
+import 'package:gradient_to_you/utils/color_utils.dart';
 
 import '../../app_store.dart';
 
@@ -90,72 +90,72 @@ class _PaletteState extends State<Palette> {
     switch (position) {
       case 0:
         {
-          return G2UColors.hslFromHue000;
+          return ColorUtils.hslFromHue000;
         }
         break;
       case 1:
         {
-          return G2UColors.hslFromHue030;
+          return ColorUtils.hslFromHue030;
         }
         break;
       case 2:
         {
-          return G2UColors.hslFromHue060;
+          return ColorUtils.hslFromHue060;
         }
         break;
       case 3:
         {
-          return G2UColors.hslFromHue090;
+          return ColorUtils.hslFromHue090;
         }
         break;
       case 4:
         {
-          return G2UColors.hslFromHue120;
+          return ColorUtils.hslFromHue120;
         }
         break;
       case 5:
         {
-          return G2UColors.hslFromHue150;
+          return ColorUtils.hslFromHue150;
         }
         break;
       case 6:
         {
-          return G2UColors.hslFromHue180;
+          return ColorUtils.hslFromHue180;
         }
         break;
       case 7:
         {
-          return G2UColors.hslFromHue210;
+          return ColorUtils.hslFromHue210;
         }
         break;
 
       case 8:
         {
-          return G2UColors.hslFromHue240;
+          return ColorUtils.hslFromHue240;
         }
         break;
 
       case 9:
         {
-          return G2UColors.hslFromHue270;
+          return ColorUtils.hslFromHue270;
         }
         break;
 
       case 10:
         {
-          return G2UColors.hslFromHue300;
+          return ColorUtils.hslFromHue300;
         }
         break;
 
       case 11:
         {
-          return G2UColors.hslFromHue330;
+          return ColorUtils.hslFromHue330;
         }
         break;
 
       default:
         {
-          return G2UColors.hslFromHue000;
+          return ColorUtils.hslFromHue000;
         }
         break;
     }
