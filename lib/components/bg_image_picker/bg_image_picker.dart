@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/app_theme_utils.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -60,13 +60,8 @@ class _BgImagePickerState extends State<BgImagePicker> {
     final _themeColor = widget.store.baseTextColor;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: IconThemeData(color: _themeColor),
-        title: Text(l10n.appName,
-            style:
-                AppThemeUtils.appBarStyle(widget.store.themeNo, _themeColor)),
-        backgroundColor: widget.store.baseColor,
+      appBar: ColorAppBar(
+        store: widget.store,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.collections, color: _themeColor),

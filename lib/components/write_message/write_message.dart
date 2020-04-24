@@ -1,8 +1,8 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/app_theme_utils.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../app_store.dart';
@@ -34,13 +34,7 @@ class WriteMessage extends StatelessWidget {
         TextEditingController(text: store.message ?? '');
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: IconThemeData(color: _themeColor),
-        title: Text(l10n.appName,
-            style: AppThemeUtils.appBarStyle(store.themeNo, _themeColor)),
-        backgroundColor: store.baseColor,
-      ),
+      appBar: ColorAppBar(store: store),
       body: SingleChildScrollView(
         child: Wrap(
           direction: Axis.horizontal,

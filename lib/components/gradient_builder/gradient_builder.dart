@@ -1,7 +1,7 @@
 import 'dart:math' show Random;
 import 'package:flutter/material.dart';
+import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/app_theme_utils.dart';
 
 import '../../app_store.dart';
 
@@ -17,13 +17,7 @@ class GradientBuilder extends StatelessWidget {
     final _themeColor = store.baseTextColor;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: IconThemeData(color: _themeColor),
-        title: Text(l10n.appName,
-            style: AppThemeUtils.appBarStyle(store.themeNo, _themeColor)),
-        backgroundColor: store.baseColor,
-      ),
+      appBar: ColorAppBar(store: store),
       body: GradientBody(store: store),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).pushNamed('/image_picker'),
