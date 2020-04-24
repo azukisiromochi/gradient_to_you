@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
@@ -18,8 +16,6 @@ class BgImagePicker extends StatefulWidget {
 }
 
 class _BgImagePickerState extends State<BgImagePicker> {
-  File _image;
-
   Future _getImage({bool forceUpdate = false}) async {
     if (forceUpdate || widget.store.bgImage == null) {
       widget.store.setBgImage(null, MediaQuery.of(context).size);
@@ -46,7 +42,6 @@ class _BgImagePickerState extends State<BgImagePicker> {
       );
 
       setState(() {
-        _image = croppedFile;
         widget.store.setBgImage(croppedFile, MediaQuery.of(context).size);
       });
     }
@@ -56,7 +51,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
 
-    _image = widget.store.bgImage;
+    final _image = widget.store.bgImage;
     final _themeColor = widget.store.baseTextColor;
 
     return Scaffold(
