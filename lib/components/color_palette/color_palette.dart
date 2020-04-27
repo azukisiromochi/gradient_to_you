@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
@@ -7,38 +8,106 @@ import 'package:gradient_to_you/utils/color_utils.dart';
 
 import '../../app_store.dart';
 
-class ColorPalette extends StatelessWidget {
+class ColorPalette extends StatefulWidget {
   const ColorPalette({Key key, @required this.store}) : super(key: key);
 
   final AppStore store;
 
   @override
+  _ColorPaletteState createState() => _ColorPaletteState();
+}
+
+class _ColorPaletteState extends State<ColorPalette> {
+  //  Current State of InnerDrawerState
+  final GlobalKey<InnerDrawerState> _innerDrawerKey =
+      GlobalKey<InnerDrawerState>();
+
+  void _toggle() {
+    _innerDrawerKey.currentState.toggle(
+        // direction is optional
+        // if not set, the last direction will be used
+        //InnerDrawerDirection.start OR InnerDrawerDirection.end
+        direction: InnerDrawerDirection.end);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
 
-    return Scaffold(
-      appBar: GradientAppBar(
-        centerTitle: true,
-        title: Text(
-          l10n.appName,
-          style: AppThemeUtils.appBarStyle(store.themeNo),
+    return InnerDrawer(
+      key: _innerDrawerKey,
+      onTapClose: true,
+
+      //when a pointer that is in contact with the screen and moves to the right or left
+      onDragUpdate: (double val, InnerDrawerDirection direction) {
+        // return values between 1 and 0
+        print(val);
+        // check if the swipe is to the right or to the left
+        print(direction == InnerDrawerDirection.start);
+      },
+
+      innerDrawerCallback: (a) => print(a),
+      // return  true (open) or false (close)
+
+      leftChild: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: FractionalOffset.topLeft,
+            end: FractionalOffset.bottomRight,
+            colors: widget.store.gradientColors,
+            stops: const [
+              0.0,
+              1.0,
+            ],
+          ),
         ),
-        backgroundColorStart: store.gradientColors.first.withOpacity(0.6),
-        backgroundColorEnd: store.gradientColors.last.withOpacity(0.6),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'You have pushed the button this many times:',
+                style: Theme.of(context).textTheme.subtitle,
+              ),
+              Text(
+                'xxx',
+                style: Theme.of(context).textTheme.display1,
+              ),
+            ],
+          ),
+        ),
       ),
-      body: AnimationLimiter(
-        child: GridView.count(
-          primary: false,
-          padding: const EdgeInsets.all(10),
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          crossAxisCount: 3,
+
+      //  A Scaffold is generally used but you are free to use other widgets
+      // Note: use "automaticallyImplyLeading: false" if you do not personalize "leading" of Bar
+      scaffold: Scaffold(
+        appBar: GradientAppBar(
+//          automaticallyImplyLeading: false,
+          centerTitle: true,
+          title: Text(
+            l10n.appName,
+            style: AppThemeUtils.appBarStyle(widget.store.themeNo),
+          ),
+          backgroundColorStart:
+              widget.store.gradientColors.first.withOpacity(0.6),
+          backgroundColorEnd: widget.store.gradientColors.last.withOpacity(0.6),
+        ),
+        body: AnimationLimiter(
+          child: GridView.count(
+            primary: false,
+            padding: const EdgeInsets.all(10),
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            crossAxisCount: 3,
 //        childAspectRatio: 3 / 4,
-          children: List.generate(
-            12,
-            (int index) {
-              return Palette(position: index, store: store);
-            },
+            children: List.generate(
+              12,
+              (int index) {
+                return Palette(position: index, store: widget.store);
+              },
+            ),
           ),
         ),
       ),
