@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:gradient_to_you/components/color_palette/side_menu.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
 import 'package:gradient_to_you/utils/color_utils.dart';
@@ -37,51 +38,13 @@ class _ColorPaletteState extends State<ColorPalette> {
     return InnerDrawer(
       key: _innerDrawerKey,
       onTapClose: true,
+      leftAnimationType: InnerDrawerAnimation.quadratic,
 
-      //when a pointer that is in contact with the screen and moves to the right or left
-      onDragUpdate: (double val, InnerDrawerDirection direction) {
-        // return values between 1 and 0
-        print(val);
-        // check if the swipe is to the right or to the left
-        print(direction == InnerDrawerDirection.start);
-      },
-
-      innerDrawerCallback: (a) => print(a),
-      // return  true (open) or false (close)
-
-      leftChild: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: FractionalOffset.topLeft,
-            end: FractionalOffset.bottomRight,
-            colors: widget.store.gradientColors,
-            stops: const [
-              0.0,
-              1.0,
-            ],
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'You have pushed the button this many times:',
-                style: Theme.of(context).textTheme.subtitle,
-              ),
-              Text(
-                'xxx',
-                style: Theme.of(context).textTheme.display1,
-              ),
-            ],
-          ),
-        ),
+      leftChild: SideMenu(
+        store: widget.store,
       ),
 
-      //  A Scaffold is generally used but you are free to use other widgets
-      // Note: use "automaticallyImplyLeading: false" if you do not personalize "leading" of Bar
+      /// Color palette main widget
       scaffold: Scaffold(
         appBar: GradientAppBar(
 //          automaticallyImplyLeading: false,
