@@ -11,7 +11,6 @@ class SideMenu extends StatelessWidget {
 
   Future<String> _getAppVersion() async {
     final packageInfo = await PackageInfo.fromPlatform();
-    print(packageInfo.version);
     return Future.value(packageInfo.version);
   }
 
@@ -88,7 +87,11 @@ class SideMenu extends StatelessWidget {
             const SizedBox(height: 20),
             _MenuItem(icon: Icon(Icons.lock_outline), title: 'プライバシーポリシー'),
             const SizedBox(height: 20),
-            _MenuItem(icon: Icon(Icons.copyright), title: 'ライセンス'),
+            _MenuItem(
+              icon: Icon(Icons.copyright),
+              title: 'ライセンス',
+              onTapCallback: () => showLicensePage(context: context),
+            ),
           ],
         ),
       ),
@@ -97,31 +100,61 @@ class SideMenu extends StatelessWidget {
 }
 
 class _MenuItem extends StatelessWidget {
-  const _MenuItem({Key key, @required this.icon, @required this.title})
-      : super(key: key);
+  const _MenuItem({
+    Key key,
+    @required this.icon,
+    @required this.title,
+    this.onTapCallback,
+  }) : super(key: key);
 
   final Icon icon;
   final String title;
+  final GestureTapCallback onTapCallback;
+
+  /// @deprecated コンテスト用
+  void _showNotAvailableDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: const Text('使用を制限しています'),
+          content: const Text('コンテスト版には『アプリを評価』などの正式リリース後に使用される機能は実装されていません。'),
+          actions: <Widget>[
+            FlatButton(
+              child: const Text('OK'),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Expanded(
-          flex: 1,
-          child: icon,
-        ),
-        Expanded(
-          flex: 4,
-          child: Container(
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.body1,
+    return GestureDetector(
+      onTap: onTapCallback ??
+          () {
+            _showNotAvailableDialog(context);
+          },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: icon,
+          ),
+          Expanded(
+            flex: 4,
+            child: Container(
+              child: Text(
+                title,
+                style: Theme.of(context).textTheme.body1,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

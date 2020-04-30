@@ -20,6 +20,9 @@ class App extends StatelessWidget {
 
     return MaterialApp(
       title: 'Gradient to you',
+      theme: ThemeData(
+        primarySwatch: Colors.grey,
+      ),
       home: Splash(store: store),
       routes: <String, WidgetBuilder>{
         '/color_palette': (_) => ColorPalette(store: store),

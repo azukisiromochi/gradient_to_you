@@ -24,11 +24,7 @@ class _ColorPaletteState extends State<ColorPalette> {
       GlobalKey<InnerDrawerState>();
 
   void _toggle() {
-    _innerDrawerKey.currentState.toggle(
-        // direction is optional
-        // if not set, the last direction will be used
-        //InnerDrawerDirection.start OR InnerDrawerDirection.end
-        direction: InnerDrawerDirection.end);
+    _innerDrawerKey.currentState.toggle();
   }
 
   @override
@@ -47,7 +43,14 @@ class _ColorPaletteState extends State<ColorPalette> {
       /// Color palette main widget
       scaffold: Scaffold(
         appBar: GradientAppBar(
-//          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: _toggle,
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
           centerTitle: true,
           title: Text(
             l10n.appName,

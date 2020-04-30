@@ -52,6 +52,9 @@ class SaveOrShare extends StatelessWidget {
           l10n.appName,
           style: AppThemeUtils.appBarStyle(store.themeNo),
         ),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
         backgroundColorStart: store.gradientColors.first.withOpacity(0.6),
         backgroundColorEnd: store.gradientColors.last.withOpacity(0.6),
       ),
