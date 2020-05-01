@@ -63,7 +63,10 @@ class _ColorPaletteState extends State<ColorPalette> {
         body: AnimationLimiter(
           child: GridView.count(
             primary: false,
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(
+              vertical: 50,
+              horizontal: 10,
+            ),
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             crossAxisCount: 3,

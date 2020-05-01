@@ -155,7 +155,7 @@ class AppThemeUtils {
     switch (no) {
       case 1:
         {
-          return 48;
+          return 40;
         }
         break;
 
@@ -173,7 +173,7 @@ class AppThemeUtils {
 
       default:
         {
-          return 48;
+          return 40;
         }
         break;
     }
