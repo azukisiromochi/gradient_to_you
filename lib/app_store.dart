@@ -135,8 +135,10 @@ abstract class _AppStore with Store {
           _width = deviceSize.width.toInt();
           _height = _width * decodedImage.height ~/ decodedImage.width;
         }
-        if (400 < _height) {
-          _height = 400;
+
+        final _limitHeight = (deviceSize.height / 2) - 50;
+        if (_limitHeight < _height) {
+          _height = _limitHeight.toInt();
           _width = _height * decodedImage.width ~/ decodedImage.height;
         }
         bgImageWidth = _width;
@@ -181,5 +183,4 @@ abstract class _AppStore with Store {
   void setPngImage(ByteData value) {
     pngImage = value;
   }
-
 }

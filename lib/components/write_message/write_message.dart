@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:mobx/mobx.dart';
 
 import '../../app_store.dart';
+import 'font_size_slider.dart';
+import 'message.dart';
 
 class WriteMessage extends StatelessWidget {
   const WriteMessage({Key key, @required this.store}) : super(key: key);
@@ -35,62 +36,69 @@ class WriteMessage extends StatelessWidget {
 
     return Scaffold(
       appBar: ColorAppBar(store: store),
-      body: SingleChildScrollView(
-        child: Wrap(
-          direction: Axis.horizontal,
-          spacing: 8,
-          runSpacing: 4,
-          children: <Widget>[
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: RepaintBoundary(
-                  key: _globalKey,
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints.expand(
-                      height: store.bgImageHeight.toDouble(),
-                      width: store.bgImageWidth.toDouble(),
-                    ),
-                    child: Stack(
-                      children: <Widget>[
-                        Center(child: store.gradientImage),
-                        Message(
-                          store: store,
-                          defaultMessage: l10n.messageDefault,
-                        ),
-                      ],
-                    ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, top: 20, right: 10),
+              child: RepaintBoundary(
+                key: _globalKey,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.expand(
+                    height: store.bgImageHeight.toDouble(),
+                    width: store.bgImageWidth.toDouble(),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Center(child: store.gradientImage),
+                      Message(
+                        store: store,
+                        defaultMessage: l10n.messageDefault,
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: Wrap(
-                direction: Axis.horizontal,
-                spacing: 10,
-                runSpacing: 10,
-                children: <Widget>[
-                  TextField(
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                _InputItem(
+                  icon: Icon(Icons.message, color: store.baseColor),
+                  input: TextField(
                     controller: _textEditingController,
                     decoration: InputDecoration(
                       labelText: '',
                       hintText: l10n.hintText,
-                      icon: Icon(Icons.message, color: store.baseColor),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: store.baseColor),
                       ),
                     ),
-                    autocorrect: false,
                     keyboardType: TextInputType.text,
                     onChanged: store.setMessage,
                   ),
-                  FontSizeSlider(store: store),
-                ],
-              ),
+                ),
+                const SizedBox(height: 20),
+                _InputItem(
+                  icon: Icon(Icons.format_size, color: store.baseColor),
+                  input: FontSizeSlider(store: store),
+                ),
+                const SizedBox(height: 20),
+                _InputItem(
+                  icon: Icon(Icons.text_format, color: store.baseColor),
+                  input: Container(
+                    height: 50,
+                    child: const Placeholder(),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -105,106 +113,30 @@ class WriteMessage extends StatelessWidget {
   }
 }
 
-class FontSizeSlider extends StatefulWidget {
-  const FontSizeSlider({Key key, @required this.store}) : super(key: key);
-
-  @override
-  _FontSizeSliderState createState() => _FontSizeSliderState();
-
-  final AppStore store;
-}
-
-class _FontSizeSliderState extends State<FontSizeSlider> {
-  void _changeSlider(double e) => setState(() {
-        widget.store.setFontSize(e);
-      });
-
-  @override
-  Widget build(BuildContext context) {
-    final _fontSize = widget.store.fontSize ?? 20;
-
-    return Slider(
-      label: '${_fontSize.toStringAsFixed(2)}',
-      min: 10,
-      max: 100,
-      value: _fontSize,
-      activeColor: widget.store.baseColor,
-      inactiveColor: widget.store.baseTextColor,
-      divisions: 90,
-      onChanged: _changeSlider,
-    );
-  }
-}
-
-class Message extends StatefulWidget {
-  const Message({
+class _InputItem extends StatelessWidget {
+  const _InputItem({
     Key key,
-    @required this.store,
-    this.defaultMessage,
+    @required this.icon,
+    @required this.input,
   }) : super(key: key);
 
-  @override
-  _MessageState createState() => _MessageState();
-
-  final AppStore store;
-  final String defaultMessage;
-}
-
-class _MessageState extends State<Message> {
-  ReactionDisposer reactionDispose;
-
-  String _message;
-  double _fontSize;
-  Offset _offset;
-
-  @override
-  void initState() {
-    super.initState();
-    reactionDispose = autorun((_) => {
-          setState(() {
-            _message = widget.store.message;
-            _fontSize = widget.store.fontSize;
-            _offset = widget.store.offset;
-          }),
-        });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    reactionDispose();
-  }
+  final Icon icon;
+  final Widget input;
 
   @override
   Widget build(BuildContext context) {
-    _message = widget.store.message ?? widget.defaultMessage;
-    _fontSize = widget.store.fontSize;
-    _offset = widget.store.offset ?? Offset.zero;
-
-    return Positioned(
-      left: _offset.dx,
-      top: _offset.dy,
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onPanUpdate: (details) {
-          widget.store.setOffset(Offset(
-            _offset.dx + details.delta.dx,
-            _offset.dy + details.delta.dy,
-          ));
-        },
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Text(
-              _message,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: _fontSize,
-              ),
-            ),
-          ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Expanded(
+          flex: 1,
+          child: icon,
         ),
-      ),
+        Expanded(
+          flex: 4,
+          child: Container(child: input),
+        ),
+      ],
     );
   }
 }

@@ -102,6 +102,7 @@ class _PaletteState extends State<Palette> {
     final _paletteColor = _paletteHSLColor.toColor();
 
     return AnimationConfiguration.staggeredGrid(
+      delay: const Duration(milliseconds: 100),
       duration: const Duration(milliseconds: 500),
       position: widget.position,
       columnCount: 3,
