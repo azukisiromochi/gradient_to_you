@@ -16,7 +16,7 @@ import 'gradient_filter/gradient_filter.dart';
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final store = AppStore(Random().nextInt(2) + 1);
+    final store = AppStore(Random().nextInt(3) + 1);
 
     return MaterialApp(
       title: 'Gradient to you',

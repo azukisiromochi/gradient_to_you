@@ -16,6 +16,12 @@ class AppThemeUtils {
         }
         break;
 
+      case 3:
+        {
+          return const AssetImage('assets/images/splash3.webp');
+        }
+        break;
+
       default:
         {
           return const AssetImage('assets/images/splash1.webp');
@@ -35,6 +41,12 @@ class AppThemeUtils {
       case 2:
         {
           return const AssetImage('assets/images/thumbnail2.webp');
+        }
+        break;
+
+      case 3:
+        {
+          return const AssetImage('assets/images/thumbnail3.webp');
         }
         break;
 
@@ -66,6 +78,15 @@ class AppThemeUtils {
         }
         break;
 
+      case 3:
+        {
+          return [
+            const Color(0xff2af598).withOpacity(0.6),
+            const Color(0xff009efd).withOpacity(0.6),
+          ];
+        }
+        break;
+
       default:
         {
           return [
@@ -83,7 +104,7 @@ class AppThemeUtils {
         color: Colors.white,
         decoration: TextDecoration.none,
       ),
-      fontSize: 48,
+      fontSize: _logoFontSize(no),
       fontWeight: FontWeight.bold,
     );
   }
@@ -116,9 +137,43 @@ class AppThemeUtils {
         }
         break;
 
+      case 3:
+        {
+          return GoogleFonts.loveYaLikeASister;
+        }
+        break;
+
       default:
         {
           return GoogleFonts.charmonman;
+        }
+        break;
+    }
+  }
+
+  static double _logoFontSize(int no) {
+    switch (no) {
+      case 1:
+        {
+          return 48;
+        }
+        break;
+
+      case 2:
+        {
+          return 32;
+        }
+        break;
+
+      case 3:
+        {
+          return 32;
+        }
+        break;
+
+      default:
+        {
+          return 48;
         }
         break;
     }

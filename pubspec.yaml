@@ -106,6 +106,8 @@ flutter:
     - assets/images/thumbnail1.webp
     - assets/images/splash2.webp
     - assets/images/thumbnail2.webp
+    - assets/images/splash3.webp
+    - assets/images/thumbnail3.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

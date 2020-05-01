@@ -24,6 +24,7 @@ class Splash extends StatelessWidget {
         children: <Widget>[
           Container(
             child: ProgressiveImage(
+              fadeDuration: const Duration(milliseconds: 2000),
               height: double.infinity,
               width: double.infinity,
               fit: BoxFit.cover,
