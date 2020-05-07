@@ -18,8 +18,6 @@ class BgImagePicker extends StatefulWidget {
 class _BgImagePickerState extends State<BgImagePicker> {
   Future _getImage({bool forceUpdate = false}) async {
     if (forceUpdate || widget.store.bgImage == null) {
-      widget.store.setBgImage(null, MediaQuery.of(context).size);
-
       final image = await ImagePicker.pickImage(source: ImageSource.gallery);
       final croppedFile = await ImageCropper.cropImage(
         sourcePath: image.path,
