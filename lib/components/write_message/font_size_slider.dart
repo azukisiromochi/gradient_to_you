@@ -22,12 +22,12 @@ class _FontSizeSliderState extends State<FontSizeSlider> {
 
     return Slider(
       label: '${_fontSize.toStringAsFixed(2)}',
-      min: 10,
+      min: 5,
       max: 100,
       value: _fontSize,
       activeColor: widget.store.baseColor,
       inactiveColor: widget.store.baseTextColor,
-      divisions: 90,
+      divisions: 95,
       onChanged: _changeSlider,
     );
   }

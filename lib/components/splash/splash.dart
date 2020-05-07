@@ -57,7 +57,7 @@ class Splash extends StatelessWidget {
               ],
               textStyle: AppThemeUtils.logoStyle(store.themeNo),
               textAlign: TextAlign.start,
-              duration: const Duration(seconds: 2),
+              duration: const Duration(milliseconds: 1800),
               isRepeatingAnimation: false,
             ),
           ),
