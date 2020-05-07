@@ -35,6 +35,7 @@ class WriteMessage extends StatelessWidget {
         TextEditingController(text: store.message ?? '');
 
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: ColorAppBar(store: store),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -95,6 +96,7 @@ class WriteMessage extends StatelessWidget {
                     child: const Placeholder(),
                   ),
                 ),
+                const SizedBox(height: 20),
               ],
             ),
           ),
