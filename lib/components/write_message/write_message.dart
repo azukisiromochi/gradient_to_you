@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
+import 'package:gradient_to_you/components/write_message/font_family_dropdown.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../../app_store.dart';
@@ -91,10 +92,7 @@ class WriteMessage extends StatelessWidget {
                 const SizedBox(height: 20),
                 _InputItem(
                   icon: Icon(Icons.text_format, color: store.baseColor),
-                  input: Container(
-                    height: 50,
-                    child: const Placeholder(),
-                  ),
+                  input: FontFamilyDropdown(store: store)
                 ),
                 const SizedBox(height: 20),
               ],

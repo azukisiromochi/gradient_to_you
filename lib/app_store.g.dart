@@ -248,6 +248,23 @@ mixin _$AppStore on _AppStore, Store {
     }, _$fontSizeAtom, name: '${_$fontSizeAtom.name}_set');
   }
 
+  final _$fontFamilyAtom = Atom(name: '_AppStore.fontFamily');
+
+  @override
+  String get fontFamily {
+    _$fontFamilyAtom.context.enforceReadPolicy(_$fontFamilyAtom);
+    _$fontFamilyAtom.reportObserved();
+    return super.fontFamily;
+  }
+
+  @override
+  set fontFamily(String value) {
+    _$fontFamilyAtom.context.conditionallyRunInAction(() {
+      super.fontFamily = value;
+      _$fontFamilyAtom.reportChanged();
+    }, _$fontFamilyAtom, name: '${_$fontFamilyAtom.name}_set');
+  }
+
   final _$pngImageAtom = Atom(name: '_AppStore.pngImage');
 
   @override
@@ -362,6 +379,16 @@ mixin _$AppStore on _AppStore, Store {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
       return super.setFontSize(value);
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setFontFamily(String value) {
+    final _$actionInfo = _$_AppStoreActionController.startAction();
+    try {
+      return super.setFontFamily(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

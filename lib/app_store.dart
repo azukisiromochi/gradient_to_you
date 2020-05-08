@@ -60,6 +60,9 @@ abstract class _AppStore with Store {
   double fontSize;
 
   @observable
+  String fontFamily;
+
+  @observable
   ByteData pngImage;
 
   @computed
@@ -176,6 +179,12 @@ abstract class _AppStore with Store {
   @action
   void setFontSize(double value) {
     fontSize = value;
+  }
+
+  // ignore: use_setters_to_change_properties
+  @action
+  void setFontFamily(String value) {
+    fontFamily = value;
   }
 
   // ignore: use_setters_to_change_properties
