@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/components/write_message/font_family_dropdown.dart';
+import 'package:gradient_to_you/components/write_message/message_text_field.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../../app_store.dart';
 import 'font_size_slider.dart';
+import 'input_bottom_bar.dart';
 import 'message.dart';
 
 class WriteMessage extends StatelessWidget {
@@ -32,9 +34,6 @@ class WriteMessage extends StatelessWidget {
     final _globalKey = GlobalKey();
     final _themeColor = store.baseTextColor;
 
-    final _textEditingController =
-        TextEditingController(text: store.message ?? '');
-
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: ColorAppBar(store: store),
@@ -47,9 +46,8 @@ class WriteMessage extends StatelessWidget {
               child: RepaintBoundary(
                 key: _globalKey,
                 child: ConstrainedBox(
-                  constraints: BoxConstraints.expand(
-                    height: store.bgImageHeight.toDouble(),
-                    width: store.bgImageWidth.toDouble(),
+                  constraints: const BoxConstraints(
+                    maxHeight: 400,
                   ),
                   child: Stack(
                     children: <Widget>[
@@ -64,40 +62,6 @@ class WriteMessage extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                _InputItem(
-                  icon: Icon(Icons.message, color: store.baseColor),
-                  input: TextField(
-                    controller: _textEditingController,
-                    decoration: InputDecoration(
-                      labelText: '',
-                      hintText: l10n.hintText,
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: store.baseColor),
-                      ),
-                    ),
-                    keyboardType: TextInputType.text,
-                    onChanged: store.setMessage,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                _InputItem(
-                  icon: Icon(Icons.format_size, color: store.baseColor),
-                  input: FontSizeSlider(store: store),
-                ),
-                const SizedBox(height: 20),
-                _InputItem(
-                  icon: Icon(Icons.text_format, color: store.baseColor),
-                  input: FontFamilyDropdown(store: store)
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -109,34 +73,8 @@ class WriteMessage extends StatelessWidget {
         backgroundColor: store.baseColor,
         child: Icon(Icons.check, color: _themeColor),
       ),
-    );
-  }
-}
-
-class _InputItem extends StatelessWidget {
-  const _InputItem({
-    Key key,
-    @required this.icon,
-    @required this.input,
-  }) : super(key: key);
-
-  final Icon icon;
-  final Widget input;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Expanded(
-          flex: 1,
-          child: icon,
-        ),
-        Expanded(
-          flex: 4,
-          child: Container(child: input),
-        ),
-      ],
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: InputBottomBar(store: store),
     );
   }
 }
