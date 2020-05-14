@@ -31,7 +31,8 @@ class _MessageTextFieldState extends State<MessageTextField> {
           borderSide: BorderSide(color: widget.store.baseColor),
         ),
       ),
-      keyboardType: TextInputType.text,
+      keyboardType: TextInputType.multiline,
+      maxLines: 3,
       onChanged: widget.store.setMessage,
     );
   }

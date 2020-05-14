@@ -23,43 +23,43 @@ class _InputBottomBarState extends State<InputBottomBar> {
   void _changeBar(int index) {
     setState(() {
       _currentIndex = index;
-      showModalBottomSheet<int>(
-        context: context,
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        builder: (BuildContext context) {
-          return SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const SizedBox(height: 50),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 20),
-                  child: _getInputItem(index),
-                ),
-                const SizedBox(height: 30),
-                Container(
-                  color: widget.store.baseColor.withOpacity(0.2),
-                  child: ListTile(
-                    leading: Icon(
-                      _getIconData(index),
-                      color: widget.store.baseColor,
-                    ),
-                    title: Text(
-                      _getTitle(index),
-                      style: TextStyle(color: widget.store.baseColor),
-                    ),
-                    onTap: () => Navigator.pop(context),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      );
     });
+    showModalBottomSheet<int>(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) {
+        return SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const SizedBox(height: 50),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 20),
+                child: _getInputItem(index),
+              ),
+              const SizedBox(height: 30),
+              Container(
+                color: widget.store.baseColor.withOpacity(0.2),
+                child: ListTile(
+                  leading: Icon(
+                    _getIconData(index),
+                    color: widget.store.baseColor,
+                  ),
+                  title: Text(
+                    _getTitle(index),
+                    style: TextStyle(color: widget.store.baseColor),
+                  ),
+                  onTap: () => Navigator.pop(context),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
