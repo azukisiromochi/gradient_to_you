@@ -49,7 +49,7 @@ class _MessageState extends State<Message> {
     _message = widget.store.message ?? widget.defaultMessage;
     _fontSize = widget.store.fontSize;
     _fontFamily = widget.store.fontFamily;
-    _offset = widget.store.offset ?? Offset.zero;
+    _offset = widget.store.offset ?? const Offset(100, 20);
 
     return Positioned(
       left: _offset.dx,

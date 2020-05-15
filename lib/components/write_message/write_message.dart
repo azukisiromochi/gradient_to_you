@@ -2,12 +2,9 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
-import 'package:gradient_to_you/components/write_message/font_family_dropdown.dart';
-import 'package:gradient_to_you/components/write_message/message_text_field.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../../app_store.dart';
-import 'font_size_slider.dart';
 import 'input_bottom_bar.dart';
 import 'message.dart';
 

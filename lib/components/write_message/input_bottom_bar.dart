@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -20,10 +22,42 @@ class InputBottomBar extends StatefulWidget {
 class _InputBottomBarState extends State<InputBottomBar> {
   int _currentIndex;
 
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = 0;
+    Timer.run(() {
+      _showInputBottomBar(0);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BubbleBottomBar(
+      opacity: .2,
+      currentIndex: _currentIndex,
+      onTap: _changeBar,
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+      elevation: 8,
+      fabLocation: BubbleBottomBarFabLocation.end,
+      hasNotch: true,
+      hasInk: true,
+      inkColor: Colors.black12,
+      items: List.generate(
+        3,
+        _makeBottomBarItem,
+      ),
+    );
+  }
+
   void _changeBar(int index) {
+    _showInputBottomBar(index);
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  void _showInputBottomBar(int index) {
     showModalBottomSheet<int>(
       context: context,
       isScrollControlled: true,
@@ -45,7 +79,7 @@ class _InputBottomBarState extends State<InputBottomBar> {
                 color: widget.store.baseColor.withOpacity(0.2),
                 child: ListTile(
                   leading: Icon(
-                    _getIconData(index),
+                    Icons.arrow_downward ,
                     color: widget.store.baseColor,
                   ),
                   title: Text(
@@ -59,31 +93,6 @@ class _InputBottomBarState extends State<InputBottomBar> {
           ),
         );
       },
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _currentIndex = 0;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BubbleBottomBar(
-      opacity: .2,
-      currentIndex: _currentIndex,
-      onTap: _changeBar,
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-      elevation: 8,
-      fabLocation: BubbleBottomBarFabLocation.end,
-      hasNotch: true,
-      hasInk: true,
-      inkColor: Colors.black12,
-      items: List.generate(
-        3,
-        _makeBottomBarItem,
-      ),
     );
   }
 

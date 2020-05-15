@@ -16,14 +16,26 @@ class MessageTextField extends StatefulWidget {
 
 class _MessageTextFieldState extends State<MessageTextField> {
 
+  TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.store.message ?? '');
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
-    final _textEditingController =
-        TextEditingController(text: widget.store.message ?? '');
 
     return TextField(
-      controller: _textEditingController,
+      controller: _controller,
       decoration: InputDecoration(
         labelText: '',
         hintText: l10n.hintText,

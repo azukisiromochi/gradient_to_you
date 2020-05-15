@@ -139,7 +139,7 @@ abstract class _AppStore with Store {
           _height = _width * decodedImage.height ~/ decodedImage.width;
         }
 
-        final _limitHeight = (deviceSize.height / 2) - 50;
+        const _limitHeight = 400;
         if (_limitHeight < _height) {
           _height = _limitHeight.toInt();
           _width = _height * decodedImage.width ~/ decodedImage.height;
