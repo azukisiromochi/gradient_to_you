@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:gradient_to_you/components/write_message/font_color_picker.dart';
 
 import '../../app_store.dart';
 import 'font_family_dropdown.dart';
@@ -79,7 +81,7 @@ class _InputBottomBarState extends State<InputBottomBar> {
                 color: widget.store.baseColor.withOpacity(0.2),
                 child: ListTile(
                   leading: Icon(
-                    Icons.arrow_downward ,
+                    Icons.arrow_downward,
                     color: widget.store.baseColor,
                   ),
                   title: Text(
@@ -138,10 +140,17 @@ class _InputBottomBarState extends State<InputBottomBar> {
 
       case 2:
         {
-          return _InputItem(
-            icon: Icon(Icons.text_format, color: widget.store.baseColor),
-            input: FontFamilyDropdown(store: widget.store),
-          );
+          return Column(children: <Widget>[
+            _InputItem(
+              icon: Icon(Icons.text_format, color: widget.store.baseColor),
+              input: FontFamilyDropdown(store: widget.store),
+            ),
+            const SizedBox(height: 10),
+            _InputItem(
+              icon: Icon(Icons.color_lens, color: widget.store.baseColor),
+              input: FontColorPicker(store: widget.store),
+            ),
+          ]);
         }
         break;
 

@@ -248,6 +248,23 @@ mixin _$AppStore on _AppStore, Store {
     }, _$fontSizeAtom, name: '${_$fontSizeAtom.name}_set');
   }
 
+  final _$fontColorAtom = Atom(name: '_AppStore.fontColor');
+
+  @override
+  Color get fontColor {
+    _$fontColorAtom.context.enforceReadPolicy(_$fontColorAtom);
+    _$fontColorAtom.reportObserved();
+    return super.fontColor;
+  }
+
+  @override
+  set fontColor(Color value) {
+    _$fontColorAtom.context.conditionallyRunInAction(() {
+      super.fontColor = value;
+      _$fontColorAtom.reportChanged();
+    }, _$fontColorAtom, name: '${_$fontColorAtom.name}_set');
+  }
+
   final _$fontFamilyAtom = Atom(name: '_AppStore.fontFamily');
 
   @override
@@ -379,6 +396,16 @@ mixin _$AppStore on _AppStore, Store {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
       return super.setFontSize(value);
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setFontColor(Color value) {
+    final _$actionInfo = _$_AppStoreActionController.startAction();
+    try {
+      return super.setFontColor(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

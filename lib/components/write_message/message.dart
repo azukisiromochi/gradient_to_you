@@ -22,6 +22,7 @@ class _MessageState extends State<Message> {
 
   String _message;
   double _fontSize;
+  Color _fontColor;
   String _fontFamily;
   Offset _offset;
 
@@ -32,6 +33,7 @@ class _MessageState extends State<Message> {
       setState(() {
         _message = widget.store.message;
         _fontSize = widget.store.fontSize;
+        _fontColor= widget.store.fontColor;
         _fontFamily =widget.store.fontFamily;
         _offset = widget.store.offset;
       }),
@@ -48,6 +50,7 @@ class _MessageState extends State<Message> {
   Widget build(BuildContext context) {
     _message = widget.store.message ?? widget.defaultMessage;
     _fontSize = widget.store.fontSize;
+    _fontColor= widget.store.fontColor ?? Colors.white;
     _fontFamily = widget.store.fontFamily;
     _offset = widget.store.offset ?? const Offset(100, 20);
 
@@ -68,7 +71,7 @@ class _MessageState extends State<Message> {
             _message,
             style: TextStyle(
               fontFamily: _fontFamily,
-              color: Colors.white,
+              color: _fontColor,
               fontSize: _fontSize,
             ),
           ),
