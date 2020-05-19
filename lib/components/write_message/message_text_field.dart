@@ -36,8 +36,9 @@ class _MessageTextFieldState extends State<MessageTextField> {
 
     return TextField(
       controller: _controller,
+      autofocus: true,
       decoration: InputDecoration(
-        labelText: '',
+        labelText: 'Message',
         hintText: l10n.hintText,
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: widget.store.baseColor),
@@ -45,6 +46,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
       ),
       keyboardType: TextInputType.multiline,
       maxLines: 3,
+      minLines: 1,
       onChanged: widget.store.setMessage,
     );
   }

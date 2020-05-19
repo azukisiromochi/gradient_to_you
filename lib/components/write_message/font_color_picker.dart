@@ -20,7 +20,6 @@ class _FontColorPickerState extends State<FontColorPicker> {
   @override
   Widget build(BuildContext context) {
     _fontColor = _fontColor ?? widget.store.fontColor;
-    print(widget.store.fontColor);
 
     return Center(
       child: RaisedButton(
