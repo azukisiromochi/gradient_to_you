@@ -11,7 +11,7 @@ import 'messages_all.dart';
 /// $ flutter packages pub run intl_translation:extract_to_arb --locale=messages --output-dir=lib/l10n lib/l10n/l10n.dart
 ///
 /// ✨ Generate classes required for multilingual support from arb file ✨
-/// $ flutter packages pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/l10n.dart lib/l10n/intl_*.arb
+/// $ flutter packages pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/l10n/l10n.dart lib/l10n/intl_en.arb lib/l10n/intl_ja.arb lib/l10n/intl_messages.arb
 ///
 
 class L10n {
@@ -37,7 +37,6 @@ class L10n {
   String get appName => Intl.message(
         'Gradient to you',
         name: 'appName',
-        desc: 'The name of this application.',
       );
 
   /// ↓↓↓  FloatingActionButton tooltip text ↓↓↓
@@ -45,60 +44,110 @@ class L10n {
   String get tooltipTextSelectImage => Intl.message(
         'Select image',
         name: 'tooltipTextSelectImage',
-        desc:
-            // ignore: lines_longer_than_80_chars
-            'Tooltip text to be displayed on FloatingActionButton of BgImagePicker.',
       );
 
   String get tooltipTextSelectGradient => Intl.message(
         'Select gradient',
         name: 'tooltipTextSelectGradient',
-        desc:
-            // ignore: lines_longer_than_80_chars
-            'Tooltip text to be displayed on FloatingActionButton of GradientBuilder.',
       );
 
   String get tooltipTextSetFilter => Intl.message(
         'Set filter',
         name: 'tooltipTextSetFilter',
-        desc:
-            // ignore: lines_longer_than_80_chars
-            'Tooltip text to be displayed on FloatingActionButton of GradientFilter.',
+      );
+
+  /// ↓↓↓ Use with SideMenu ↓↓↓
+
+  String get sideMenuRate => Intl.message(
+        'Rate the App',
+        name: 'sideMenuRate',
+      );
+
+  String get sideMenuShare => Intl.message(
+        'Share the App',
+        name: 'sideMenuShare',
+      );
+
+  String get sideMenuPreferences => Intl.message(
+        'Preferences',
+        name: 'sideMenuPreferences',
+      );
+
+  String get sideMenuFeedback => Intl.message(
+        'Feedback',
+        name: 'sideMenuFeedback',
+      );
+
+  String get sideMenuPrivacyPolicy => Intl.message(
+        'Privacy Policy',
+        name: 'sideMenuPrivacyPolicy',
+      );
+
+  String get sideMenuLicenses => Intl.message(
+        'Third Party Notices',
+        name: 'sideMenuLicenses',
       );
 
   /// ↓↓↓ Use with WriteMessage page ↓↓↓
 
   String get messageDefault => Intl.message(
         'Enter something...',
-        name: 'messageDefault',
-        desc: 'Default value when putting a message on the image.',
       );
 
   String get hintText => Intl.message(
         'Message',
         name: 'hintText',
-        desc:
-            // ignore: lines_longer_than_80_chars
-            'TextField hint text for message inputTextField hint text for message input.',
       );
 
-  /// ↓↓↓ Use with WriteMessage page ↓↓↓
+  String get bottomBarTitleMessage => Intl.message(
+        'Message',
+        name: 'bottomBarTitleMessage',
+      );
+
+  String get bottomBarTitleSize => Intl.message(
+        'Size',
+        name: 'bottomBarTitleSize',
+      );
+
+  String get bottomBarTitleFormat => Intl.message(
+        'Format',
+        name: 'bottomBarTitleFormat',
+      );
+
+  String get fontFamilyDropdownHintText => Intl.message(
+        'Please select font-family',
+        name: 'fontFamilyDropdownHintText',
+      );
+
+  String get fontColorPickerTitle => Intl.message(
+        'Pick a color',
+        name: 'fontColorPickerTitle',
+      );
+
+  String get fontColorPickerButton => Intl.message(
+        'Got it',
+        name: 'fontColorPickerButton',
+      );
+
+  String get fontColorPicker => Intl.message(
+        'Change font color',
+        name: 'fontColorPicker',
+      );
+
+  /// ↓↓↓ Use with SaveOrShare page ↓↓↓
 
   String get toastSave => Intl.message(
         'Image saved !',
         name: 'toastSave',
-        desc: 'Toast when pressing save button.',
       );
 
   String get buttonSave => Intl.message(
         'Save device',
         name: 'buttonSave',
-        desc: 'Save button text.',
       );
 
   String get buttonShare => Intl.message(
         'Share',
         name: 'buttonShare',
-        desc: 'Share button text.',
       );
 }

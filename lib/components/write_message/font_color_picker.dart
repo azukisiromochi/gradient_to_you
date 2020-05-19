@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../../app_store.dart';
 
@@ -19,6 +20,7 @@ class _FontColorPickerState extends State<FontColorPicker> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
     _fontColor = _fontColor ?? widget.store.fontColor;
 
     return Center(
@@ -29,7 +31,7 @@ class _FontColorPickerState extends State<FontColorPicker> {
             context: context,
             builder: (_) {
               return AlertDialog(
-                title: const Text('Pick a color!'),
+                title: Text(l10n.fontColorPickerTitle),
                 content: SingleChildScrollView(
                   child: ColorPicker(
                     pickerColor: _fontColor,
@@ -40,7 +42,7 @@ class _FontColorPickerState extends State<FontColorPicker> {
                 ),
                 actions: <Widget>[
                   FlatButton(
-                    child: const Text('Got it'),
+                    child: Text(l10n.fontColorPickerButton),
                     onPressed: () {
                       widget.store.setFontColor(_fontColor);
                       Navigator.of(context).pop();
@@ -53,7 +55,7 @@ class _FontColorPickerState extends State<FontColorPicker> {
         },
         child: Container(
           width: double.infinity,
-          child: const Text('Change me'),
+          child: Text(l10n.fontColorPicker),
         ),
         color: _fontColor,
         textColor: useWhiteForeground(_fontColor)

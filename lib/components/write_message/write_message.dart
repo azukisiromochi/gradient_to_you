@@ -71,7 +71,7 @@ class WriteMessage extends StatelessWidget {
         child: Icon(Icons.check, color: _themeColor),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      bottomNavigationBar: InputBottomBar(store: store),
+      bottomNavigationBar: InputBottomBar(store: store, l10n: l10n),
     );
   }
 }

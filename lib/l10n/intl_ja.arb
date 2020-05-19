@@ -1,6 +1,6 @@
 {
   "@@locale": "ja",
-  "@@last_modified": "2020-02-17T19:18:35.509127",
+  "@@last_modified": "2020-05-19T16:54:03.473185",
   "appName": "Gradation to you",
   "@appName": {
     "description": "The name of this application",
@@ -9,49 +9,106 @@
   },
   "tooltipTextSelectImage": "画像を決定",
   "@tooltipTextSelectImage": {
-    "description": "Tooltip text to be displayed on FloatingActionButton of BgImagePicker.",
     "type": "text",
     "placeholders": {}
   },
   "tooltipTextSelectGradient": "グラデーションを決定",
   "@tooltipTextSelectGradient": {
-    "description": "Tooltip text to be displayed on FloatingActionButton of GradientBuilder.",
     "type": "text",
     "placeholders": {}
   },
   "tooltipTextSetFilter": "フィルターを設定",
   "@tooltipTextSetFilter": {
-    "description": "Tooltip text to be displayed on FloatingActionButton of GradientFilter.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuRate": "アプリを評価",
+  "@sideMenuRate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuShare": "アプリを共有",
+  "@sideMenuShare": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuPreferences": "設定",
+  "@sideMenuPreferences": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuFeedback": "フィードバック",
+  "@sideMenuFeedback": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuPrivacyPolicy": "プライバシー・ポリシー",
+  "@sideMenuPrivacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuLicenses": "ライセンス",
+  "@sideMenuLicenses": {
     "type": "text",
     "placeholders": {}
   },
   "messageDefault": "なにか入力してください...",
   "@messageDefault": {
-    "description": "Default value when putting a message on the image.",
     "type": "text",
     "placeholders": {}
   },
-  "hintText": "Message",
+  "hintText": "メッセージ",
   "@hintText": {
-    "description": "TextField hint text for message inputTextField hint text for message input.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "bottomBarTitleMessage": "メッセージ",
+  "@bottomBarTitleMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bottomBarTitleSize": "サイズ",
+  "@bottomBarTitleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bottomBarTitleFormat": "フォント",
+  "@bottomBarTitleFormat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontFamilyDropdownHintText": "フォントを選択してください",
+  "@fontFamilyDropdownHintText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontColorPickerTitle": "色を選択",
+  "@fontColorPickerTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontColorPickerButton": "決定",
+  "@fontColorPickerButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontColorPicker": "フォントカラーを変更する",
+  "@fontColorPicker": {
     "type": "text",
     "placeholders": {}
   },
   "toastSave": "画像を保存しました！",
   "@toastSave": {
-    "description": "Toast when pressing save button.",
     "type": "text",
     "placeholders": {}
   },
   "buttonSave": "端末に保存",
   "@buttonSave": {
-    "description": "Save button text.",
     "type": "text",
     "placeholders": {}
   },
   "buttonShare": "共有",
   "@buttonShare": {
-    "description": "Share button text.",
     "type": "text",
     "placeholders": {}
   }

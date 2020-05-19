@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../../app_store.dart';
 
@@ -25,12 +26,14 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
+
     return FormField<String>(
       builder: (FormFieldState<String> state) {
         return InputDecorator(
           decoration: InputDecoration(
             labelStyle: TextStyle(fontFamily: widget.store.fontFamily),
-            hintText: 'Please select font-family',
+            hintText: l10n.fontFamilyDropdownHintText,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: BorderSide(color: widget.store.baseColor),

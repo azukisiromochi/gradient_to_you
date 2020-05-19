@@ -1,57 +1,113 @@
 {
   "@@locale": "messages",
-  "@@last_modified": "2020-03-14T13:11:52.697119",
+  "@@last_modified": "2020-05-19T17:35:10.736184",
   "appName": "Gradient to you",
   "@appName": {
-    "description": "The name of this application.",
     "type": "text",
     "placeholders": {}
   },
   "tooltipTextSelectImage": "Select image",
   "@tooltipTextSelectImage": {
-    "description": "Tooltip text to be displayed on FloatingActionButton of BgImagePicker.",
     "type": "text",
     "placeholders": {}
   },
   "tooltipTextSelectGradient": "Select gradient",
   "@tooltipTextSelectGradient": {
-    "description": "Tooltip text to be displayed on FloatingActionButton of GradientBuilder.",
     "type": "text",
     "placeholders": {}
   },
   "tooltipTextSetFilter": "Set filter",
   "@tooltipTextSetFilter": {
-    "description": "Tooltip text to be displayed on FloatingActionButton of GradientFilter.",
     "type": "text",
     "placeholders": {}
   },
-  "messageDefault": "Enter something...",
-  "@messageDefault": {
-    "description": "Default value when putting a message on the image.",
+  "sideMenuRate": "Rate the App",
+  "@sideMenuRate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuShare": "Share the App",
+  "@sideMenuShare": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuPreferences": "Preferences",
+  "@sideMenuPreferences": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuFeedback": "Feedback",
+  "@sideMenuFeedback": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuPrivacyPolicy": "Privacy Policy",
+  "@sideMenuPrivacyPolicy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sideMenuLicenses": "Third Party Notices",
+  "@sideMenuLicenses": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Enter something...": "Enter something...",
+  "@Enter something...": {
     "type": "text",
     "placeholders": {}
   },
   "hintText": "Message",
   "@hintText": {
-    "description": "TextField hint text for message inputTextField hint text for message input.",
+    "type": "text",
+    "placeholders": {}
+  },
+  "bottomBarTitleMessage": "Message",
+  "@bottomBarTitleMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bottomBarTitleSize": "Size",
+  "@bottomBarTitleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bottomBarTitleFormat": "Format",
+  "@bottomBarTitleFormat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontFamilyDropdownHintText": "Please select font-family",
+  "@fontFamilyDropdownHintText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontColorPickerTitle": "Pick a color",
+  "@fontColorPickerTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontColorPickerButton": "Got it",
+  "@fontColorPickerButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontColorPicker": "Change font color",
+  "@fontColorPicker": {
     "type": "text",
     "placeholders": {}
   },
   "toastSave": "Image saved !",
   "@toastSave": {
-    "description": "Toast when pressing save button.",
     "type": "text",
     "placeholders": {}
   },
   "buttonSave": "Save device",
   "@buttonSave": {
-    "description": "Save button text.",
     "type": "text",
     "placeholders": {}
   },
   "buttonShare": "Share",
   "@buttonShare": {
-    "description": "Share button text.",
     "type": "text",
     "placeholders": {}
   }

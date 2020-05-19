@@ -75,21 +75,26 @@ class SideMenu extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 60),
-            _MenuItem(icon: Icon(Icons.favorite_border), title: 'アプリを評価'),
+            _MenuItem(
+                icon: Icon(Icons.favorite_border), title: l10n.sideMenuRate),
             const SizedBox(height: 20),
-            _MenuItem(icon: Icon(Icons.share), title: 'アプリを共有'),
+            _MenuItem(icon: Icon(Icons.share), title: l10n.sideMenuShare),
             const SizedBox(height: 20),
             Divider(color: Colors.black45),
             const SizedBox(height: 20),
-            _MenuItem(icon: Icon(Icons.settings), title: '設定'),
+            _MenuItem(
+                icon: Icon(Icons.settings), title: l10n.sideMenuPreferences),
             const SizedBox(height: 20),
-            _MenuItem(icon: Icon(Icons.mail_outline), title: 'フィードバック'),
+            _MenuItem(
+                icon: Icon(Icons.mail_outline), title: l10n.sideMenuFeedback),
             const SizedBox(height: 20),
-            _MenuItem(icon: Icon(Icons.lock_outline), title: 'プライバシーポリシー'),
+            _MenuItem(
+                icon: Icon(Icons.lock_outline),
+                title: l10n.sideMenuPrivacyPolicy),
             const SizedBox(height: 20),
             _MenuItem(
               icon: Icon(Icons.copyright),
-              title: 'ライセンス',
+              title: l10n.sideMenuLicenses,
               onTapCallback: () => showLicensePage(context: context),
             ),
           ],

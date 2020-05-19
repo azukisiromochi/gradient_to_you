@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:gradient_to_you/components/write_message/font_color_picker.dart';
+import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../../app_store.dart';
 import 'font_family_dropdown.dart';
@@ -14,11 +14,13 @@ class InputBottomBar extends StatefulWidget {
   const InputBottomBar({
     Key key,
     @required this.store,
+    @required this.l10n,
   }) : super(key: key);
 
   @override
   _InputBottomBarState createState() => _InputBottomBarState();
   final AppStore store;
+  final L10n l10n;
 }
 
 class _InputBottomBarState extends State<InputBottomBar> {
@@ -120,7 +122,8 @@ class _InputBottomBarState extends State<InputBottomBar> {
         {
           return Padding(
             padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
             child: _InputItem(
               icon: Icon(Icons.message, color: widget.store.baseColor),
               input: MessageTextField(store: widget.store),
@@ -153,41 +156,31 @@ class _InputBottomBarState extends State<InputBottomBar> {
           ]);
         }
         break;
-
-      default:
-        {
-          return const Placeholder();
-        }
-        break;
     }
+    return null;
   }
 
   String _getTitle(int index) {
     switch (index) {
       case 0:
         {
-          return 'Message';
+          return widget.l10n.bottomBarTitleMessage;
         }
         break;
 
       case 1:
         {
-          return 'Size';
+          return widget.l10n.bottomBarTitleSize;
         }
         break;
 
       case 2:
         {
-          return 'Format';
-        }
-        break;
-
-      default:
-        {
-          return 'Message';
+          return widget.l10n.bottomBarTitleFormat;
         }
         break;
     }
+    return null;
   }
 
   IconData _getIconData(int index) {
@@ -209,13 +202,8 @@ class _InputBottomBarState extends State<InputBottomBar> {
           return Icons.text_format;
         }
         break;
-
-      default:
-        {
-          return Icons.message;
-        }
-        break;
     }
+    return null;
   }
 }
 

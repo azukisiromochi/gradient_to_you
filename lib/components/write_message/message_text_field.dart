@@ -38,8 +38,8 @@ class _MessageTextFieldState extends State<MessageTextField> {
       controller: _controller,
       autofocus: true,
       decoration: InputDecoration(
-        labelText: 'Message',
-        hintText: l10n.hintText,
+        labelText: l10n.hintText,
+//        hintText: l10n.hintText,
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: widget.store.baseColor),
         ),
