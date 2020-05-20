@@ -134,6 +134,21 @@ class L10n {
         name: 'fontColorPicker',
       );
 
+  String get googleFontsSawarabiGothic => Intl.message(
+    'Sawarabi Gothic',
+    name: 'googleFontsSawarabiGothic',
+  );
+
+  String get googleFontsNotoSerifJP => Intl.message(
+    'Noto Serif JP',
+    name: 'googleFontsNotoSerifJP',
+  );
+
+  String get googleFontsKosugiMaru => Intl.message(
+    'Kosugi Maru',
+    name: 'googleFontsKosugiMaru',
+  );
+
   /// ↓↓↓ Use with SaveOrShare page ↓↓↓
 
   String get toastSave => Intl.message(

@@ -97,6 +97,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "googleFontsSawarabiGothic": "さわらびゴシック",
+  "@googleFontsSawarabiGothic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "googleFontsNotoSerifJP": "Noto Serif JP（源ノ明朝）",
+  "@googleFontsNotoSerifJP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "googleFontsKosugiMaru": "小杉丸ゴシック",
+  "@googleFontsKosugiMaru": {
+    "type": "text",
+    "placeholders": {}
+  },
   "toastSave": "画像を保存しました！",
   "@toastSave": {
     "type": "text",

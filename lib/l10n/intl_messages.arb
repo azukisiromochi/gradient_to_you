@@ -1,6 +1,6 @@
 {
   "@@locale": "messages",
-  "@@last_modified": "2020-05-19T17:35:10.736184",
+  "@@last_modified": "2020-05-20T10:47:30.176395",
   "appName": "Gradient to you",
   "@appName": {
     "type": "text",
@@ -93,6 +93,21 @@
   },
   "fontColorPicker": "Change font color",
   "@fontColorPicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "googleFontsSawarabiGothic": "Sawarabi Gothic",
+  "@googleFontsSawarabiGothic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "googleFontsNotoSerifJP": "Noto Serif JP",
+  "@googleFontsNotoSerifJP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "googleFontsKosugiMaru": "Kosugi Maru",
+  "@googleFontsKosugiMaru": {
     "type": "text",
     "placeholders": {}
   },

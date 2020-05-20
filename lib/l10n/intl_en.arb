@@ -97,6 +97,21 @@
     "type": "text",
     "placeholders": {}
   },
+  "googleFontsSawarabiGothic": "Sawarabi Gothic",
+  "@googleFontsSawarabiGothic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "googleFontsNotoSerifJP": "Noto Serif JP",
+  "@googleFontsNotoSerifJP": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "googleFontsKosugiMaru": "Kosugi Maru",
+  "@googleFontsKosugiMaru": {
+    "type": "text",
+    "placeholders": {}
+  },
   "toastSave": "Image saved !",
   "@toastSave": {
     "type": "text",

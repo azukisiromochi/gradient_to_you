@@ -61,7 +61,7 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(
-                    value,
+                    convertToDisplayName(l10n, value),
 //                    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
@@ -76,6 +76,19 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
     );
   }
 
+  String convertToDisplayName(L10n l10n, String fontFamily) {
+    if (fontFamily == 'Sawarabi Gothic') {
+      return l10n.googleFontsSawarabiGothic;
+    }
+    if (fontFamily == 'Noto Serif JP') {
+      return l10n.googleFontsNotoSerifJP;
+    }
+    if (fontFamily == 'Kosugi Maru') {
+      return l10n.googleFontsKosugiMaru;
+    }
+    return fontFamily;
+  }
+
   TextStyle _styleBy(String fontFamily) {
     if (fontFamily == 'Sawarabi Gothic') {
       return GoogleFonts.sawarabiGothic();
@@ -88,5 +101,4 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
     }
     return TextStyle(fontFamily: fontFamily);
   }
-
 }
