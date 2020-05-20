@@ -65,6 +65,10 @@ abstract class _AppStore with Store {
   @observable
   String fontFamily;
 
+  @computed
+  TextStyle get textStyle =>
+      AppThemeUtils.messageStyleBy(fontFamily, fontSize, fontColor);
+
   @observable
   ByteData pngImage;
 

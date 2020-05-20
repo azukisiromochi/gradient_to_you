@@ -69,11 +69,7 @@ class _MessageState extends State<Message> {
           padding: const EdgeInsets.all(10),
           child: Text(
             _message,
-            style: TextStyle(
-              fontFamily: _fontFamily,
-              color: _fontColor,
-              fontSize: _fontSize,
-            ),
+            style: widget.store.textStyle,
           ),
         ),
       ),

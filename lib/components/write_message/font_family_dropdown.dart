@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../../app_store.dart';
@@ -22,6 +23,9 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
     'casual',
     'cursive',
     'sans-serif-smallcaps',
+    'Sawarabi Gothic',
+    'Noto Serif JP',
+    'Kosugi Maru',
   ];
 
   @override
@@ -61,7 +65,7 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
 //                    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
-                    style: TextStyle(fontFamily: value),
+                    style: _styleBy(value),
                   ),
                 );
               }).toList(),
@@ -71,4 +75,18 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
       },
     );
   }
+
+  TextStyle _styleBy(String fontFamily) {
+    if (fontFamily == 'Sawarabi Gothic') {
+      return GoogleFonts.sawarabiGothic();
+    }
+    if (fontFamily == 'Noto Serif JP') {
+      return GoogleFonts.notoSerifJP();
+    }
+    if (fontFamily == 'Kosugi Maru') {
+      return GoogleFonts.kosugiMaru();
+    }
+    return TextStyle(fontFamily: fontFamily);
+  }
+
 }

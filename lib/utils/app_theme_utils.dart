@@ -178,4 +178,27 @@ class AppThemeUtils {
         break;
     }
   }
+
+  static TextStyle messageStyleBy(
+    String fontFamily,
+    double fontSize,
+    Color fontColor,
+  ) {
+    final style = TextStyle(
+      fontSize: fontSize,
+      color: fontColor ?? Colors.white,
+    );
+
+    if (fontFamily == 'Sawarabi Gothic') {
+      return GoogleFonts.sawarabiGothic(textStyle: style);
+    }
+    if (fontFamily == 'Noto Serif JP') {
+      return GoogleFonts.notoSerifJP(textStyle: style);
+    }
+    if (fontFamily == 'Kosugi Maru') {
+      return GoogleFonts.kosugiMaru(textStyle: style);
+    }
+
+    return style.copyWith(fontFamily: fontFamily);
+  }
 }
