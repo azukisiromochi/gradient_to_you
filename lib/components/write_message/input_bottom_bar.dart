@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/components/write_message/font_color_picker.dart';
+import 'package:gradient_to_you/components/write_message/rotation_slider.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../../app_store.dart';
@@ -134,26 +135,37 @@ class _InputBottomBarState extends State<InputBottomBar> {
 
       case 1:
         {
-          return _InputItem(
-            icon: Icon(Icons.format_size, color: widget.store.baseColor),
-            input: FontSizeSlider(store: widget.store),
+          return Column(
+            children: <Widget>[
+              _InputItem(
+                icon: Icon(Icons.format_size, color: widget.store.baseColor),
+                input: FontSizeSlider(store: widget.store),
+              ),
+              const SizedBox(height: 10),
+              _InputItem(
+                icon: Icon(Icons.format_size, color: widget.store.baseColor),
+                input: RotationSlider(store: widget.store),
+              ),
+            ],
           );
         }
         break;
 
       case 2:
         {
-          return Column(children: <Widget>[
-            _InputItem(
-              icon: Icon(Icons.text_format, color: widget.store.baseColor),
-              input: FontFamilyDropdown(store: widget.store),
-            ),
-            const SizedBox(height: 10),
-            _InputItem(
-              icon: Icon(Icons.color_lens, color: widget.store.baseColor),
-              input: FontColorPicker(store: widget.store),
-            ),
-          ]);
+          return Column(
+            children: <Widget>[
+              _InputItem(
+                icon: Icon(Icons.text_format, color: widget.store.baseColor),
+                input: FontFamilyDropdown(store: widget.store),
+              ),
+              const SizedBox(height: 10),
+              _InputItem(
+                icon: Icon(Icons.color_lens, color: widget.store.baseColor),
+                input: FontColorPicker(store: widget.store),
+              ),
+            ],
+          );
         }
         break;
     }

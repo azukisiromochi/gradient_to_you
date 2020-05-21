@@ -9,6 +9,12 @@ part of 'app_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AppStore on _AppStore, Store {
+  Computed<TextStyle> _$textStyleComputed;
+
+  @override
+  TextStyle get textStyle =>
+      (_$textStyleComputed ??= Computed<TextStyle>(() => super.textStyle))
+          .value;
   Computed<Color> _$baseColorComputed;
 
   @override
@@ -248,6 +254,23 @@ mixin _$AppStore on _AppStore, Store {
     }, _$fontSizeAtom, name: '${_$fontSizeAtom.name}_set');
   }
 
+  final _$rotationAtom = Atom(name: '_AppStore.rotation');
+
+  @override
+  double get rotation {
+    _$rotationAtom.context.enforceReadPolicy(_$rotationAtom);
+    _$rotationAtom.reportObserved();
+    return super.rotation;
+  }
+
+  @override
+  set rotation(double value) {
+    _$rotationAtom.context.conditionallyRunInAction(() {
+      super.rotation = value;
+      _$rotationAtom.reportChanged();
+    }, _$rotationAtom, name: '${_$rotationAtom.name}_set');
+  }
+
   final _$fontColorAtom = Atom(name: '_AppStore.fontColor');
 
   @override
@@ -396,6 +419,16 @@ mixin _$AppStore on _AppStore, Store {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
       return super.setFontSize(value);
+    } finally {
+      _$_AppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setRotation(double value) {
+    final _$actionInfo = _$_AppStoreActionController.startAction();
+    try {
+      return super.setRotation(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }
