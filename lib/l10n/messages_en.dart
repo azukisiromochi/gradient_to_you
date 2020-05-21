@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "Enter something..." : MessageLookupByLibrary.simpleMessage("Enter something..."),
     "appName" : MessageLookupByLibrary.simpleMessage("Gradient to you"),
     "bottomBarTitleFormat" : MessageLookupByLibrary.simpleMessage("Format"),
     "bottomBarTitleMessage" : MessageLookupByLibrary.simpleMessage("Message"),
@@ -36,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "googleFontsNotoSerifJP" : MessageLookupByLibrary.simpleMessage("Noto Serif JP"),
     "googleFontsSawarabiGothic" : MessageLookupByLibrary.simpleMessage("Sawarabi Gothic"),
     "hintText" : MessageLookupByLibrary.simpleMessage("Message"),
+    "messageDefault" : MessageLookupByLibrary.simpleMessage("Enter something..."),
     "sideMenuFeedback" : MessageLookupByLibrary.simpleMessage("Feedback"),
     "sideMenuLicenses" : MessageLookupByLibrary.simpleMessage("Third Party Notices"),
     "sideMenuPreferences" : MessageLookupByLibrary.simpleMessage("Preferences"),

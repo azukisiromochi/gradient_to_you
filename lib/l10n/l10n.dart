@@ -92,6 +92,7 @@ class L10n {
 
   String get messageDefault => Intl.message(
         'Enter something...',
+        name: 'messageDefault',
       );
 
   String get hintText => Intl.message(
@@ -135,19 +136,19 @@ class L10n {
       );
 
   String get googleFontsSawarabiGothic => Intl.message(
-    'Sawarabi Gothic',
-    name: 'googleFontsSawarabiGothic',
-  );
+        'Sawarabi Gothic',
+        name: 'googleFontsSawarabiGothic',
+      );
 
   String get googleFontsNotoSerifJP => Intl.message(
-    'Noto Serif JP',
-    name: 'googleFontsNotoSerifJP',
-  );
+        'Noto Serif JP',
+        name: 'googleFontsNotoSerifJP',
+      );
 
   String get googleFontsKosugiMaru => Intl.message(
-    'Kosugi Maru',
-    name: 'googleFontsKosugiMaru',
-  );
+        'Kosugi Maru',
+        name: 'googleFontsKosugiMaru',
+      );
 
   /// ↓↓↓ Use with SaveOrShare page ↓↓↓
 

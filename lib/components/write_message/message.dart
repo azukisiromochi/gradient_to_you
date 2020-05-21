@@ -1,4 +1,6 @@
+import 'package:angles/angles.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../app_store.dart';
@@ -7,37 +9,33 @@ class Message extends StatefulWidget {
   const Message({
     Key key,
     @required this.store,
-    this.defaultMessage,
   }) : super(key: key);
 
   @override
   _MessageState createState() => _MessageState();
 
   final AppStore store;
-  final String defaultMessage;
 }
 
 class _MessageState extends State<Message> {
   ReactionDisposer reactionDispose;
 
   String _message;
-  double _fontSize;
-  Color _fontColor;
-  String _fontFamily;
   Offset _offset;
+  TextStyle _style;
 
   @override
   void initState() {
     super.initState();
-    reactionDispose = autorun((_) => {
-      setState(() {
-        _message = widget.store.message;
-        _fontSize = widget.store.fontSize;
-        _fontColor= widget.store.fontColor;
-        _fontFamily =widget.store.fontFamily;
-        _offset = widget.store.offset;
-      }),
-    });
+    reactionDispose = autorun(
+      (_) => {
+        setState(() {
+          _message = widget.store.message;
+          _offset = widget.store.offset;
+          _style = widget.store.textStyle;
+        }),
+      },
+    );
   }
 
   @override
@@ -48,11 +46,11 @@ class _MessageState extends State<Message> {
 
   @override
   Widget build(BuildContext context) {
-    _message = widget.store.message ?? widget.defaultMessage;
-    _fontSize = widget.store.fontSize;
-    _fontColor= widget.store.fontColor ?? Colors.white;
-    _fontFamily = widget.store.fontFamily;
+    final l10n = L10n.of(context);
+
+    _message = widget.store.message ?? l10n.messageDefault;
     _offset = widget.store.offset ?? const Offset(100, 20);
+    _style = widget.store.textStyle;
 
     return Positioned(
       left: _offset.dx,
@@ -67,9 +65,10 @@ class _MessageState extends State<Message> {
         },
         child: Container(
           padding: const EdgeInsets.all(10),
+//          transform: Matrix4.rotationZ(const Angle.fromDegrees(90).radians),
           child: Text(
             _message,
-            style: widget.store.textStyle,
+            style: _style,
           ),
         ),
       ),

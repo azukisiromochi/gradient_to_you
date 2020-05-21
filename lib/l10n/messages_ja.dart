@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "googleFontsNotoSerifJP" : MessageLookupByLibrary.simpleMessage("Noto Serif JP（源ノ明朝）"),
     "googleFontsSawarabiGothic" : MessageLookupByLibrary.simpleMessage("さわらびゴシック"),
     "hintText" : MessageLookupByLibrary.simpleMessage("メッセージ"),
+    "messageDefault" : MessageLookupByLibrary.simpleMessage("なにか入力してください..."),
     "sideMenuFeedback" : MessageLookupByLibrary.simpleMessage("フィードバック"),
     "sideMenuLicenses" : MessageLookupByLibrary.simpleMessage("ライセンス"),
     "sideMenuPreferences" : MessageLookupByLibrary.simpleMessage("設定"),

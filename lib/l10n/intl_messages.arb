@@ -1,6 +1,6 @@
 {
   "@@locale": "messages",
-  "@@last_modified": "2020-05-20T10:47:30.176395",
+  "@@last_modified": "2020-05-21T10:56:25.472265",
   "appName": "Gradient to you",
   "@appName": {
     "type": "text",
@@ -51,8 +51,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "Enter something...": "Enter something...",
-  "@Enter something...": {
+  "messageDefault": "Enter something...",
+  "@messageDefault": {
     "type": "text",
     "placeholders": {}
   },

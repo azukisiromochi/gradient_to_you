@@ -49,10 +49,7 @@ class WriteMessage extends StatelessWidget {
                   child: Stack(
                     children: <Widget>[
                       Center(child: store.gradientImage),
-                      Message(
-                        store: store,
-                        defaultMessage: l10n.messageDefault,
-                      ),
+                      Message(store: store),
                     ],
                   ),
                 ),
