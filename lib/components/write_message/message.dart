@@ -25,7 +25,7 @@ class _MessageState extends State<Message> {
   String _message;
   Offset _offset;
   TextStyle _style;
-  double _rotation;
+  double _degrees;
 
   Size _size;
 
@@ -38,7 +38,7 @@ class _MessageState extends State<Message> {
           _message = widget.store.message;
           _offset = widget.store.offset;
           _style = widget.store.textStyle;
-          _rotation = widget.store.rotation;
+          _degrees = widget.store.rotatedDegrees;
         }),
       },
     );
@@ -57,16 +57,14 @@ class _MessageState extends State<Message> {
     _message = widget.store.message ?? l10n.messageDefault;
     _offset = widget.store.offset ?? const Offset(100, 20);
     _style = widget.store.textStyle;
-    _rotation = widget.store.rotation ?? 0;
+    _degrees = widget.store.rotatedDegrees ?? 0;
 
-    double boxWidth;
-    double boxHeight;
+    double rotatedWidth;
+    double rotatedHeight;
     if (_size != null) {
-      boxWidth = _rotatedWidth(_size.width, _size.height, _rotation);
-      boxHeight = _rotatedHeight(_size.width, _size.height, _rotation);
+      rotatedWidth = _calcRotatedWidth(_size.width, _size.height, _degrees);
+      rotatedHeight = _calcRotatedHeight(_size.width, _size.height, _degrees);
     }
-    print('width' + boxWidth.toString());
-    print('height' + boxHeight.toString());
 
     return Positioned(
       left: _offset.dx,
@@ -81,17 +79,16 @@ class _MessageState extends State<Message> {
         },
         child: Container(
           padding: const EdgeInsets.all(10),
-          color: Colors.blue,
           child: Stack(
             alignment: Alignment.center,
             children: <Widget>[
               SizedBox(
-                width: boxWidth,
-                height: boxHeight,
+                width: rotatedWidth,
+                height: rotatedHeight,
               ),
               Transform(
                 alignment: Alignment.center,
-                transform: Matrix4.rotationZ(_degrees2radians(_rotation)),
+                transform: Matrix4.rotationZ(_degrees2radians(_degrees)),
                 child: SizeListenableContainer(
                   onSizeChanged: (Size size) {
                     _size = size;
@@ -112,13 +109,23 @@ class _MessageState extends State<Message> {
 
   double _degrees2radians(double degrees) => Angle.fromDegrees(degrees).radians;
 
-  double _rotatedWidth(double x, double y, double degrees) {
-    final angle = Angle.fromDegrees(degrees);
+  double _calcRotatedWidth(double x, double y, double degrees) {
+    var angle = Angle.fromDegrees(degrees);
+    final w = x * angle.cos + y * angle.sin;
+    if (w > 0) {
+      return w;
+    }
+    angle = Angle.fromDegrees(degrees - 180);
     return x * angle.cos + y * angle.sin;
   }
 
-  double _rotatedHeight(double x, double y, double degrees) {
-    final angle = Angle.fromDegrees(degrees);
+  double _calcRotatedHeight(double x, double y, double degrees) {
+    var angle = Angle.fromDegrees(degrees);
+    final h =  x * angle.sin + y * angle.cos;
+    if (h > 0) {
+      return h;
+    }
+    angle = Angle.fromDegrees(degrees - 180);
     return x * angle.sin + y * angle.cos;
   }
 }

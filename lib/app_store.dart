@@ -60,7 +60,7 @@ abstract class _AppStore with Store {
   double fontSize;
 
   @observable
-  double rotation;
+  double rotatedDegrees;
 
   @observable
   Color fontColor = Colors.white;
@@ -193,8 +193,8 @@ abstract class _AppStore with Store {
 
   // ignore: use_setters_to_change_properties
   @action
-  void setRotation(double value) {
-    rotation = value;
+  void setRotatedDegrees(double value) {
+    rotatedDegrees = value;
   }
 
   // ignore: use_setters_to_change_properties

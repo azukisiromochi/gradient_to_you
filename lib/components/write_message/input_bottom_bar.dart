@@ -143,7 +143,10 @@ class _InputBottomBarState extends State<InputBottomBar> {
               ),
               const SizedBox(height: 10),
               _InputItem(
-                icon: Icon(Icons.format_size, color: widget.store.baseColor),
+                icon: Icon(
+                  Icons.text_rotation_angledown,
+                  color: widget.store.baseColor,
+                ),
                 input: RotationSlider(store: widget.store),
               ),
             ],

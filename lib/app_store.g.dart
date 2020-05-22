@@ -254,21 +254,21 @@ mixin _$AppStore on _AppStore, Store {
     }, _$fontSizeAtom, name: '${_$fontSizeAtom.name}_set');
   }
 
-  final _$rotationAtom = Atom(name: '_AppStore.rotation');
+  final _$rotatedDegreesAtom = Atom(name: '_AppStore.rotatedDegrees');
 
   @override
-  double get rotation {
-    _$rotationAtom.context.enforceReadPolicy(_$rotationAtom);
-    _$rotationAtom.reportObserved();
-    return super.rotation;
+  double get rotatedDegrees {
+    _$rotatedDegreesAtom.context.enforceReadPolicy(_$rotatedDegreesAtom);
+    _$rotatedDegreesAtom.reportObserved();
+    return super.rotatedDegrees;
   }
 
   @override
-  set rotation(double value) {
-    _$rotationAtom.context.conditionallyRunInAction(() {
-      super.rotation = value;
-      _$rotationAtom.reportChanged();
-    }, _$rotationAtom, name: '${_$rotationAtom.name}_set');
+  set rotatedDegrees(double value) {
+    _$rotatedDegreesAtom.context.conditionallyRunInAction(() {
+      super.rotatedDegrees = value;
+      _$rotatedDegreesAtom.reportChanged();
+    }, _$rotatedDegreesAtom, name: '${_$rotatedDegreesAtom.name}_set');
   }
 
   final _$fontColorAtom = Atom(name: '_AppStore.fontColor');
@@ -425,10 +425,10 @@ mixin _$AppStore on _AppStore, Store {
   }
 
   @override
-  void setRotation(double value) {
+  void setRotatedDegrees(double value) {
     final _$actionInfo = _$_AppStoreActionController.startAction();
     try {
-      return super.setRotation(value);
+      return super.setRotatedDegrees(value);
     } finally {
       _$_AppStoreActionController.endAction(_$actionInfo);
     }

@@ -13,18 +13,18 @@ class RotationSlider extends StatefulWidget {
 
 class _RotationSliderState extends State<RotationSlider> {
   void _changeSlider(double e) => setState(() {
-        widget.store.setRotation(e);
+        widget.store.setRotatedDegrees(e);
       });
 
   @override
   Widget build(BuildContext context) {
-    final _rotation = widget.store.rotation ?? 0;
+    final _degrees = widget.store.rotatedDegrees ?? 0;
 
     return Slider(
-      label: '${_rotation.toStringAsFixed(2)}',
+      label: '${_degrees.toStringAsFixed(2)}',
       min: -180,
       max: 180,
-      value: _rotation,
+      value: _degrees,
       activeColor: widget.store.baseColor,
       inactiveColor: widget.store.baseTextColor,
       divisions: 360,
