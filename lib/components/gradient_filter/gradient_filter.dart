@@ -22,8 +22,8 @@ class _GradientFilterState extends State<GradientFilter> {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
 
-    final _opacity = widget.store.opacity;
-    final _themeColor = widget.store.baseTextColor;
+    final opacity = widget.store.opacity;
+    final themeColor = widget.store.baseTextColor;
 
     return Scaffold(
       appBar: ColorAppBar(store: widget.store),
@@ -40,12 +40,12 @@ class _GradientFilterState extends State<GradientFilter> {
               child: Center(child: widget.store.gradientImage),
             ),
             Slider(
-              label: '${_opacity.toStringAsFixed(2)}',
+              label: '${opacity.toStringAsFixed(2)}',
               min: 0.1,
               max: 0.9,
-              value: _opacity,
+              value: opacity,
               activeColor: widget.store.baseColor,
-              inactiveColor: _themeColor,
+              inactiveColor: themeColor,
               divisions: 80,
               onChanged: _changeSlider,
             ),
@@ -58,7 +58,7 @@ class _GradientFilterState extends State<GradientFilter> {
         },
         tooltip: l10n.tooltipTextSetFilter,
         backgroundColor: widget.store.baseColor,
-        child: Icon(Icons.check, color: _themeColor),
+        child: Icon(Icons.check, color: themeColor),
       ),
     );
   }

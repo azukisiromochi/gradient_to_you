@@ -16,7 +16,7 @@ class FontColorPicker extends StatefulWidget {
 class _FontColorPickerState extends State<FontColorPicker> {
   Color _fontColor;
 
-  void changeColor(Color color) => setState(() => _fontColor = color);
+  void _changeColor(Color color) => setState(() => _fontColor = color);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class _FontColorPickerState extends State<FontColorPicker> {
                 content: SingleChildScrollView(
                   child: ColorPicker(
                     pickerColor: _fontColor,
-                    onColorChanged: changeColor,
+                    onColorChanged: _changeColor,
                     showLabel: true,
                     pickerAreaHeightPercent: 0.8,
                   ),

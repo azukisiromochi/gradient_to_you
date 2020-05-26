@@ -18,13 +18,13 @@ class _FontSizeSliderState extends State<FontSizeSlider> {
 
   @override
   Widget build(BuildContext context) {
-    final _fontSize = widget.store.fontSize ?? 20;
+    final fontSize = widget.store.fontSize ?? 20;
 
     return Slider(
-      label: '${_fontSize.toStringAsFixed(2)}',
+      label: '${fontSize.toStringAsFixed(2)}',
       min: 5,
       max: 100,
-      value: _fontSize,
+      value: fontSize,
       activeColor: widget.store.baseColor,
       inactiveColor: widget.store.baseTextColor,
       divisions: 95,

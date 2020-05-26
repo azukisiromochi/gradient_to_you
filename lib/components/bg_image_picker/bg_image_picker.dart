@@ -49,21 +49,21 @@ class _BgImagePickerState extends State<BgImagePicker> {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
 
-    final _image = widget.store.bgImage;
-    final _themeColor = widget.store.baseTextColor;
+    final background = widget.store.bgImage;
+    final themeColor = widget.store.baseTextColor;
 
     return Scaffold(
       appBar: ColorAppBar(
         store: widget.store,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.collections, color: _themeColor),
+            icon: Icon(Icons.collections, color: themeColor),
             onPressed: () => _getImage(forceUpdate: true),
           ),
         ],
       ),
       body: Center(
-        child: _image == null
+        child: background == null
             ? GestureDetector(
                 onTap: _getImage,
                 child: Icon(
@@ -76,17 +76,17 @@ class _BgImagePickerState extends State<BgImagePicker> {
                 constraints: const BoxConstraints(
                   maxHeight: 400,
                 ),
-                child: Image.file(_image),
+                child: Image.file(background),
               ),
       ),
-      floatingActionButton: _image == null
+      floatingActionButton: background == null
           ? null
           : FloatingActionButton(
               onPressed: () =>
                   Navigator.of(context).pushNamed('/gradient_filter'),
               tooltip: l10n.tooltipTextSelectImage,
               backgroundColor: widget.store.baseColor,
-              child: Icon(Icons.check, color: _themeColor),
+              child: Icon(Icons.check, color: themeColor),
             ),
     );
   }

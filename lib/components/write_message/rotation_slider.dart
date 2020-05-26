@@ -18,13 +18,13 @@ class _RotationSliderState extends State<RotationSlider> {
 
   @override
   Widget build(BuildContext context) {
-    final _degrees = widget.store.rotatedDegrees ?? 0;
+    final degrees = widget.store.rotatedDegrees ?? 0;
 
     return Slider(
-      label: '${_degrees.toStringAsFixed(0)}',
+      label: '${degrees.toStringAsFixed(0)}',
       min: -180,
       max: 180,
-      value: _degrees,
+      value: degrees,
       activeColor: widget.store.baseColor,
       inactiveColor: widget.store.baseTextColor,
       divisions: 361,

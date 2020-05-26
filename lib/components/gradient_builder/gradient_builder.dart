@@ -14,7 +14,7 @@ class GradientBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
 
-    final _themeColor = store.baseTextColor;
+    final themeColor = store.baseTextColor;
 
     return Scaffold(
       appBar: ColorAppBar(store: store),
@@ -23,7 +23,7 @@ class GradientBuilder extends StatelessWidget {
         onPressed: () => Navigator.of(context).pushNamed('/image_picker'),
         tooltip: l10n.tooltipTextSelectGradient,
         backgroundColor: store.baseColor,
-        child: Icon(Icons.check, color: _themeColor),
+        child: Icon(Icons.check, color: themeColor),
       ),
     );
   }
@@ -67,9 +67,10 @@ class _GradientBodyState extends State<GradientBody> {
         ),
       ),
       child: InkWell(
-          onTap: () => setState(() {
-                widget.store.clearGradient();
-              })),
+        onTap: () => setState(() {
+          widget.store.clearGradient();
+        }),
+      ),
     );
   }
 }

@@ -21,23 +21,23 @@ class SaveOrShare extends StatelessWidget {
   Future<void> _save(String msg, String appName) async {
     await PermissionHandler().requestPermissions([PermissionGroup.storage]);
 
-    final _picturesPath = await ExtStorage.getExternalStoragePublicDirectory(
+    final picturesPath = await ExtStorage.getExternalStoragePublicDirectory(
         ExtStorage.DIRECTORY_PICTURES);
-    final dirPath = '$_picturesPath/$appName';
+    final dirPath = '$picturesPath/$appName';
     await Directory(dirPath).create(recursive: true);
-    final filePath = '$dirPath/g2u_${timestamp()}.jpg';
 
-    final _buffer = store.pngImage.buffer;
-    await File(filePath).writeAsBytes(_buffer.asUint8List());
+    final filePath = '$dirPath/g2u_${timestamp()}.jpg';
+    await File(filePath).writeAsBytes(store.pngImage.buffer.asUint8List());
 
     await Fluttertoast.showToast(
-        msg: msg,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIos: 3,
-        backgroundColor: Colors.black12,
-        textColor: Colors.black,
-        fontSize: 16);
+      msg: msg,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIos: 3,
+      backgroundColor: Colors.black12,
+      textColor: Colors.black,
+      fontSize: 16,
+    );
   }
 
   @override

@@ -13,9 +13,9 @@ class WriteMessage extends StatelessWidget {
 
   final AppStore store;
 
-  Future<void> _exportToImage(GlobalKey _globalKey) async {
+  Future<void> _exportToImage(GlobalKey globalKey) async {
     final boundary =
-        _globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
+    globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
     final image = await boundary.toImage(pixelRatio: 3);
 
     final byteData = await image.toByteData(
@@ -28,8 +28,8 @@ class WriteMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
-    final _globalKey = GlobalKey();
-    final _themeColor = store.baseTextColor;
+    final globalKey = GlobalKey();
+    final themeColor = store.baseTextColor;
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -41,7 +41,7 @@ class WriteMessage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 10, top: 20, right: 10),
               child: RepaintBoundary(
-                key: _globalKey,
+                key: globalKey,
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(
                     maxHeight: 400,
@@ -60,12 +60,12 @@ class WriteMessage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _exportToImage(_globalKey)
+          _exportToImage(globalKey)
               .then((_) => Navigator.of(context).pushNamed('/save_or_share'));
         },
         tooltip: l10n.tooltipTextSetFilter,
         backgroundColor: store.baseColor,
-        child: Icon(Icons.check, color: _themeColor),
+        child: Icon(Icons.check, color: themeColor),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: InputBottomBar(store: store, l10n: l10n),

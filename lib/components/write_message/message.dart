@@ -20,7 +20,7 @@ class Message extends StatefulWidget {
 }
 
 class _MessageState extends State<Message> {
-  ReactionDisposer reactionDispose;
+  ReactionDisposer _reactionDispose;
 
   String _message;
   Offset _offset;
@@ -32,7 +32,7 @@ class _MessageState extends State<Message> {
   @override
   void initState() {
     super.initState();
-    reactionDispose = autorun(
+    _reactionDispose = autorun(
       (_) => {
         setState(() {
           _message = widget.store.message;
@@ -47,7 +47,7 @@ class _MessageState extends State<Message> {
   @override
   void dispose() {
     super.dispose();
-    reactionDispose();
+    _reactionDispose();
   }
 
   @override

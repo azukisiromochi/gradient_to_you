@@ -57,18 +57,20 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
                   widget.store.setFontFamily(newValue);
                 });
               },
-              items: _dropdownItems.map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    convertToDisplayName(l10n, value),
+              items: _dropdownItems.map(
+                (String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      convertToDisplayName(l10n, value),
 //                    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                    style: _styleBy(value),
-                  ),
-                );
-              }).toList(),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                      style: _styleBy(value),
+                    ),
+                  );
+                },
+              ).toList(),
             ),
           ),
         );

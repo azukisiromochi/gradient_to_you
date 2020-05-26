@@ -11,6 +11,7 @@ class MessageTextField extends StatefulWidget {
 
   @override
   _MessageTextFieldState createState() => _MessageTextFieldState();
+
   final AppStore store;
 }
 

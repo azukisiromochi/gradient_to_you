@@ -20,6 +20,7 @@ class InputBottomBar extends StatefulWidget {
 
   @override
   _InputBottomBarState createState() => _InputBottomBarState();
+
   final AppStore store;
   final L10n l10n;
 }
