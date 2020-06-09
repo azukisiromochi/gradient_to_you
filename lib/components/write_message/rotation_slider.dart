@@ -12,10 +12,6 @@ class RotationSlider extends StatefulWidget {
 }
 
 class _RotationSliderState extends State<RotationSlider> {
-  void _changeSlider(double e) => setState(() {
-        widget.store.setRotatedDegrees(e);
-      });
-
   @override
   Widget build(BuildContext context) {
     final degrees = widget.store.rotatedDegrees ?? 0;
@@ -31,4 +27,8 @@ class _RotationSliderState extends State<RotationSlider> {
       onChanged: _changeSlider,
     );
   }
+
+  void _changeSlider(double e) => setState(() {
+        widget.store.setRotatedDegrees(e);
+      });
 }

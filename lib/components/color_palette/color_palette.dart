@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:gradient_to_you/common/my_gradient_app_bar.dart';
 import 'package:gradient_to_you/components/color_palette/side_menu.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/app_theme_utils.dart';
 import 'package:gradient_to_you/utils/color_utils.dart';
 
 import '../../app_store.dart';
@@ -21,11 +20,7 @@ class ColorPalette extends StatefulWidget {
 class _ColorPaletteState extends State<ColorPalette> {
   //  Current State of InnerDrawerState
   final GlobalKey<InnerDrawerState> _innerDrawerKey =
-      GlobalKey<InnerDrawerState>();
-
-  void _toggle() {
-    _innerDrawerKey.currentState.toggle();
-  }
+  GlobalKey<InnerDrawerState>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,23 +37,13 @@ class _ColorPaletteState extends State<ColorPalette> {
 
       /// Color palette main widget
       scaffold: Scaffold(
-        appBar: GradientAppBar(
-          automaticallyImplyLeading: false,
-          leading: IconButton(
+        appBar: MyGradientAppBar(
+          store: widget.store,
+          appName: l10n.appName,
+          leadingWidget: IconButton(
             icon: Icon(Icons.menu),
             onPressed: _toggle,
           ),
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-          centerTitle: true,
-          title: Text(
-            l10n.appName,
-            style: AppThemeUtils.appBarStyle(widget.store.themeNo),
-          ),
-          backgroundColorStart:
-              widget.store.gradientColors.first.withOpacity(0.6),
-          backgroundColorEnd: widget.store.gradientColors.last.withOpacity(0.6),
         ),
         body: AnimationLimiter(
           child: GridView.count(
@@ -73,8 +58,8 @@ class _ColorPaletteState extends State<ColorPalette> {
 //        childAspectRatio: 3 / 4,
             children: List.generate(
               12,
-              (int index) {
-                return Palette(position: index, store: widget.store);
+                  (int index) {
+                return _Palette(position: index, store: widget.store);
               },
             ),
           ),
@@ -82,10 +67,14 @@ class _ColorPaletteState extends State<ColorPalette> {
       ),
     );
   }
+
+  void _toggle() {
+    _innerDrawerKey.currentState.toggle();
+  }
 }
 
-class Palette extends StatefulWidget {
-  const Palette({Key key, @required this.position, @required this.store})
+class _Palette extends StatefulWidget {
+  const _Palette({Key key, @required this.position, @required this.store})
       : super(key: key);
 
   @override
@@ -95,7 +84,7 @@ class Palette extends StatefulWidget {
   final AppStore store;
 }
 
-class _PaletteState extends State<Palette> {
+class _PaletteState extends State<_Palette> {
   @override
   Widget build(BuildContext context) {
     final _paletteHSLColor = _getHSLColor(widget.position);

@@ -68,48 +68,8 @@ abstract class _AppStore with Store {
   @observable
   String fontFamily;
 
-  @computed
-  TextStyle get textStyle =>
-      AppThemeUtils.messageStyleBy(fontFamily, fontSize, fontColor);
-
   @observable
   ByteData pngImage;
-
-  @computed
-  Color get baseColor => paletteColor?.toColor() ?? Colors.black;
-
-  @computed
-  Color get baseTextColor =>
-      paletteColor?.withLightness(0.2)?.toColor() ?? Colors.white;
-
-  @computed
-  Widget get gradientImage => ShaderMask(
-        child: Image(
-          image: FileImage(bgImage),
-        ),
-        shaderCallback: (Rect bounds) {
-          return LinearGradient(
-            begin: gradientBeginEnd.first,
-            end: gradientBeginEnd.last,
-            colors: [
-              primary.withOpacity(opacity),
-              secondary.withOpacity(opacity),
-            ],
-            stops: const [
-              0.0,
-              1.0,
-            ],
-          ).createShader(
-            Rect.fromLTWH(
-              0,
-              0,
-              bgImageWidth.toDouble(),
-              bgImageHeight.toDouble(),
-            ),
-          );
-        },
-        blendMode: BlendMode.srcATop,
-      );
 
   // ignore: use_setters_to_change_properties
   @action
@@ -214,4 +174,44 @@ abstract class _AppStore with Store {
   void setPngImage(ByteData value) {
     pngImage = value;
   }
+
+  @computed
+  TextStyle get textStyle =>
+      AppThemeUtils.messageStyleBy(fontFamily, fontSize, fontColor);
+
+  @computed
+  Color get baseColor => paletteColor?.toColor() ?? Colors.black;
+
+  @computed
+  Color get baseTextColor =>
+      paletteColor?.withLightness(0.2)?.toColor() ?? Colors.white;
+
+  @computed
+  Widget get gradientImage => ShaderMask(
+    child: Image(
+      image: FileImage(bgImage),
+    ),
+    shaderCallback: (Rect bounds) {
+      return LinearGradient(
+        begin: gradientBeginEnd.first,
+        end: gradientBeginEnd.last,
+        colors: [
+          primary.withOpacity(opacity),
+          secondary.withOpacity(opacity),
+        ],
+        stops: const [
+          0.0,
+          1.0,
+        ],
+      ).createShader(
+        Rect.fromLTWH(
+          0,
+          0,
+          bgImageWidth.toDouble(),
+          bgImageHeight.toDouble(),
+        ),
+      );
+    },
+    blendMode: BlendMode.srcATop,
+  );
 }

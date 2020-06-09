@@ -16,35 +16,6 @@ class BgImagePicker extends StatefulWidget {
 }
 
 class _BgImagePickerState extends State<BgImagePicker> {
-  Future _getImage({bool forceUpdate = false}) async {
-    if (forceUpdate || widget.store.bgImage == null) {
-      final image = await ImagePicker.pickImage(source: ImageSource.gallery);
-      final croppedFile = await ImageCropper.cropImage(
-        sourcePath: image.path,
-        aspectRatioPresets: [
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio16x9
-        ],
-        androidUiSettings: AndroidUiSettings(
-            toolbarTitle: '',
-            toolbarColor: widget.store.baseColor,
-            toolbarWidgetColor: widget.store.baseTextColor,
-            initAspectRatio: CropAspectRatioPreset.original,
-            lockAspectRatio: false),
-        iosUiSettings: const IOSUiSettings(
-          minimumAspectRatio: 1,
-        ),
-      );
-
-      setState(() {
-        widget.store.setBgImage(croppedFile, MediaQuery.of(context).size);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
@@ -89,5 +60,37 @@ class _BgImagePickerState extends State<BgImagePicker> {
               child: Icon(Icons.check, color: themeColor),
             ),
     );
+  }
+
+  final _picker = ImagePicker();
+  final List<CropAspectRatioPreset> _aspectRatioPresets = const [
+    CropAspectRatioPreset.square,
+    CropAspectRatioPreset.ratio3x2,
+    CropAspectRatioPreset.original,
+    CropAspectRatioPreset.ratio4x3,
+    CropAspectRatioPreset.ratio16x9
+  ];
+
+  Future _getImage({bool forceUpdate = false}) async {
+    if (forceUpdate || widget.store.bgImage == null) {
+      final image = await _picker.getImage(source: ImageSource.gallery);
+      final croppedFile = await ImageCropper.cropImage(
+        sourcePath: image.path,
+        aspectRatioPresets: _aspectRatioPresets,
+        androidUiSettings: AndroidUiSettings(
+            toolbarTitle: '',
+            toolbarColor: widget.store.baseColor,
+            toolbarWidgetColor: widget.store.baseTextColor,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false),
+        iosUiSettings: const IOSUiSettings(
+          minimumAspectRatio: 1,
+        ),
+      );
+
+      setState(() {
+        widget.store.setBgImage(croppedFile, MediaQuery.of(context).size);
+      });
+    }
   }
 }

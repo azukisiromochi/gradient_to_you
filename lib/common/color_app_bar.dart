@@ -17,7 +17,6 @@ class ColorAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   @override
   final Size preferredSize;
-
 }
 
 class _ColorAppBarState extends State<ColorAppBar> {
@@ -28,9 +27,11 @@ class _ColorAppBarState extends State<ColorAppBar> {
     return AppBar(
       centerTitle: true,
       iconTheme: IconThemeData(color: widget.store.baseTextColor),
-      title: Text(l10n.appName,
-          style: AppThemeUtils.appBarStyle(
-              widget.store.themeNo, widget.store.baseTextColor)),
+      title: Text(
+        l10n.appName,
+        style: AppThemeUtils.appBarStyle(
+            widget.store.themeNo, widget.store.baseTextColor),
+      ),
       backgroundColor: widget.store.baseColor,
       actions: widget.actions,
     );

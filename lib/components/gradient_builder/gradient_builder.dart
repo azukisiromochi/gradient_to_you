@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
+import 'package:gradient_to_you/common/gradient_container.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/color_utils.dart';
 
@@ -49,23 +50,14 @@ class _GradientBodyState extends State<GradientBody> {
       widget.store.setGradientBeginEnd(ColorUtils.randomGradientBeginEnd());
     }
 
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: widget.store.gradientBeginEnd.first,
-          end: widget.store.gradientBeginEnd.last,
-          colors: [
-            widget.store.primary,
-            widget.store.secondary,
-          ],
-          stops: const [
-            0.0,
-            1.0,
-          ],
-        ),
-      ),
+    return GradientContainer(
+      store: widget.store,
+      gradientBegin: widget.store.gradientBeginEnd.first,
+      gradientEnd: widget.store.gradientBeginEnd.last,
+      colors: [
+        widget.store.primary,
+        widget.store.secondary,
+      ],
       child: InkWell(
         onTap: () => setState(() {
           widget.store.clearGradient();

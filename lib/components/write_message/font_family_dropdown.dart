@@ -62,7 +62,7 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(
-                      convertToDisplayName(l10n, value),
+                      _convertToDisplayName(l10n, value),
 //                    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
@@ -78,7 +78,7 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
     );
   }
 
-  String convertToDisplayName(L10n l10n, String fontFamily) {
+  String _convertToDisplayName(L10n l10n, String fontFamily) {
     if (fontFamily == 'Sawarabi Gothic') {
       return l10n.googleFontsSawarabiGothic;
     }

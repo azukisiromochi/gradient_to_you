@@ -13,18 +13,6 @@ class WriteMessage extends StatelessWidget {
 
   final AppStore store;
 
-  Future<void> _exportToImage(GlobalKey globalKey) async {
-    final boundary =
-    globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
-    final image = await boundary.toImage(pixelRatio: 3);
-
-    final byteData = await image.toByteData(
-      format: ui.ImageByteFormat.png,
-    );
-
-    store.setPngImage(byteData);
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
@@ -59,10 +47,8 @@ class WriteMessage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _exportToImage(globalKey)
-              .then((_) => Navigator.of(context).pushNamed('/save_or_share'));
-        },
+        onPressed: () => _exportToImage(globalKey)
+            .then((_) => Navigator.of(context).pushNamed('/save_or_share')),
         tooltip: l10n.tooltipTextSetFilter,
         backgroundColor: store.baseColor,
         child: Icon(Icons.check, color: themeColor),
@@ -70,5 +56,17 @@ class WriteMessage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: InputBottomBar(store: store, l10n: l10n),
     );
+  }
+
+  Future<void> _exportToImage(GlobalKey globalKey) async {
+    final boundary =
+        globalKey.currentContext.findRenderObject() as RenderRepaintBoundary;
+    final image = await boundary.toImage(pixelRatio: 3);
+
+    final byteData = await image.toByteData(
+      format: ui.ImageByteFormat.png,
+    );
+
+    store.setPngImage(byteData);
   }
 }

@@ -16,8 +16,6 @@ class FontColorPicker extends StatefulWidget {
 class _FontColorPickerState extends State<FontColorPicker> {
   Color _fontColor;
 
-  void _changeColor(Color color) => setState(() => _fontColor = color);
-
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
@@ -26,33 +24,9 @@ class _FontColorPickerState extends State<FontColorPicker> {
     return Center(
       child: RaisedButton(
         elevation: 2,
-        onPressed: () {
-          showDialog<void>(
-            context: context,
-            builder: (_) {
-              return AlertDialog(
-                title: Text(l10n.fontColorPickerTitle),
-                content: SingleChildScrollView(
-                  child: ColorPicker(
-                    pickerColor: _fontColor,
-                    onColorChanged: _changeColor,
-                    showLabel: true,
-                    pickerAreaHeightPercent: 0.8,
-                  ),
-                ),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text(l10n.fontColorPickerButton),
-                    onPressed: () {
-                      widget.store.setFontColor(_fontColor);
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              );
-            },
-          );
-        },
+        onPressed: () => _openColorPicker(
+            colorPickerTitle: l10n.fontColorPickerTitle,
+            colorPickerButtonText: l10n.fontColorPickerButton),
         child: Container(
           width: double.infinity,
           child: Text(l10n.fontColorPicker),
@@ -62,6 +36,37 @@ class _FontColorPickerState extends State<FontColorPicker> {
             ? const Color(0xffffffff)
             : const Color(0xff000000),
       ),
+    );
+  }
+
+  void _changeColor(Color color) => setState(() => _fontColor = color);
+
+  void _openColorPicker(
+      {String colorPickerTitle, String colorPickerButtonText}) {
+    showDialog<void>(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: Text(colorPickerTitle),
+          content: SingleChildScrollView(
+            child: ColorPicker(
+              pickerColor: _fontColor,
+              onColorChanged: _changeColor,
+              showLabel: true,
+              pickerAreaHeightPercent: 0.8,
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(colorPickerButtonText),
+              onPressed: () {
+                widget.store.setFontColor(_fontColor);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

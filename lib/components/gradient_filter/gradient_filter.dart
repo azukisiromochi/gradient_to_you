@@ -14,10 +14,6 @@ class GradientFilter extends StatefulWidget {
 }
 
 class _GradientFilterState extends State<GradientFilter> {
-  void _changeSlider(double e) => setState(() {
-        widget.store.setOpacity(e);
-      });
-
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
@@ -53,13 +49,15 @@ class _GradientFilterState extends State<GradientFilter> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed('/write_message');
-        },
+        onPressed: () => Navigator.of(context).pushNamed('/write_message'),
         tooltip: l10n.tooltipTextSetFilter,
         backgroundColor: widget.store.baseColor,
         child: Icon(Icons.check, color: themeColor),
       ),
     );
   }
+
+  void _changeSlider(double newValue) => setState(() {
+        widget.store.setOpacity(newValue);
+      });
 }

@@ -12,10 +12,6 @@ class FontSizeSlider extends StatefulWidget {
 }
 
 class _FontSizeSliderState extends State<FontSizeSlider> {
-  void _changeSlider(double e) => setState(() {
-        widget.store.setFontSize(e);
-      });
-
   @override
   Widget build(BuildContext context) {
     final fontSize = widget.store.fontSize ?? 20;
@@ -31,4 +27,8 @@ class _FontSizeSliderState extends State<FontSizeSlider> {
       onChanged: _changeSlider,
     );
   }
+
+  void _changeSlider(double e) => setState(() {
+        widget.store.setFontSize(e);
+      });
 }
