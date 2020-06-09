@@ -222,7 +222,7 @@ packages:
       name: flutter_inner_drawer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.6+1"
+    version: "0.5.5"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
