@@ -1,11 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_to_you/app_store.dart';
+import 'package:gradient_to_you/common/input_item.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 
-import '../../app_store.dart';
+class FontBar extends StatelessWidget {
+  const FontBar({Key key, this.store}) : super(key: key);
+  final AppStore store;
 
-class FontFamilyDropdown extends StatefulWidget {
-  const FontFamilyDropdown({Key key, @required this.store}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        InputItem(
+          icon: Icon(Icons.text_format, color: store.baseColor),
+          input: _FontFamilyDropdown(store: store),
+        ),
+        const SizedBox(height: 20),
+        InputItem(
+          icon: Icon(Icons.color_lens, color: store.baseColor),
+          input: _FontColorPicker(store: store),
+        ),
+      ],
+    );
+  }
+}
+
+class _FontFamilyDropdown extends StatefulWidget {
+  const _FontFamilyDropdown({Key key, @required this.store}) : super(key: key);
 
   @override
   _FontFamilyDropdownState createState() => _FontFamilyDropdownState();
@@ -13,7 +36,7 @@ class FontFamilyDropdown extends StatefulWidget {
   final AppStore store;
 }
 
-class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
+class _FontFamilyDropdownState extends State<_FontFamilyDropdown> {
   final _dropdownItems = const <String>[
     'sans-serif',
     'sans-serif-condensed',
@@ -102,5 +125,72 @@ class _FontFamilyDropdownState extends State<FontFamilyDropdown> {
       return GoogleFonts.kosugiMaru();
     }
     return TextStyle(fontFamily: fontFamily);
+  }
+}
+
+class _FontColorPicker extends StatefulWidget {
+  const _FontColorPicker({Key key, @required this.store}) : super(key: key);
+
+  @override
+  _FontColorPickerState createState() => _FontColorPickerState();
+
+  final AppStore store;
+}
+
+class _FontColorPickerState extends State<_FontColorPicker> {
+  Color _fontColor;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
+    _fontColor = _fontColor ?? widget.store.fontColor;
+
+    return Center(
+      child: RaisedButton(
+        elevation: 2,
+        onPressed: () => _openColorPicker(
+            colorPickerTitle: l10n.fontColorPickerTitle,
+            colorPickerButtonText: l10n.fontColorPickerButton),
+        child: Container(
+          width: double.infinity,
+          child: Text(l10n.fontColorPicker),
+        ),
+        color: _fontColor,
+        textColor: useWhiteForeground(_fontColor)
+            ? const Color(0xffffffff)
+            : const Color(0xff000000),
+      ),
+    );
+  }
+
+  void _changeColor(Color color) => setState(() => _fontColor = color);
+
+  void _openColorPicker(
+      {String colorPickerTitle, String colorPickerButtonText}) {
+    showDialog<void>(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: Text(colorPickerTitle),
+          content: SingleChildScrollView(
+            child: ColorPicker(
+              pickerColor: _fontColor,
+              onColorChanged: _changeColor,
+              showLabel: true,
+              pickerAreaHeightPercent: 0.8,
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(colorPickerButtonText),
+              onPressed: () {
+                widget.store.setFontColor(_fontColor);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

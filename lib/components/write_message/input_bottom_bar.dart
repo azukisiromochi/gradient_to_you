@@ -2,14 +2,13 @@ import 'dart:async';
 
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_to_you/components/write_message/font_color_picker.dart';
-import 'package:gradient_to_you/components/write_message/rotation_slider.dart';
+
 import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../../app_store.dart';
-import 'font_family_dropdown.dart';
-import 'font_size_slider.dart';
-import 'message_text_field.dart';
+import 'input_bottom_bar/font_bar.dart';
+import 'input_bottom_bar/message_bar.dart';
+import 'input_bottom_bar/size_bar.dart';
 
 class InputBottomBar extends StatefulWidget {
   const InputBottomBar({
@@ -122,53 +121,20 @@ class _InputBottomBarState extends State<InputBottomBar> {
     switch (index) {
       case 0:
         {
-          return Padding(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            child: _InputItem(
-              icon: Icon(Icons.message, color: widget.store.baseColor),
-              input: MessageTextField(store: widget.store),
-            ),
-          );
+          return MessageBar(store: widget.store);
         }
         break;
 
       case 1:
         {
-          return Column(
-            children: <Widget>[
-              _InputItem(
-                icon: Icon(Icons.format_size, color: widget.store.baseColor),
-                input: FontSizeSlider(store: widget.store),
-              ),
-              const SizedBox(height: 10),
-              _InputItem(
-                icon: Icon(
-                  Icons.text_rotation_angledown,
-                  color: widget.store.baseColor,
-                ),
-                input: RotationSlider(store: widget.store),
-              ),
-            ],
-          );
+          return SizeBar(store: widget.store);
         }
         break;
 
       case 2:
         {
-          return Column(
-            children: <Widget>[
-              _InputItem(
-                icon: Icon(Icons.text_format, color: widget.store.baseColor),
-                input: FontFamilyDropdown(store: widget.store),
-              ),
-              const SizedBox(height: 10),
-              _InputItem(
-                icon: Icon(Icons.color_lens, color: widget.store.baseColor),
-                input: FontColorPicker(store: widget.store),
-              ),
-            ],
+          return FontBar(
+            store: widget.store,
           );
         }
         break;
@@ -220,33 +186,5 @@ class _InputBottomBarState extends State<InputBottomBar> {
         break;
     }
     return null;
-  }
-}
-
-class _InputItem extends StatelessWidget {
-  const _InputItem({
-    Key key,
-    @required this.icon,
-    @required this.input,
-  }) : super(key: key);
-
-  final Icon icon;
-  final Widget input;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Expanded(
-          flex: 1,
-          child: icon,
-        ),
-        Expanded(
-          flex: 4,
-          child: Container(child: input),
-        ),
-      ],
-    );
   }
 }
