@@ -31,9 +31,11 @@ class _InputBottomBarState extends State<InputBottomBar> {
   void initState() {
     super.initState();
     _currentIndex = 0;
-    Timer.run(() {
-      _showInputBottomBar(0);
-    });
+    if (widget.store.message == null) {
+      Timer.run(() {
+        _showInputBottomBar(0);
+      });
+    }
   }
 
   @override
