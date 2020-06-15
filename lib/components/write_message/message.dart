@@ -55,7 +55,7 @@ class _MessageState extends State<Message> {
     final l10n = L10n.of(context);
 
     _message = widget.store.message ?? l10n.messageDefault;
-    _offset = widget.store.offset ?? const Offset(100, 20);
+    _offset = widget.store.offset ?? const Offset(80, 180);
     _style = widget.store.textStyle;
     _degrees = widget.store.rotatedDegrees ?? 0;
 
@@ -80,7 +80,6 @@ class _MessageState extends State<Message> {
         child: Container(
           padding: const EdgeInsets.all(10),
           child: Stack(
-            alignment: Alignment.center,
             children: <Widget>[
               SizedBox(
                 width: rotatedWidth,
@@ -96,12 +95,12 @@ class _MessageState extends State<Message> {
                   child: Text(
                     _message,
                     style: _style,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
             ],
           ),
-
         ),
       ),
     );
@@ -121,7 +120,7 @@ class _MessageState extends State<Message> {
 
   double _calcRotatedHeight(double x, double y, double degrees) {
     var angle = Angle.fromDegrees(degrees);
-    final h =  x * angle.sin + y * angle.cos;
+    final h = x * angle.sin + y * angle.cos;
     if (h > 0) {
       return h;
     }
