@@ -5,6 +5,8 @@ import 'package:gradient_to_you/common/my_gradient_app_bar.dart';
 import 'package:gradient_to_you/components/color_palette/side_menu.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/color_utils.dart';
+import 'package:gradient_to_you/utils/tutorial_utils.dart';
+import 'package:tutorial_coach_mark/target_focus.dart';
 
 import '../../app_store.dart';
 
@@ -20,7 +22,17 @@ class ColorPalette extends StatefulWidget {
 class _ColorPaletteState extends State<ColorPalette> {
   //  Current State of InnerDrawerState
   final GlobalKey<InnerDrawerState> _innerDrawerKey =
-  GlobalKey<InnerDrawerState>();
+      GlobalKey<InnerDrawerState>();
+
+  List<TargetFocus> targets = [];
+  GlobalKey tutorialKey = GlobalKey();
+
+  @override
+  void initState() {
+    initTargets();
+    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +70,11 @@ class _ColorPaletteState extends State<ColorPalette> {
 //        childAspectRatio: 3 / 4,
             children: List.generate(
               12,
-                  (int index) {
-                return _Palette(position: index, store: widget.store);
+              (int index) {
+                return index == 1
+                    ? _Palette(
+                        key: tutorialKey, position: index, store: widget.store)
+                    : _Palette(position: index, store: widget.store);
               },
             ),
           ),
@@ -70,6 +85,26 @@ class _ColorPaletteState extends State<ColorPalette> {
 
   void _toggle() {
     _innerDrawerKey.currentState.toggle();
+  }
+
+  void initTargets() {
+    targets.add(TutorialUtils.makeTargetFocus(
+      key: tutorialKey,
+      title: 'さあ、はじめよう！',
+      explanation:
+          // ignore: lines_longer_than_80_chars
+          'Gradation to you は写真やイラストをグラデーションで彩り、メッセージを送るためのアプリです。\nまずはメインのカラーを選んでみよう！',
+    ));
+  }
+
+  void _showTutorial() => TutorialUtils.showTutorial(
+        context,
+        targets: targets,
+        colorShadow: ColorUtils.hslFromHue000.toColor(),
+      );
+
+  void _afterLayout(dynamic _) {
+    Future.delayed(const Duration(milliseconds: 200), _showTutorial);
   }
 }
 

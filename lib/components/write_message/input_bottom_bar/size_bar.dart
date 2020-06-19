@@ -8,8 +8,6 @@ class SizeBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = store.fontSize ?? 20;
-    final degrees = store.rotatedDegrees ?? 0;
 
     return Column(
       children: <Widget>[

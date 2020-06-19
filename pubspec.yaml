@@ -81,6 +81,9 @@ dependencies:
   # https://pub.dev/packages/angles
   angles: ^1.2.1
 
+  # https://pub.dev/packages/tutorial_coach_mark
+  tutorial_coach_mark: ^0.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
