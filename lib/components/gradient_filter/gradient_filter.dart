@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
+import 'package:gradient_to_you/utils/color_utils.dart';
+import 'package:gradient_to_you/utils/tutorial_utils.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import '../../app_store.dart';
 
@@ -14,6 +17,17 @@ class GradientFilter extends StatefulWidget {
 }
 
 class _GradientFilterState extends State<GradientFilter> {
+  TutorialCoachMark tutorial;
+  List<TargetFocus> targets = [];
+  GlobalKey tutorialKey = GlobalKey();
+
+  @override
+  void initState() {
+    _initTargets();
+    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
@@ -36,6 +50,7 @@ class _GradientFilterState extends State<GradientFilter> {
               child: Center(child: widget.store.gradientImage),
             ),
             Slider(
+              key: tutorialKey,
               label: '${opacity.toStringAsFixed(2)}',
               min: 0.1,
               max: 0.9,
@@ -60,4 +75,25 @@ class _GradientFilterState extends State<GradientFilter> {
   void _changeSlider(double newValue) => setState(() {
         widget.store.setOpacity(newValue);
       });
+
+  void _initTargets() {
+    targets.add(TutorialUtils.makeTargetFocus(
+      key: tutorialKey,
+      title: 'グラデーションの調整',
+      explanation:
+      // ignore: lines_longer_than_80_chars
+      'スライダーを左右に移動させると、グラデーションの濃さを調整できるよ！',
+      align: AlignContent.top,
+    ));
+  }
+
+  void _showTutorial() => TutorialUtils.showTutorial(
+    context,
+    targets: targets,
+    colorShadow: ColorUtils.hslFromHue000.toColor(),
+  );
+
+  void _afterLayout(dynamic _) {
+    Future.delayed(const Duration(milliseconds: 200), _showTutorial);
+  }
 }

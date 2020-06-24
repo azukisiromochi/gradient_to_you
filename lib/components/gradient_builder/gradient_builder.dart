@@ -48,11 +48,10 @@ class GradientBody extends StatefulWidget {
 class _GradientBodyState extends State<GradientBody> {
   TutorialCoachMark tutorial;
   List<TargetFocus> targets = [];
-  GlobalKey tutorialKey = GlobalKey();
 
   @override
   void initState() {
-    initTargets();
+    _initTargets();
     WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
     super.initState();
   }
@@ -69,11 +68,10 @@ class _GradientBodyState extends State<GradientBody> {
 
     return WillPopScope(
       onWillPop: () {
-        tutorial.hide();
+        tutorial?.hide();
         Navigator.of(context).pop();
       },
       child: GradientContainer(
-        key: tutorialKey,
         store: widget.store,
         gradientBegin: widget.store.gradientBeginEnd.first,
         gradientEnd: widget.store.gradientBeginEnd.last,
@@ -90,14 +88,14 @@ class _GradientBodyState extends State<GradientBody> {
     );
   }
 
-  void initTargets() {
+  void _initTargets() {
     final target = TargetPosition(const Size(100, 100), const Offset(150, 400));
     targets.add(TutorialUtils.makeTargetFocus(
       targetPosition: target,
       title: 'グラデーションを決めよう！',
       explanation:
           // ignore: lines_longer_than_80_chars
-          '画面をタップするとメインのカラーを利用したグラデーションが作成されます。\nおきにいりのグラデーションが見つかるまで、タップ！タップ！！タップ！！！',
+          '画面をタップするとメインのカラーを利用したグラデーションが作成されます。\nお気に入りのグラデーションが見つかるまで、タップ！タップ！！タップ！！！',
       align: AlignContent.top,
       shape: ShapeLightFocus.Circle,
     ));
@@ -107,9 +105,8 @@ class _GradientBodyState extends State<GradientBody> {
     tutorial = TutorialUtils.makeTutorial(
       context,
       targets: targets,
-      colorShadow: ColorUtils.hslFromHue030.toColor(),
-    );
-    tutorial.show();
+      colorShadow: ColorUtils.hslFromHue120.toColor(),
+    )..show();
   }
 
   void _afterLayout(dynamic _) {

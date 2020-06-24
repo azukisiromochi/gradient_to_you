@@ -29,7 +29,7 @@ class _ColorPaletteState extends State<ColorPalette> {
 
   @override
   void initState() {
-    initTargets();
+    _initTargets();
     WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
     super.initState();
   }
@@ -87,7 +87,7 @@ class _ColorPaletteState extends State<ColorPalette> {
     _innerDrawerKey.currentState.toggle();
   }
 
-  void initTargets() {
+  void _initTargets() {
     targets.add(TutorialUtils.makeTargetFocus(
       key: tutorialKey,
       title: 'さあ、はじめよう！',

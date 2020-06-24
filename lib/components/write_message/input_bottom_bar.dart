@@ -4,6 +4,10 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gradient_to_you/l10n/l10n.dart';
+import 'package:gradient_to_you/utils/color_utils.dart';
+import 'package:gradient_to_you/utils/tutorial_utils.dart';
+import 'package:tutorial_coach_mark/animated_focus_light.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import '../../app_store.dart';
 import 'input_bottom_bar/font_bar.dart';
@@ -27,20 +31,30 @@ class InputBottomBar extends StatefulWidget {
 class _InputBottomBarState extends State<InputBottomBar> {
   int _currentIndex;
 
+  TutorialCoachMark tutorial;
+  List<TargetFocus> targets = [];
+  GlobalKey tutorialKey = GlobalKey();
+
   @override
   void initState() {
     super.initState();
     _currentIndex = 0;
-    if (widget.store.message == null) {
-      Timer.run(() {
-        _showInputBottomBar(0);
-      });
-    }
+
+    _initTargets();
+    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+
+    // TODO
+//    if (widget.store.message == null) {
+//      Timer.run(() {
+//        _showInputBottomBar(0);
+//      });
+//    }
   }
 
   @override
   Widget build(BuildContext context) {
     return BubbleBottomBar(
+      key: tutorialKey,
       opacity: .2,
       currentIndex: _currentIndex,
       onTap: _changeBar,
@@ -188,5 +202,102 @@ class _InputBottomBarState extends State<InputBottomBar> {
         break;
     }
     return null;
+  }
+
+  void _initTargets() {
+    targets.add(
+      TargetFocus(
+        keyTarget: tutorialKey,
+        contents: [
+          ContentTarget(
+            align: AlignContent.top,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'メッセージを書こう！',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      // ignore: lines_longer_than_80_chars
+                      'スライダーを左右に移動させると、グラデーションの濃さを調整できるよ！',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                  _TutorialItem(
+                    text: 'メッセージを入力できるよ',
+                    icon: Icons.message,
+                  ),
+                  const SizedBox(height: 10),
+                  _TutorialItem(
+                    text: 'フォントサイズや文字の傾きを変更できるよあああああああ',
+                    icon: Icons.format_size,
+                  ),
+                  const SizedBox(height: 10),
+                  _TutorialItem(
+                    text: 'フォントやフォントカラーを変更できるよ',
+                    icon: Icons.text_format,
+                  ),
+                  const SizedBox(height: 40),
+                ],
+              ),
+            ),
+          )
+        ],
+        shape: ShapeLightFocus.RRect,
+      ),
+    );
+  }
+
+  void _showTutorial() => TutorialUtils.showTutorial(
+        context,
+        targets: targets,
+        colorShadow: ColorUtils.hslFromHue120.toColor(),
+      );
+
+  void _afterLayout(dynamic _) {
+    Future.delayed(const Duration(milliseconds: 200), _showTutorial);
+  }
+}
+
+class _TutorialItem extends StatelessWidget {
+  const _TutorialItem({Key key, this.text, this.icon}) : super(key: key);
+
+  final String text;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Expanded(
+          flex: 1,
+          child: Icon(icon, color: Colors.white),
+        ),
+        Expanded(
+          flex: 4,
+          child: Container(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
