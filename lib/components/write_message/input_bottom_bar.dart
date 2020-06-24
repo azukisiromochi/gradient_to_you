@@ -53,20 +53,27 @@ class _InputBottomBarState extends State<InputBottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BubbleBottomBar(
-      key: tutorialKey,
-      opacity: .2,
-      currentIndex: _currentIndex,
-      onTap: _changeBar,
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-      elevation: 8,
-      fabLocation: BubbleBottomBarFabLocation.end,
-      hasNotch: true,
-      hasInk: true,
-      inkColor: Colors.black12,
-      items: List.generate(
-        3,
-        _makeBottomBarItem,
+    return WillPopScope(
+      onWillPop: () async {
+        tutorial?.hide();
+        Navigator.of(context).pop();
+        return true;
+      },
+      child: BubbleBottomBar(
+        key: tutorialKey,
+        opacity: .2,
+        currentIndex: _currentIndex,
+        onTap: _changeBar,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+        elevation: 8,
+        fabLocation: BubbleBottomBarFabLocation.end,
+        hasNotch: true,
+        hasInk: true,
+        inkColor: Colors.black12,
+        items: List.generate(
+          3,
+          _makeBottomBarItem,
+        ),
       ),
     );
   }
@@ -241,7 +248,7 @@ class _InputBottomBarState extends State<InputBottomBar> {
                   ),
                   const SizedBox(height: 10),
                   _TutorialItem(
-                    text: 'フォントサイズや文字の傾きを変更できるよあああああああ',
+                    text: 'フォントサイズや文字の傾きを変更できるよ',
                     icon: Icons.format_size,
                   ),
                   const SizedBox(height: 10),
@@ -260,11 +267,13 @@ class _InputBottomBarState extends State<InputBottomBar> {
     );
   }
 
-  void _showTutorial() => TutorialUtils.showTutorial(
-        context,
-        targets: targets,
-        colorShadow: ColorUtils.hslFromHue120.toColor(),
-      );
+  void _showTutorial() {
+    tutorial = TutorialUtils.makeTutorial(
+      context,
+      targets: targets,
+      colorShadow: ColorUtils.hslFromHue120.toColor(),
+    )..show();
+  }
 
   void _afterLayout(dynamic _) {
     Future.delayed(const Duration(milliseconds: 200), _showTutorial);

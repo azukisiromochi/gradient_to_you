@@ -67,9 +67,10 @@ class _GradientBodyState extends State<GradientBody> {
     }
 
     return WillPopScope(
-      onWillPop: () {
+      onWillPop: () async {
         tutorial?.hide();
         Navigator.of(context).pop();
+        return true;
       },
       child: GradientContainer(
         store: widget.store,

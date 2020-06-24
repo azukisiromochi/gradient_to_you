@@ -6,7 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gradient_to_you/common/my_gradient_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
+import 'package:gradient_to_you/utils/color_utils.dart';
+import 'package:gradient_to_you/utils/tutorial_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:tutorial_coach_mark/animated_focus_light.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import '../../app_store.dart';
 
@@ -20,50 +24,68 @@ class SaveOrShare extends StatelessWidget {
     final l10n = L10n.of(context);
     final pngBytes = store.pngImage.buffer.asUint8List();
 
-    return Scaffold(
-      appBar: MyGradientAppBar(
-        store: store,
-        appName: l10n.appName,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Image.memory(pngBytes),
+    const tutorialKey1 = GlobalObjectKey<FormState>('__TUTORIAL1__');
+    const tutorialKey2 = GlobalObjectKey<FormState>('__TUTORIAL2__');
+    final targets = <TargetFocus>[];
+    TutorialCoachMark tutorial;
+
+    _initTargets(tutorialKey1, tutorialKey2, targets: targets);
+    Future.delayed(
+      const Duration(milliseconds: 200),
+      () => tutorial = _showTutorial(context, targets),
+    );
+
+    return WillPopScope(
+      onWillPop: () async {
+        tutorial?.hide();
+        Navigator.of(context).pop();
+        return true;
+      },
+      child: Scaffold(
+        appBar: MyGradientAppBar(
+          store: store,
+          appName: l10n.appName,
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.black54,
-        unselectedItemColor: Colors.black54,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.save_alt),
-            title: Text(l10n.buttonSave),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Image.memory(pngBytes),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.share),
-            title: Text(l10n.buttonShare),
-          ),
-        ],
-        onTap: (int index) {
-          switch (index) {
-            case 0:
-              {
-                _save(l10n.toastSave, l10n.appName);
-              }
-              break;
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.black54,
+          unselectedItemColor: Colors.black54,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.save_alt, key: tutorialKey1),
+              title: Text(l10n.buttonSave),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.share, key: tutorialKey2),
+              title: Text(l10n.buttonShare),
+            ),
+          ],
+          onTap: (int index) {
+            switch (index) {
+              case 0:
+                {
+                  _save(l10n.toastSave, l10n.appName);
+                }
+                break;
 
-            case 1:
-              {
-                Share.file(l10n.appName, 'g2u_${timestamp()}.jpg', pngBytes,
-                    'image/jpg');
-              }
-              break;
+              case 1:
+                {
+                  Share.file(l10n.appName, 'g2u_${timestamp()}.jpg', pngBytes,
+                      'image/jpg');
+                }
+                break;
 
-            default:
-              {}
-              break;
-          }
-        },
+              default:
+                {}
+                break;
+            }
+          },
+        ),
       ),
     );
   }
@@ -90,5 +112,37 @@ class SaveOrShare extends StatelessWidget {
       textColor: Colors.black,
       fontSize: 16,
     );
+  }
+
+  void _initTargets(GlobalObjectKey tutorialKey1, GlobalObjectKey tutorialKey2,
+      {List<TargetFocus> targets}) {
+    targets
+      ..add(TutorialUtils.makeTargetFocus(
+        key: tutorialKey1,
+        title: 'おめでとうございます！',
+        explanation:
+            // ignore: lines_longer_than_80_chars
+            'デバイスに保存したい場合はこちらのボタンから',
+        align: AlignContent.top,
+        shape: ShapeLightFocus.Circle,
+      ))
+      ..add(TutorialUtils.makeTargetFocus(
+        key: tutorialKey2,
+        title: 'おめでとうございます！',
+        explanation:
+            // ignore: lines_longer_than_80_chars
+            'シェアしたい場合はこちらのボタンから',
+        align: AlignContent.top,
+        shape: ShapeLightFocus.Circle,
+      ));
+  }
+
+  TutorialCoachMark _showTutorial(
+      BuildContext context, List<TargetFocus> targets) {
+    return TutorialUtils.makeTutorial(
+      context,
+      targets: targets,
+      colorShadow: ColorUtils.hslFromHue270.toColor(),
+    )..show();
   }
 }

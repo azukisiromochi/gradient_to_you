@@ -48,10 +48,11 @@ class _BgImagePickerState extends State<BgImagePicker> {
     }
 
     return WillPopScope(
-      onWillPop: () {
+      onWillPop: () async {
         tutorial1?.hide();
         tutorial2?.hide();
         Navigator.of(context).pop();
+        return true;
       },
       child: Scaffold(
         appBar: ColorAppBar(
