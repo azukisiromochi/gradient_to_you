@@ -40,15 +40,16 @@ class _InputBottomBarState extends State<InputBottomBar> {
     super.initState();
     _currentIndex = 0;
 
+
     _initTargets();
     WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
 
-    // TODO
-//    if (widget.store.message == null) {
-//      Timer.run(() {
-//        _showInputBottomBar(0);
-//      });
-//    }
+    //TODO チュートリアル保存できるようになったら修正
+    if (false && widget.store.message == null) {
+      Timer.run(() {
+        _showInputBottomBar(0);
+      });
+    }
   }
 
   @override
@@ -272,6 +273,7 @@ class _InputBottomBarState extends State<InputBottomBar> {
       context,
       targets: targets,
       colorShadow: ColorUtils.hslFromHue120.toColor(),
+      finish: () => _showInputBottomBar(0),
     )..show();
   }
 

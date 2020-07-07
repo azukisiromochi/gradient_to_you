@@ -34,8 +34,6 @@ class _MessageBarState extends State<MessageBar> {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
     final textFieldHeight = MediaQuery.of(context).viewInsets.bottom;
-    // TODO
-//    final isAutofocus = widget.store.message == null;
 
     return Padding(
       padding: EdgeInsets.only(
@@ -45,8 +43,6 @@ class _MessageBarState extends State<MessageBar> {
         icon: Icon(Icons.message, color: widget.store.baseColor),
         input: TextField(
           controller: _controller,
-// TODO
-//          autofocus: isAutofocus,
           decoration: InputDecoration(
             labelText: l10n.hintText,
 //        hintText: l10n.hintText,

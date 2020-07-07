@@ -55,18 +55,15 @@ class TutorialUtils {
   }
 
   static TutorialCoachMark makeTutorial(BuildContext context,
-      {List<TargetFocus> targets, Color colorShadow}) {
+      {List<TargetFocus> targets, Color colorShadow, Function() finish}) {
     // ignore: avoid_single_cascade_in_expression_statements
     return TutorialCoachMark(
       context,
       targets: targets,
       colorShadow: colorShadow ?? Colors.black,
-//      textSkip: 'SKIP',
       paddingFocus: 10,
       opacityShadow: 0.8,
-      finish: () {
-        print('finish');
-      },
+      finish: finish,
       clickTarget: print,
 //      clickSkip: () {
 //        print('skip');
