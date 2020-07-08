@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/color_utils.dart';
+import 'package:gradient_to_you/utils/screens.dart';
 import 'package:gradient_to_you/utils/tutorial_utils.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -88,7 +89,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
             : FloatingActionButton(
                 key: tutorialKey2b,
                 onPressed: () =>
-                    Navigator.of(context).pushNamed('/gradient_filter'),
+                    Navigator.of(context).pushNamed(Screen.gradientFilter.url),
                 tooltip: l10n.tooltipTextSelectImage,
                 backgroundColor: widget.store.baseColor,
                 child: Icon(Icons.check, color: themeColor),

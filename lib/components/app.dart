@@ -7,6 +7,7 @@ import 'package:gradient_to_you/components/save_or_share/save_or_share.dart';
 import 'package:gradient_to_you/components/splash/splash.dart';
 import 'package:gradient_to_you/components/write_message/write_message.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
+import 'package:gradient_to_you/utils/screens.dart';
 
 import '../app_store.dart';
 import 'bg_image_picker/bg_image_picker.dart';
@@ -25,12 +26,12 @@ class App extends StatelessWidget {
       ),
       home: Splash(store: store),
       routes: <String, WidgetBuilder>{
-        '/color_palette': (_) => ColorPalette(store: store),
-        '/gradient': (_) => GradientBuilder(store: store),
-        '/image_picker': (_) => BgImagePicker(store: store),
-        '/gradient_filter': (_) => GradientFilter(store: store),
-        '/write_message': (_) => WriteMessage(store: store),
-        '/save_or_share': (_) => SaveOrShare(store: store),
+        Screen.colorPalette.url: (_) => ColorPalette(store: store),
+        Screen.gradientBuilder.url: (_) => GradientBuilder(store: store),
+        Screen.imagePicker.url: (_) => BgImagePicker(store: store),
+        Screen.gradientFilter.url: (_) => GradientFilter(store: store),
+        Screen.writeMessage.url: (_) => WriteMessage(store: store),
+        Screen.saveOrShare.url: (_) => SaveOrShare(store: store),
       },
       localizationsDelegates: [
         L10n.delegate,

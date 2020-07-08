@@ -5,6 +5,7 @@ import 'package:gradient_to_you/common/my_gradient_app_bar.dart';
 import 'package:gradient_to_you/components/color_palette/side_menu.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/color_utils.dart';
+import 'package:gradient_to_you/utils/screens.dart';
 import 'package:gradient_to_you/utils/tutorial_utils.dart';
 import 'package:tutorial_coach_mark/target_focus.dart';
 
@@ -139,7 +140,7 @@ class _PaletteState extends State<_Palette> {
                 onTap: () {
                   widget.store.setPaletteColor(_paletteHSLColor);
                   widget.store.clearGradient();
-                  Navigator.of(context).pushNamed('/gradient');
+                  Navigator.of(context).pushNamed(Screen.gradientBuilder.url);
                 },
               ),
             ),

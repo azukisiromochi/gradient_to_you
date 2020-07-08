@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/color_utils.dart';
+import 'package:gradient_to_you/utils/screens.dart';
 import 'package:gradient_to_you/utils/tutorial_utils.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
@@ -64,7 +65,8 @@ class _GradientFilterState extends State<GradientFilter> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed('/write_message'),
+        onPressed: () =>
+            Navigator.of(context).pushNamed(Screen.writeMessage.url),
         tooltip: l10n.tooltipTextSetFilter,
         backgroundColor: widget.store.baseColor,
         child: Icon(Icons.check, color: themeColor),
@@ -81,17 +83,17 @@ class _GradientFilterState extends State<GradientFilter> {
       key: tutorialKey,
       title: 'グラデーションの調整',
       explanation:
-      // ignore: lines_longer_than_80_chars
-      'スライダーを左右に移動させると、グラデーションの濃さを調整できるよ！',
+          // ignore: lines_longer_than_80_chars
+          'スライダーを左右に移動させると、グラデーションの濃さを調整できるよ！',
       align: AlignContent.top,
     ));
   }
 
   void _showTutorial() => TutorialUtils.showTutorial(
-    context,
-    targets: targets,
-    colorShadow: ColorUtils.hslFromHue000.toColor(),
-  );
+        context,
+        targets: targets,
+        colorShadow: ColorUtils.hslFromHue000.toColor(),
+      );
 
   void _afterLayout(dynamic _) {
     Future.delayed(const Duration(milliseconds: 200), _showTutorial);

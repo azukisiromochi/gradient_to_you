@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
+import 'package:gradient_to_you/utils/screens.dart';
 
 import '../../app_store.dart';
 import 'input_bottom_bar.dart';
@@ -47,8 +48,8 @@ class WriteMessage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _exportToImage(globalKey)
-            .then((_) => Navigator.of(context).pushNamed('/save_or_share')),
+        onPressed: () => _exportToImage(globalKey).then(
+            (_) => Navigator.of(context).pushNamed(Screen.saveOrShare.url)),
         tooltip: l10n.tooltipTextSetFilter,
         backgroundColor: store.baseColor,
         child: Icon(Icons.check, color: themeColor),

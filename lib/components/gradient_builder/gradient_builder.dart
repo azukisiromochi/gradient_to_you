@@ -3,6 +3,7 @@ import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/common/gradient_container.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:gradient_to_you/utils/color_utils.dart';
+import 'package:gradient_to_you/utils/screens.dart';
 import 'package:gradient_to_you/utils/tutorial_utils.dart';
 import 'package:tutorial_coach_mark/animated_focus_light.dart';
 import 'package:tutorial_coach_mark/content_target.dart';
@@ -27,7 +28,8 @@ class GradientBuilder extends StatelessWidget {
       appBar: ColorAppBar(store: store),
       body: GradientBody(store: store),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed('/image_picker'),
+        onPressed: () =>
+            Navigator.of(context).pushNamed(Screen.imagePicker.url),
         tooltip: l10n.tooltipTextSelectGradient,
         backgroundColor: store.baseColor,
         child: Icon(Icons.check, color: themeColor),

@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.3.2 <3.0.0'
+  sdk: '>=2.6.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -83,6 +83,9 @@ dependencies:
 
   # https://pub.dev/packages/tutorial_coach_mark
   tutorial_coach_mark: ^0.3.0
+
+  # https://pub.dev/packages/shared_preferences
+  shared_preferences: ^0.5.8
 
 dev_dependencies:
   flutter_test:
