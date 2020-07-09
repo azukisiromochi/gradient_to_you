@@ -1,15 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/color_utils.dart';
-import 'package:gradient_to_you/utils/screens.dart';
-import 'package:gradient_to_you/utils/tutorial_utils.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tutorial_coach_mark/animated_focus_light.dart';
-import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import '../../app_store.dart';
+import '../importer.dart';
 
 class BgImagePicker extends StatefulWidget {
   const BgImagePicker({Key key, @required this.store}) : super(key: key);
@@ -21,19 +16,21 @@ class BgImagePicker extends StatefulWidget {
 }
 
 class _BgImagePickerState extends State<BgImagePicker> {
-  TutorialCoachMark tutorial1;
-  List<TargetFocus> targets1 = [];
-  GlobalKey tutorialKey1 = GlobalKey();
-  TutorialCoachMark tutorial2;
-  List<TargetFocus> targets2 = [];
-  GlobalKey tutorialKey2a = GlobalKey();
-  GlobalKey tutorialKey2b = GlobalKey();
+  TutorialCoachMark _tutorial1;
+  TutorialCoachMark _tutorial2;
+
+  final List<TargetFocus> _targets1 = [];
+  final List<TargetFocus> _targets2 = [];
+
+  final GlobalKey _tutorialKey1 = GlobalKey();
+  final GlobalKey _tutorialKey2a = GlobalKey();
+  final GlobalKey _tutorialKey2b = GlobalKey();
+
+  final Preferences _prefs = Preferences();
 
   @override
   void initState() {
-    _initTargets1();
-    _initTargets2();
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayout1);
+    _showTutorial();
     super.initState();
   }
 
@@ -44,14 +41,14 @@ class _BgImagePickerState extends State<BgImagePicker> {
     final background = widget.store.bgImage;
     final themeColor = widget.store.baseTextColor;
 
-    if (background != null) {
-      Future.delayed(const Duration(milliseconds: 200), _showTutorial2);
+    if (background != null && !_prefs.isFinishedTutorial(Screen.imagePicker)) {
+      Future.delayed(const Duration(milliseconds: 200), _startTutorial2);
     }
 
     return WillPopScope(
       onWillPop: () async {
-        tutorial1?.hide();
-        tutorial2?.hide();
+        _tutorial1?.hide();
+        _tutorial2?.hide();
         Navigator.of(context).pop();
         return true;
       },
@@ -60,7 +57,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
           store: widget.store,
           actions: <Widget>[
             IconButton(
-              key: tutorialKey2a,
+              key: _tutorialKey2a,
               icon: Icon(Icons.collections, color: themeColor),
               onPressed: () => _getImage(forceUpdate: true),
             ),
@@ -69,7 +66,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
         body: Center(
           child: background == null
               ? GestureDetector(
-                  key: tutorialKey1,
+                  key: _tutorialKey1,
                   onTap: _getImage,
                   child: Icon(
                     Icons.collections,
@@ -87,7 +84,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
         floatingActionButton: background == null
             ? null
             : FloatingActionButton(
-                key: tutorialKey2b,
+                key: _tutorialKey2b,
                 onPressed: () =>
                     Navigator.of(context).pushNamed(Screen.gradientFilter.url),
                 tooltip: l10n.tooltipTextSelectImage,
@@ -130,9 +127,17 @@ class _BgImagePickerState extends State<BgImagePicker> {
     }
   }
 
+  void _showTutorial() {
+    if (!_prefs.isFinishedTutorial(Screen.imagePicker)) {
+      _initTargets1();
+      _initTargets2();
+      WidgetsBinding.instance.addPostFrameCallback(_afterLayout1);
+    }
+  }
+
   void _initTargets1() {
-    targets1.add(TutorialUtils.makeTargetFocus(
-      key: tutorialKey1,
+    _targets1.add(TutorialUtils.makeTargetFocus(
+      key: _tutorialKey1,
       title: '画像を決めよう！',
       explanation:
           // ignore: lines_longer_than_80_chars
@@ -142,22 +147,22 @@ class _BgImagePickerState extends State<BgImagePicker> {
     ));
   }
 
-  void _showTutorial1() {
-    tutorial1 = TutorialUtils.makeTutorial(
+  void _startTutorial1() {
+    _tutorial1 = TutorialUtils.makeTutorial(
       context,
-      targets: targets1,
-      colorShadow: ColorUtils.hslFromHue210.toColor(),
+      targets: _targets1,
+      colorShadow: ColorUtils.hslFromHue240.toColor(),
     )..show();
   }
 
   void _afterLayout1(dynamic _) {
-    Future.delayed(const Duration(milliseconds: 200), _showTutorial1);
+    Future.delayed(const Duration(milliseconds: 200), _startTutorial1);
   }
 
   void _initTargets2() {
-    targets2
+    _targets2
       ..add(TutorialUtils.makeTargetFocus(
-        key: tutorialKey2a,
+        key: _tutorialKey2a,
         title: '画像を変更する場合',
         explanation:
             // ignore: lines_longer_than_80_chars
@@ -165,7 +170,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
         shape: ShapeLightFocus.Circle,
       ))
       ..add(TutorialUtils.makeTargetFocus(
-        key: tutorialKey2b,
+        key: _tutorialKey2b,
         title: '画像を決定！',
         explanation:
             // ignore: lines_longer_than_80_chars
@@ -175,11 +180,12 @@ class _BgImagePickerState extends State<BgImagePicker> {
       ));
   }
 
-  void _showTutorial2() {
-    tutorial2 = TutorialUtils.makeTutorial(
+  void _startTutorial2() {
+    _tutorial2 = TutorialUtils.makeTutorial(
       context,
-      targets: targets2,
+      targets: _targets2,
       colorShadow: ColorUtils.hslFromHue270.toColor(),
+      finish: () => _prefs.finishTutorial(Screen.imagePicker),
     )..show();
   }
 }

@@ -1,18 +1,12 @@
 import 'dart:async';
 
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
-import 'package:flutter/material.dart';
-
-import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/color_utils.dart';
-import 'package:gradient_to_you/utils/tutorial_utils.dart';
-import 'package:tutorial_coach_mark/animated_focus_light.dart';
-import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+import 'package:gradient_to_you/components/write_message/input_bottom_bar/font_bar.dart';
+import 'package:gradient_to_you/components/write_message/input_bottom_bar/message_bar.dart';
+import 'package:gradient_to_you/components/write_message/input_bottom_bar/size_bar.dart';
 
 import '../../app_store.dart';
-import 'input_bottom_bar/font_bar.dart';
-import 'input_bottom_bar/message_bar.dart';
-import 'input_bottom_bar/size_bar.dart';
+import '../importer.dart';
 
 class InputBottomBar extends StatefulWidget {
   const InputBottomBar({
@@ -31,37 +25,35 @@ class InputBottomBar extends StatefulWidget {
 class _InputBottomBarState extends State<InputBottomBar> {
   int _currentIndex;
 
-  TutorialCoachMark tutorial;
-  List<TargetFocus> targets = [];
-  GlobalKey tutorialKey = GlobalKey();
+  TutorialCoachMark _tutorial;
+  final List<TargetFocus> _targets = [];
+  final GlobalKey _tutorialKey = GlobalKey();
+  final Preferences _prefs = Preferences();
 
   @override
   void initState() {
     super.initState();
     _currentIndex = 0;
 
-
-    _initTargets();
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
-
-    //TODO チュートリアル保存できるようになったら修正
-    if (false && widget.store.message == null) {
+    if (_prefs.isFinishedTutorial(Screen.writeMessage) &&
+        widget.store.message == null) {
       Timer.run(() {
         _showInputBottomBar(0);
       });
     }
+    _showTutorial();
   }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        tutorial?.hide();
+        _tutorial?.hide();
         Navigator.of(context).pop();
         return true;
       },
       child: BubbleBottomBar(
-        key: tutorialKey,
+        key: _tutorialKey,
         opacity: .2,
         currentIndex: _currentIndex,
         onTap: _changeBar,
@@ -212,10 +204,17 @@ class _InputBottomBarState extends State<InputBottomBar> {
     return null;
   }
 
+  void _showTutorial() {
+    if (!_prefs.isFinishedTutorial(Screen.writeMessage)) {
+      _initTargets();
+      WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    }
+  }
+
   void _initTargets() {
-    targets.add(
+    _targets.add(
       TargetFocus(
-        keyTarget: tutorialKey,
+        keyTarget: _tutorialKey,
         contents: [
           ContentTarget(
             align: AlignContent.top,
@@ -232,17 +231,7 @@ class _InputBottomBarState extends State<InputBottomBar> {
                       fontSize: 20,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      // ignore: lines_longer_than_80_chars
-                      'スライダーを左右に移動させると、グラデーションの濃さを調整できるよ！',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 10),
                   _TutorialItem(
                     text: 'メッセージを入力できるよ',
                     icon: Icons.message,
@@ -268,17 +257,20 @@ class _InputBottomBarState extends State<InputBottomBar> {
     );
   }
 
-  void _showTutorial() {
-    tutorial = TutorialUtils.makeTutorial(
+  void _startTutorial() {
+    _tutorial = TutorialUtils.makeTutorial(
       context,
-      targets: targets,
-      colorShadow: ColorUtils.hslFromHue120.toColor(),
-      finish: () => _showInputBottomBar(0),
+      targets: _targets,
+      colorShadow: ColorUtils.hslFromHue330.toColor(),
+      finish: () {
+        _prefs.finishTutorial(Screen.writeMessage);
+        _showInputBottomBar(0);
+      },
     )..show();
   }
 
   void _afterLayout(dynamic _) {
-    Future.delayed(const Duration(milliseconds: 200), _showTutorial);
+    Future.delayed(const Duration(milliseconds: 200), _startTutorial);
   }
 }
 

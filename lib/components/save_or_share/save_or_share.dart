@@ -2,17 +2,12 @@ import 'dart:io';
 
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:ext_storage/ext_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gradient_to_you/common/my_gradient_app_bar.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/color_utils.dart';
-import 'package:gradient_to_you/utils/tutorial_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:tutorial_coach_mark/animated_focus_light.dart';
-import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import '../../app_store.dart';
+import '../importer.dart';
 
 class SaveOrShare extends StatelessWidget {
   const SaveOrShare({Key key, @required this.store}) : super(key: key);
@@ -24,16 +19,19 @@ class SaveOrShare extends StatelessWidget {
     final l10n = L10n.of(context);
     final pngBytes = store.pngImage.buffer.asUint8List();
 
+    TutorialCoachMark tutorial;
     const tutorialKey1 = GlobalObjectKey<FormState>('__TUTORIAL1__');
     const tutorialKey2 = GlobalObjectKey<FormState>('__TUTORIAL2__');
     final targets = <TargetFocus>[];
-    TutorialCoachMark tutorial;
+    final prefs = Preferences();
 
-    _initTargets(tutorialKey1, tutorialKey2, targets: targets);
-    Future.delayed(
-      const Duration(milliseconds: 200),
-      () => tutorial = _showTutorial(context, targets),
-    );
+    if (!prefs.isFinishedTutorial(Screen.saveOrShare)) {
+      _initTargets(tutorialKey1, tutorialKey2, targets: targets);
+      Future.delayed(
+        const Duration(milliseconds: 200),
+        () => tutorial = _startTutorial(context, targets, prefs),
+      );
+    }
 
     return WillPopScope(
       onWillPop: () async {
@@ -137,12 +135,13 @@ class SaveOrShare extends StatelessWidget {
       ));
   }
 
-  TutorialCoachMark _showTutorial(
-      BuildContext context, List<TargetFocus> targets) {
+  TutorialCoachMark _startTutorial(
+      BuildContext context, List<TargetFocus> targets, Preferences prefs) {
     return TutorialUtils.makeTutorial(
       context,
       targets: targets,
-      colorShadow: ColorUtils.hslFromHue270.toColor(),
+      colorShadow: ColorUtils.hslFromHue120.toColor(),
+      finish: () => prefs.finishTutorial(Screen.saveOrShare),
     )..show();
   }
 }

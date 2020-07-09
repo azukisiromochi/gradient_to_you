@@ -1,12 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/color_utils.dart';
-import 'package:gradient_to_you/utils/screens.dart';
-import 'package:gradient_to_you/utils/tutorial_utils.dart';
-import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import '../../app_store.dart';
+import '../importer.dart';
 
 class GradientFilter extends StatefulWidget {
   const GradientFilter({Key key, @required this.store}) : super(key: key);
@@ -18,14 +13,14 @@ class GradientFilter extends StatefulWidget {
 }
 
 class _GradientFilterState extends State<GradientFilter> {
-  TutorialCoachMark tutorial;
-  List<TargetFocus> targets = [];
-  GlobalKey tutorialKey = GlobalKey();
+  TutorialCoachMark _tutorial;
+  final List<TargetFocus> _targets = [];
+  final GlobalKey _tutorialKey = GlobalKey();
+  final Preferences _prefs = Preferences();
 
   @override
   void initState() {
-    _initTargets();
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    _showTutorial();
     super.initState();
   }
 
@@ -38,30 +33,37 @@ class _GradientFilterState extends State<GradientFilter> {
 
     return Scaffold(
       appBar: ColorAppBar(store: widget.store),
-      body: Center(
-        child: Wrap(
-          direction: Axis.horizontal,
-          spacing: 8,
-          runSpacing: 4,
-          children: <Widget>[
-            ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxHeight: 400,
+      body: WillPopScope(
+        onWillPop: () async {
+          _tutorial?.hide();
+          Navigator.of(context).pop();
+          return true;
+        },
+        child: Center(
+          child: Wrap(
+            direction: Axis.horizontal,
+            spacing: 8,
+            runSpacing: 4,
+            children: <Widget>[
+              ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxHeight: 400,
+                ),
+                child: Center(child: widget.store.gradientImage),
               ),
-              child: Center(child: widget.store.gradientImage),
-            ),
-            Slider(
-              key: tutorialKey,
-              label: '${opacity.toStringAsFixed(2)}',
-              min: 0.1,
-              max: 0.9,
-              value: opacity,
-              activeColor: widget.store.baseColor,
-              inactiveColor: themeColor,
-              divisions: 80,
-              onChanged: _changeSlider,
-            ),
-          ],
+              Slider(
+                key: _tutorialKey,
+                label: '${opacity.toStringAsFixed(2)}',
+                min: 0.1,
+                max: 0.9,
+                value: opacity,
+                activeColor: widget.store.baseColor,
+                inactiveColor: themeColor,
+                divisions: 80,
+                onChanged: _changeSlider,
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -78,9 +80,16 @@ class _GradientFilterState extends State<GradientFilter> {
         widget.store.setOpacity(newValue);
       });
 
+  void _showTutorial() {
+    if (!_prefs.isFinishedTutorial(Screen.gradientFilter)) {
+      _initTargets();
+      WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    }
+  }
+
   void _initTargets() {
-    targets.add(TutorialUtils.makeTargetFocus(
-      key: tutorialKey,
+    _targets.add(TutorialUtils.makeTargetFocus(
+      key: _tutorialKey,
       title: 'グラデーションの調整',
       explanation:
           // ignore: lines_longer_than_80_chars
@@ -89,13 +98,16 @@ class _GradientFilterState extends State<GradientFilter> {
     ));
   }
 
-  void _showTutorial() => TutorialUtils.showTutorial(
-        context,
-        targets: targets,
-        colorShadow: ColorUtils.hslFromHue000.toColor(),
-      );
+  void _startTutorial() {
+    _tutorial = TutorialUtils.makeTutorial(
+      context,
+      targets: _targets,
+      colorShadow: ColorUtils.hslFromHue030.toColor(),
+      finish: () => _prefs.finishTutorial(Screen.gradientFilter),
+    )..show();
+  }
 
   void _afterLayout(dynamic _) {
-    Future.delayed(const Duration(milliseconds: 200), _showTutorial);
+    Future.delayed(const Duration(milliseconds: 200), _startTutorial);
   }
 }

@@ -1,15 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:gradient_to_you/common/my_gradient_app_bar.dart';
 import 'package:gradient_to_you/components/color_palette/side_menu.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/color_utils.dart';
-import 'package:gradient_to_you/utils/screens.dart';
-import 'package:gradient_to_you/utils/tutorial_utils.dart';
-import 'package:tutorial_coach_mark/target_focus.dart';
 
 import '../../app_store.dart';
+import '../importer.dart';
 
 class ColorPalette extends StatefulWidget {
   const ColorPalette({Key key, @required this.store}) : super(key: key);
@@ -25,13 +20,13 @@ class _ColorPaletteState extends State<ColorPalette> {
   final GlobalKey<InnerDrawerState> _innerDrawerKey =
       GlobalKey<InnerDrawerState>();
 
-  List<TargetFocus> targets = [];
-  GlobalKey tutorialKey = GlobalKey();
+  final List<TargetFocus> _targets = [];
+  final GlobalKey _tutorialKey = GlobalKey();
+  final Preferences _prefs = Preferences();
 
   @override
   void initState() {
-    _initTargets();
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    _showTutorial();
     super.initState();
   }
 
@@ -74,7 +69,7 @@ class _ColorPaletteState extends State<ColorPalette> {
               (int index) {
                 return index == 1
                     ? _Palette(
-                        key: tutorialKey, position: index, store: widget.store)
+                        key: _tutorialKey, position: index, store: widget.store)
                     : _Palette(position: index, store: widget.store);
               },
             ),
@@ -88,9 +83,16 @@ class _ColorPaletteState extends State<ColorPalette> {
     _innerDrawerKey.currentState.toggle();
   }
 
+  void _showTutorial() {
+    if (!_prefs.isFinishedTutorial(Screen.colorPalette)) {
+      _initTargets();
+      WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    }
+  }
+
   void _initTargets() {
-    targets.add(TutorialUtils.makeTargetFocus(
-      key: tutorialKey,
+    _targets.add(TutorialUtils.makeTargetFocus(
+      key: _tutorialKey,
       title: 'さあ、はじめよう！',
       explanation:
           // ignore: lines_longer_than_80_chars
@@ -98,14 +100,15 @@ class _ColorPaletteState extends State<ColorPalette> {
     ));
   }
 
-  void _showTutorial() => TutorialUtils.showTutorial(
+  void _startTutorial() => TutorialUtils.showTutorial(
         context,
-        targets: targets,
+        targets: _targets,
         colorShadow: ColorUtils.hslFromHue000.toColor(),
+        finish: () => _prefs.finishTutorial(Screen.colorPalette),
       );
 
   void _afterLayout(dynamic _) {
-    Future.delayed(const Duration(milliseconds: 200), _showTutorial);
+    Future.delayed(const Duration(milliseconds: 200), _startTutorial);
   }
 }
 

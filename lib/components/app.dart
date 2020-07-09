@@ -1,23 +1,22 @@
 import 'dart:math' show Random;
 
-import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gradient_to_you/components/bg_image_picker/bg_image_picker.dart';
 import 'package:gradient_to_you/components/color_palette/color_palette.dart';
+import 'package:gradient_to_you/components/gradient_builder/gradient_builder.dart';
+import 'package:gradient_to_you/components/gradient_filter/gradient_filter.dart';
+import 'package:gradient_to_you/components/importer.dart';
 import 'package:gradient_to_you/components/save_or_share/save_or_share.dart';
 import 'package:gradient_to_you/components/splash/splash.dart';
 import 'package:gradient_to_you/components/write_message/write_message.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/screens.dart';
 
 import '../app_store.dart';
-import 'bg_image_picker/bg_image_picker.dart';
-import 'gradient_builder/gradient_builder.dart';
-import 'gradient_filter/gradient_filter.dart';
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final store = AppStore(Random().nextInt(3) + 1);
+    Preferences();
 
     return MaterialApp(
       title: 'Gradient to you',

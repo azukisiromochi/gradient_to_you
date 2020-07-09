@@ -1,17 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
 import 'package:gradient_to_you/common/gradient_container.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/color_utils.dart';
-import 'package:gradient_to_you/utils/screens.dart';
-import 'package:gradient_to_you/utils/tutorial_utils.dart';
 import 'package:tutorial_coach_mark/animated_focus_light.dart';
 import 'package:tutorial_coach_mark/content_target.dart';
 import 'package:tutorial_coach_mark/target_focus.dart';
 import 'package:tutorial_coach_mark/target_position.dart';
-import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import '../../app_store.dart';
+import '../importer.dart';
 
 class GradientBuilder extends StatelessWidget {
   const GradientBuilder({Key key, @required this.store}) : super(key: key);
@@ -48,13 +43,13 @@ class GradientBody extends StatefulWidget {
 }
 
 class _GradientBodyState extends State<GradientBody> {
-  TutorialCoachMark tutorial;
-  List<TargetFocus> targets = [];
+  TutorialCoachMark _tutorial;
+  final List<TargetFocus> _targets = [];
+  final Preferences _prefs = Preferences();
 
   @override
   void initState() {
-    _initTargets();
-    WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    _showTutorial();
     super.initState();
   }
 
@@ -70,7 +65,7 @@ class _GradientBodyState extends State<GradientBody> {
 
     return WillPopScope(
       onWillPop: () async {
-        tutorial?.hide();
+        _tutorial?.hide();
         Navigator.of(context).pop();
         return true;
       },
@@ -91,9 +86,16 @@ class _GradientBodyState extends State<GradientBody> {
     );
   }
 
+  void _showTutorial() {
+    if (!_prefs.isFinishedTutorial(Screen.gradientBuilder)) {
+      _initTargets();
+      WidgetsBinding.instance.addPostFrameCallback(_afterLayout);
+    }
+  }
+
   void _initTargets() {
     final target = TargetPosition(const Size(100, 100), const Offset(150, 400));
-    targets.add(TutorialUtils.makeTargetFocus(
+    _targets.add(TutorialUtils.makeTargetFocus(
       targetPosition: target,
       title: 'グラデーションを決めよう！',
       explanation:
@@ -104,15 +106,16 @@ class _GradientBodyState extends State<GradientBody> {
     ));
   }
 
-  void _showTutorial() {
-    tutorial = TutorialUtils.makeTutorial(
+  void _startTutorial() {
+    _tutorial = TutorialUtils.makeTutorial(
       context,
-      targets: targets,
-      colorShadow: ColorUtils.hslFromHue120.toColor(),
+      targets: _targets,
+      colorShadow: ColorUtils.hslFromHue150.toColor(),
+      finish: () => _prefs.finishTutorial(Screen.gradientBuilder),
     )..show();
   }
 
   void _afterLayout(dynamic _) {
-    Future.delayed(const Duration(milliseconds: 200), _showTutorial);
+    Future.delayed(const Duration(milliseconds: 200), _startTutorial);
   }
 }

@@ -50,8 +50,13 @@ class TutorialUtils {
   }
 
   static void showTutorial(BuildContext context,
-      {List<TargetFocus> targets, Color colorShadow}) {
-    makeTutorial(context, targets: targets, colorShadow: colorShadow).show();
+      {List<TargetFocus> targets, Color colorShadow, Function() finish}) {
+    makeTutorial(
+      context,
+      targets: targets,
+      colorShadow: colorShadow,
+      finish: finish,
+    ).show();
   }
 
   static TutorialCoachMark makeTutorial(BuildContext context,

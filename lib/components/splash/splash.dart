@@ -1,13 +1,10 @@
 import 'dart:async' show Future;
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/gradient_container.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/app_theme_utils.dart';
-import 'package:gradient_to_you/utils/screens.dart';
 import 'package:progressive_image/progressive_image.dart';
 
 import '../../app_store.dart';
+import '../importer.dart';
 
 class Splash extends StatelessWidget {
   const Splash({Key key, @required this.store}) : super(key: key);

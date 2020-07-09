@@ -1,13 +1,11 @@
 import 'dart:ui' as ui;
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gradient_to_you/common/color_app_bar.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
-import 'package:gradient_to_you/utils/screens.dart';
+import 'package:gradient_to_you/components/write_message/input_bottom_bar.dart';
+import 'package:gradient_to_you/components/write_message/message.dart';
 
 import '../../app_store.dart';
-import 'input_bottom_bar.dart';
-import 'message.dart';
+import '../importer.dart';
 
 class WriteMessage extends StatelessWidget {
   const WriteMessage({Key key, @required this.store}) : super(key: key);
