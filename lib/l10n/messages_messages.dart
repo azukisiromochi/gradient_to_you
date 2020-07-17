@@ -45,6 +45,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "toastSave" : MessageLookupByLibrary.simpleMessage("Image saved !"),
     "tooltipTextSelectGradient" : MessageLookupByLibrary.simpleMessage("Select gradient"),
     "tooltipTextSelectImage" : MessageLookupByLibrary.simpleMessage("Select image"),
-    "tooltipTextSetFilter" : MessageLookupByLibrary.simpleMessage("Set filter")
+    "tooltipTextSetFilter" : MessageLookupByLibrary.simpleMessage("Set filter"),
+    "tutorialExplanation1ForImagePicker" : MessageLookupByLibrary.simpleMessage("A list of images stored on your device is displayed.\nSelect your favorite image!"),
+    "tutorialExplanation1ForSaveOrShare" : MessageLookupByLibrary.simpleMessage("Click this button if you save to your device."),
+    "tutorialExplanation1ForWriteMessage" : MessageLookupByLibrary.simpleMessage("You can enter a message."),
+    "tutorialExplanation2ForSaveOrShare" : MessageLookupByLibrary.simpleMessage("Click this button if you want to share."),
+    "tutorialExplanation2ForWriteMessage" : MessageLookupByLibrary.simpleMessage("You can change the font size and the inclination of the characters."),
+    "tutorialExplanation2aForImagePicker" : MessageLookupByLibrary.simpleMessage("You can select the image again from the button on the top right!"),
+    "tutorialExplanation2bForImagePicker" : MessageLookupByLibrary.simpleMessage("Let\'s overlay a gradation when the image is decided!"),
+    "tutorialExplanation3ForWriteMessage" : MessageLookupByLibrary.simpleMessage("You can change the font family and font color."),
+    "tutorialExplanationForColorPalette" : MessageLookupByLibrary.simpleMessage("\"Gradient to you\" is an application that sends a message by colorizing photos and illustrations.\nFirst, let\'s choose the main color!"),
+    "tutorialExplanationForGradientBuilder" : MessageLookupByLibrary.simpleMessage("Tap the screen to create a gradient using the main colors.\nTap until you find the gradient you like! Tap!! Tap!!!"),
+    "tutorialExplanationForGradientFilter" : MessageLookupByLibrary.simpleMessage("You can adjust the gradation by moving the slider left or right!"),
+    "tutorialTitle1ForImagePicker" : MessageLookupByLibrary.simpleMessage("Let\'s decide the image!"),
+    "tutorialTitle1ForSaveOrShare" : MessageLookupByLibrary.simpleMessage("Congratulations!"),
+    "tutorialTitle2ForSaveOrShare" : MessageLookupByLibrary.simpleMessage("Congratulations!"),
+    "tutorialTitle2aForImagePicker" : MessageLookupByLibrary.simpleMessage("When changing the image."),
+    "tutorialTitle2bForImagePicker" : MessageLookupByLibrary.simpleMessage("Determine the image!"),
+    "tutorialTitleForColorPalette" : MessageLookupByLibrary.simpleMessage("Let\'s start!"),
+    "tutorialTitleForGradientBuilder" : MessageLookupByLibrary.simpleMessage("Let\'s decide the gradient!"),
+    "tutorialTitleForGradientFilter" : MessageLookupByLibrary.simpleMessage("Adjust the gradient."),
+    "tutorialTitleForWriteMessage" : MessageLookupByLibrary.simpleMessage("Let\'s write a message!")
   };
 }

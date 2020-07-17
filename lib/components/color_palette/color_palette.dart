@@ -32,7 +32,7 @@ class _ColorPaletteState extends State<ColorPalette> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = widget.store.l10n;
 
     return InnerDrawer(
       key: _innerDrawerKey,
@@ -93,10 +93,8 @@ class _ColorPaletteState extends State<ColorPalette> {
   void _initTargets() {
     _targets.add(TutorialUtils.makeTargetFocus(
       key: _tutorialKey,
-      title: 'さあ、はじめよう！',
-      explanation:
-          // ignore: lines_longer_than_80_chars
-          'Gradation to you は写真やイラストをグラデーションで彩り、メッセージを送るためのアプリです。\nまずはメインのカラーを選んでみよう！',
+      title: widget.store.l10n.tutorialTitleForColorPalette,
+      explanation: widget.store.l10n.tutorialExplanationForColorPalette,
     ));
   }
 

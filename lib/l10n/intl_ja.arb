@@ -1,6 +1,6 @@
 {
   "@@locale": "ja",
-  "@@last_modified": "2020-05-21T10:56:25.472265",
+  "@@last_modified": "2020-07-16T19:12:41.655188",
   "appName": "Gradation to you",
   "@appName": {
     "description": "The name of this application",
@@ -124,6 +124,106 @@
   },
   "buttonShare": "共有",
   "@buttonShare": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitleForColorPalette": "さあ、はじめよう！",
+  "@tutorialTitleForColorPalette": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanationForColorPalette": "Gradation to you は写真やイラストをグラデーションで彩り、メッセージを送るためのアプリです。\nまずはメインのカラーを選んでみよう！",
+  "@tutorialExplanationForColorPalette": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitleForGradientBuilder": "グラデーションを決めよう！",
+  "@tutorialTitleForGradientBuilder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanationForGradientBuilder": "画面をタップするとメインのカラーを利用したグラデーションが作成されます。\nお気に入りのグラデーションが見つかるまで、タップ！タップ！！タップ！！！",
+  "@tutorialExplanationForGradientBuilder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitle1ForImagePicker": "画像を決めよう！",
+  "@tutorialTitle1ForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation1ForImagePicker": "端末に保存されている画像の一覧が表示されます。\\nお気に入りの画像を選択しよう！",
+  "@tutorialExplanation1ForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitle2aForImagePicker": "画像を変更する場合",
+  "@tutorialTitle2aForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation2aForImagePicker": "右上のボタンからもう一度画像を選択できるよ！",
+  "@tutorialExplanation2aForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitle2bForImagePicker": "画像を決定！",
+  "@tutorialTitle2bForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation2bForImagePicker": "画像が決まったらグラデーションを重ねてみよう！",
+  "@tutorialExplanation2bForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitleForGradientFilter": "グラデーションの調整",
+  "@tutorialTitleForGradientFilter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanationForGradientFilter": "スライダーを左右に移動させると、グラデーションの濃さを調整できるよ！",
+  "@tutorialExplanationForGradientFilter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitleForWriteMessage": "メッセージを書こう！",
+  "@tutorialTitleForWriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation1ForWriteMessage": "メッセージを入力できるよ",
+  "@tutorialExplanation1ForWriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation2ForWriteMessage": "フォントサイズや文字の傾きを変更できるよ",
+  "@tutorialExplanation2ForWriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation3ForWriteMessage": "フォントやフォントカラーを変更できるよ",
+  "@tutorialExplanation3ForWriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitle1ForSaveOrShare": "おめでとうございます！",
+  "@tutorialTitle1ForSaveOrShare": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation1ForSaveOrShare": "デバイスに保存したい場合はこちらのボタンから",
+  "@tutorialExplanation1ForSaveOrShare": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitle2ForSaveOrShare": "おめでとうございます！",
+  "@tutorialTitle2ForSaveOrShare": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation2ForSaveOrShare": "シェアしたい場合はこちらのボタンから",
+  "@tutorialExplanation2ForSaveOrShare": {
     "type": "text",
     "placeholders": {}
   }

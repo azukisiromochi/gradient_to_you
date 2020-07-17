@@ -166,4 +166,109 @@ class L10n {
         'Share',
         name: 'buttonShare',
       );
+
+  /// ↓↓↓ Use with Tutorial ↓↓↓
+
+  String get tutorialTitleForColorPalette => Intl.message(
+        "Let's start!",
+        name: 'tutorialTitleForColorPalette',
+      );
+
+  String get tutorialExplanationForColorPalette => Intl.message(
+        // ignore: lines_longer_than_80_chars
+        '"Gradient to you" is an application that sends a message by colorizing photos and illustrations.\nFirst, let\'s choose the main color!',
+        name: 'tutorialExplanationForColorPalette',
+      );
+
+  String get tutorialTitleForGradientBuilder => Intl.message(
+        "Let's decide the gradient!",
+        name: 'tutorialTitleForGradientBuilder',
+      );
+
+  String get tutorialExplanationForGradientBuilder => Intl.message(
+        // ignore: lines_longer_than_80_chars
+        'Tap the screen to create a gradient using the main colors.\nTap until you find the gradient you like! Tap!! Tap!!!',
+        name: 'tutorialExplanationForGradientBuilder',
+      );
+
+  String get tutorialTitle1ForImagePicker => Intl.message(
+        "Let's decide the image!",
+        name: 'tutorialTitle1ForImagePicker',
+      );
+
+  String get tutorialExplanation1ForImagePicker => Intl.message(
+        // ignore: lines_longer_than_80_chars
+        'A list of images stored on your device is displayed.\nSelect your favorite image!',
+        name: 'tutorialExplanation1ForImagePicker',
+      );
+
+  String get tutorialTitle2aForImagePicker => Intl.message(
+        'When changing the image.',
+        name: 'tutorialTitle2aForImagePicker',
+      );
+
+  String get tutorialExplanation2aForImagePicker => Intl.message(
+        'You can select the image again from the button on the top right!',
+        name: 'tutorialExplanation2aForImagePicker',
+      );
+
+  String get tutorialTitle2bForImagePicker => Intl.message(
+        'Determine the image!',
+        name: 'tutorialTitle2bForImagePicker',
+      );
+
+  String get tutorialExplanation2bForImagePicker => Intl.message(
+        "Let's overlay a gradation when the image is decided!",
+        name: 'tutorialExplanation2bForImagePicker',
+      );
+
+  String get tutorialTitleForGradientFilter => Intl.message(
+        'Adjust the gradient.',
+        name: 'tutorialTitleForGradientFilter',
+      );
+
+  String get tutorialExplanationForGradientFilter => Intl.message(
+        'You can adjust the gradation by moving the slider left or right!',
+        name: 'tutorialExplanationForGradientFilter',
+      );
+
+  String get tutorialTitleForWriteMessage => Intl.message(
+    "Let's write a message!",
+    name: 'tutorialTitleForWriteMessage',
+  );
+
+  String get tutorialExplanation1ForWriteMessage => Intl.message(
+    'You can enter a message.',
+    name: 'tutorialExplanation1ForWriteMessage',
+  );
+
+  String get tutorialExplanation2ForWriteMessage => Intl.message(
+    'You can change the font size and the inclination of the characters.',
+    name: 'tutorialExplanation2ForWriteMessage',
+  );
+
+  String get tutorialExplanation3ForWriteMessage => Intl.message(
+    'You can change the font family and font color.',
+    name: 'tutorialExplanation3ForWriteMessage',
+  );
+
+  String get tutorialTitle1ForSaveOrShare => Intl.message(
+    'Congratulations!',
+    name: 'tutorialTitle1ForSaveOrShare',
+  );
+
+  String get tutorialExplanation1ForSaveOrShare => Intl.message(
+    'Click this button if you save to your device.',
+    name: 'tutorialExplanation1ForSaveOrShare',
+  );
+
+  String get tutorialTitle2ForSaveOrShare => Intl.message(
+    'Congratulations!',
+    name: 'tutorialTitle2ForSaveOrShare',
+  );
+
+  String get tutorialExplanation2ForSaveOrShare => Intl.message(
+    'Click this button if you want to share.',
+    name: 'tutorialExplanation2ForSaveOrShare',
+  );
 }

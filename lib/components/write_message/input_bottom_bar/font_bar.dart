@@ -53,7 +53,7 @@ class _FontFamilyDropdownState extends State<_FontFamilyDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = widget.store.l10n;
 
     return FormField<String>(
       builder: (FormFieldState<String> state) {
@@ -85,7 +85,7 @@ class _FontFamilyDropdownState extends State<_FontFamilyDropdown> {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(
-                      _convertToDisplayName(l10n, value),
+                      _convertToDisplayName(value),
 //                    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
@@ -101,15 +101,15 @@ class _FontFamilyDropdownState extends State<_FontFamilyDropdown> {
     );
   }
 
-  String _convertToDisplayName(L10n l10n, String fontFamily) {
+  String _convertToDisplayName(String fontFamily) {
     if (fontFamily == 'Sawarabi Gothic') {
-      return l10n.googleFontsSawarabiGothic;
+      return widget.store.l10n.googleFontsSawarabiGothic;
     }
     if (fontFamily == 'Noto Serif JP') {
-      return l10n.googleFontsNotoSerifJP;
+      return widget.store.l10n.googleFontsNotoSerifJP;
     }
     if (fontFamily == 'Kosugi Maru') {
-      return l10n.googleFontsKosugiMaru;
+      return widget.store.l10n.googleFontsKosugiMaru;
     }
     return fontFamily;
   }

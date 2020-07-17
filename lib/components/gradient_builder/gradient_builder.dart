@@ -15,7 +15,7 @@ class GradientBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = store.l10n;
 
     final themeColor = store.baseTextColor;
 
@@ -97,10 +97,8 @@ class _GradientBodyState extends State<GradientBody> {
     final target = TargetPosition(const Size(100, 100), const Offset(150, 400));
     _targets.add(TutorialUtils.makeTargetFocus(
       targetPosition: target,
-      title: 'グラデーションを決めよう！',
-      explanation:
-          // ignore: lines_longer_than_80_chars
-          '画面をタップするとメインのカラーを利用したグラデーションが作成されます。\nお気に入りのグラデーションが見つかるまで、タップ！タップ！！タップ！！！',
+      title: widget.store.l10n.tutorialTitleForGradientBuilder,
+      explanation: widget.store.l10n.tutorialExplanationForGradientBuilder,
       align: AlignContent.top,
       shape: ShapeLightFocus.Circle,
     ));

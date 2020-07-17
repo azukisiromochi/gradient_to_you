@@ -45,6 +45,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "toastSave" : MessageLookupByLibrary.simpleMessage("画像を保存しました！"),
     "tooltipTextSelectGradient" : MessageLookupByLibrary.simpleMessage("グラデーションを決定"),
     "tooltipTextSelectImage" : MessageLookupByLibrary.simpleMessage("画像を決定"),
-    "tooltipTextSetFilter" : MessageLookupByLibrary.simpleMessage("フィルターを設定")
+    "tooltipTextSetFilter" : MessageLookupByLibrary.simpleMessage("フィルターを設定"),
+    "tutorialExplanation1ForImagePicker" : MessageLookupByLibrary.simpleMessage("端末に保存されている画像の一覧が表示されます。\\nお気に入りの画像を選択しよう！"),
+    "tutorialExplanation1ForSaveOrShare" : MessageLookupByLibrary.simpleMessage("デバイスに保存したい場合はこちらのボタンから"),
+    "tutorialExplanation1ForWriteMessage" : MessageLookupByLibrary.simpleMessage("メッセージを入力できるよ"),
+    "tutorialExplanation2ForSaveOrShare" : MessageLookupByLibrary.simpleMessage("シェアしたい場合はこちらのボタンから"),
+    "tutorialExplanation2ForWriteMessage" : MessageLookupByLibrary.simpleMessage("フォントサイズや文字の傾きを変更できるよ"),
+    "tutorialExplanation2aForImagePicker" : MessageLookupByLibrary.simpleMessage("右上のボタンからもう一度画像を選択できるよ！"),
+    "tutorialExplanation2bForImagePicker" : MessageLookupByLibrary.simpleMessage("画像が決まったらグラデーションを重ねてみよう！"),
+    "tutorialExplanation3ForWriteMessage" : MessageLookupByLibrary.simpleMessage("フォントやフォントカラーを変更できるよ"),
+    "tutorialExplanationForColorPalette" : MessageLookupByLibrary.simpleMessage("Gradation to you は写真やイラストをグラデーションで彩り、メッセージを送るためのアプリです。\nまずはメインのカラーを選んでみよう！"),
+    "tutorialExplanationForGradientBuilder" : MessageLookupByLibrary.simpleMessage("画面をタップするとメインのカラーを利用したグラデーションが作成されます。\nお気に入りのグラデーションが見つかるまで、タップ！タップ！！タップ！！！"),
+    "tutorialExplanationForGradientFilter" : MessageLookupByLibrary.simpleMessage("スライダーを左右に移動させると、グラデーションの濃さを調整できるよ！"),
+    "tutorialTitle1ForImagePicker" : MessageLookupByLibrary.simpleMessage("画像を決めよう！"),
+    "tutorialTitle1ForSaveOrShare" : MessageLookupByLibrary.simpleMessage("おめでとうございます！"),
+    "tutorialTitle2ForSaveOrShare" : MessageLookupByLibrary.simpleMessage("おめでとうございます！"),
+    "tutorialTitle2aForImagePicker" : MessageLookupByLibrary.simpleMessage("画像を変更する場合"),
+    "tutorialTitle2bForImagePicker" : MessageLookupByLibrary.simpleMessage("画像を決定！"),
+    "tutorialTitleForColorPalette" : MessageLookupByLibrary.simpleMessage("さあ、はじめよう！"),
+    "tutorialTitleForGradientBuilder" : MessageLookupByLibrary.simpleMessage("グラデーションを決めよう！"),
+    "tutorialTitleForGradientFilter" : MessageLookupByLibrary.simpleMessage("グラデーションの調整"),
+    "tutorialTitleForWriteMessage" : MessageLookupByLibrary.simpleMessage("メッセージを書こう！")
   };
 }

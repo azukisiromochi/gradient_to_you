@@ -14,7 +14,6 @@ class WriteMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
     final globalKey = GlobalKey();
     final themeColor = store.baseTextColor;
 
@@ -48,12 +47,12 @@ class WriteMessage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _exportToImage(globalKey).then(
             (_) => Navigator.of(context).pushNamed(Screen.saveOrShare.url)),
-        tooltip: l10n.tooltipTextSetFilter,
+        tooltip: store.l10n.tooltipTextSetFilter,
         backgroundColor: store.baseColor,
         child: Icon(Icons.check, color: themeColor),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      bottomNavigationBar: InputBottomBar(store: store, l10n: l10n),
+      bottomNavigationBar: InputBottomBar(store: store),
     );
   }
 

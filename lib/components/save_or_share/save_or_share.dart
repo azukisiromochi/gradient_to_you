@@ -16,7 +16,7 @@ class SaveOrShare extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = store.l10n;
     final pngBytes = store.pngImage.buffer.asUint8List();
 
     TutorialCoachMark tutorial;
@@ -117,19 +117,15 @@ class SaveOrShare extends StatelessWidget {
     targets
       ..add(TutorialUtils.makeTargetFocus(
         key: tutorialKey1,
-        title: 'おめでとうございます！',
-        explanation:
-            // ignore: lines_longer_than_80_chars
-            'デバイスに保存したい場合はこちらのボタンから',
+        title: store.l10n.tutorialTitle1ForSaveOrShare,
+        explanation: store.l10n.tutorialExplanation1ForSaveOrShare,
         align: AlignContent.top,
         shape: ShapeLightFocus.Circle,
       ))
       ..add(TutorialUtils.makeTargetFocus(
         key: tutorialKey2,
-        title: 'おめでとうございます！',
-        explanation:
-            // ignore: lines_longer_than_80_chars
-            'シェアしたい場合はこちらのボタンから',
+        title: store.l10n.tutorialTitle2ForSaveOrShare,
+        explanation: store.l10n.tutorialExplanation2ForSaveOrShare,
         align: AlignContent.top,
         shape: ShapeLightFocus.Circle,
       ));

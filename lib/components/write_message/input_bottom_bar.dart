@@ -12,14 +12,12 @@ class InputBottomBar extends StatefulWidget {
   const InputBottomBar({
     Key key,
     @required this.store,
-    @required this.l10n,
   }) : super(key: key);
 
   @override
   _InputBottomBarState createState() => _InputBottomBarState();
 
   final AppStore store;
-  final L10n l10n;
 }
 
 class _InputBottomBarState extends State<InputBottomBar> {
@@ -162,19 +160,19 @@ class _InputBottomBarState extends State<InputBottomBar> {
     switch (index) {
       case 0:
         {
-          return widget.l10n.bottomBarTitleMessage;
+          return widget.store.l10n.bottomBarTitleMessage;
         }
         break;
 
       case 1:
         {
-          return widget.l10n.bottomBarTitleSize;
+          return widget.store.l10n.bottomBarTitleSize;
         }
         break;
 
       case 2:
         {
-          return widget.l10n.bottomBarTitleFormat;
+          return widget.store.l10n.bottomBarTitleFormat;
         }
         break;
     }
@@ -224,7 +222,7 @@ class _InputBottomBarState extends State<InputBottomBar> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'メッセージを書こう！',
+                    widget.store.l10n.tutorialTitleForWriteMessage,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -233,17 +231,17 @@ class _InputBottomBarState extends State<InputBottomBar> {
                   ),
                   const SizedBox(height: 10),
                   _TutorialItem(
-                    text: 'メッセージを入力できるよ',
+                    text: widget.store.l10n.tutorialExplanation1ForWriteMessage,
                     icon: Icons.message,
                   ),
                   const SizedBox(height: 10),
                   _TutorialItem(
-                    text: 'フォントサイズや文字の傾きを変更できるよ',
+                    text: widget.store.l10n.tutorialExplanation2ForWriteMessage,
                     icon: Icons.format_size,
                   ),
                   const SizedBox(height: 10),
                   _TutorialItem(
-                    text: 'フォントやフォントカラーを変更できるよ',
+                    text: widget.store.l10n.tutorialExplanation3ForWriteMessage,
                     icon: Icons.text_format,
                   ),
                   const SizedBox(height: 40),

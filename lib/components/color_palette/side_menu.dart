@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gradient_to_you/common/app_icon.dart';
 import 'package:gradient_to_you/common/app_name.dart';
 import 'package:gradient_to_you/common/gradient_container.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
 
 import '../../app_store.dart';
 
@@ -13,7 +12,7 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = store.l10n;
 
     return GradientContainer(
       store: store,

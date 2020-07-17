@@ -14,6 +14,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
+    store.setL10n(l10n);
 
     Future<void>.delayed(const Duration(seconds: 3)).then((_) =>
         {Navigator.of(context).pushReplacementNamed(Screen.colorPalette.url)});

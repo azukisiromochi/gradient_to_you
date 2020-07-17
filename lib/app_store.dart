@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:gradient_to_you/l10n/l10n.dart';
 import 'package:mobx/mobx.dart';
 import 'package:gradient_to_you/utils/app_theme_utils.dart';
 
@@ -19,6 +20,9 @@ class AppStore = _AppStore with _$AppStore;
 abstract class _AppStore with Store {
   _AppStore(this.themeNo)
       : gradientColors = AppThemeUtils.gradientColors(themeNo);
+
+  @observable
+  L10n l10n;
 
   @observable
   int themeNo;
@@ -70,6 +74,12 @@ abstract class _AppStore with Store {
 
   @observable
   ByteData pngImage;
+
+  // ignore: use_setters_to_change_properties
+  @action
+  void setL10n(L10n value) {
+    l10n = value;
+  }
 
   // ignore: use_setters_to_change_properties
   @action

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_to_you/app_store.dart';
 import 'package:gradient_to_you/common/input_item.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
 
 class MessageBar extends StatefulWidget {
   const MessageBar({
@@ -32,7 +31,7 @@ class _MessageBarState extends State<MessageBar> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = widget.store.l10n;
     final textFieldHeight = MediaQuery.of(context).viewInsets.bottom;
 
     return Padding(
@@ -89,13 +88,11 @@ class _MessageTextFieldState extends State<MessageTextField> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
-
     return TextField(
       controller: _controller,
       autofocus: true,
       decoration: InputDecoration(
-        labelText: l10n.hintText,
+        labelText: widget.store.l10n.hintText,
 //        hintText: l10n.hintText,
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: widget.store.baseColor),

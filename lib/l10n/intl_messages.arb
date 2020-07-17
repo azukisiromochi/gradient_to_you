@@ -1,6 +1,6 @@
 {
   "@@locale": "messages",
-  "@@last_modified": "2020-05-21T10:56:25.472265",
+  "@@last_modified": "2020-07-17T19:24:11.116345",
   "appName": "Gradient to you",
   "@appName": {
     "type": "text",
@@ -123,6 +123,106 @@
   },
   "buttonShare": "Share",
   "@buttonShare": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitleForColorPalette": "Let's start!",
+  "@tutorialTitleForColorPalette": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanationForColorPalette": "\"Gradient to you\" is an application that sends a message by colorizing photos and illustrations.\nFirst, let's choose the main color!",
+  "@tutorialExplanationForColorPalette": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitleForGradientBuilder": "Let's decide the gradient!",
+  "@tutorialTitleForGradientBuilder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanationForGradientBuilder": "Tap the screen to create a gradient using the main colors.\nTap until you find the gradient you like! Tap!! Tap!!!",
+  "@tutorialExplanationForGradientBuilder": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitle1ForImagePicker": "Let's decide the image!",
+  "@tutorialTitle1ForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation1ForImagePicker": "A list of images stored on your device is displayed.\nSelect your favorite image!",
+  "@tutorialExplanation1ForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitle2aForImagePicker": "When changing the image.",
+  "@tutorialTitle2aForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation2aForImagePicker": "You can select the image again from the button on the top right!",
+  "@tutorialExplanation2aForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitle2bForImagePicker": "Determine the image!",
+  "@tutorialTitle2bForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation2bForImagePicker": "Let's overlay a gradation when the image is decided!",
+  "@tutorialExplanation2bForImagePicker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitleForGradientFilter": "Adjust the gradient.",
+  "@tutorialTitleForGradientFilter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanationForGradientFilter": "You can adjust the gradation by moving the slider left or right!",
+  "@tutorialExplanationForGradientFilter": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitleForWriteMessage": "Let's write a message!",
+  "@tutorialTitleForWriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation1ForWriteMessage": "You can enter a message.",
+  "@tutorialExplanation1ForWriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation2ForWriteMessage": "You can change the font size and the inclination of the characters.",
+  "@tutorialExplanation2ForWriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation3ForWriteMessage": "You can change the font family and font color.",
+  "@tutorialExplanation3ForWriteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitle1ForSaveOrShare": "Congratulations!",
+  "@tutorialTitle1ForSaveOrShare": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation1ForSaveOrShare": "Click this button if you save to your device.",
+  "@tutorialExplanation1ForSaveOrShare": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialTitle2ForSaveOrShare": "Congratulations!",
+  "@tutorialTitle2ForSaveOrShare": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tutorialExplanation2ForSaveOrShare": "Click this button if you want to share.",
+  "@tutorialExplanation2ForSaveOrShare": {
     "type": "text",
     "placeholders": {}
   }

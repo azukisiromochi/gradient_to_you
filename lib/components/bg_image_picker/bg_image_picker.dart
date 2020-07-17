@@ -36,7 +36,7 @@ class _BgImagePickerState extends State<BgImagePicker> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = widget.store.l10n;
 
     final background = widget.store.bgImage;
     final themeColor = widget.store.baseTextColor;
@@ -138,10 +138,8 @@ class _BgImagePickerState extends State<BgImagePicker> {
   void _initTargets1() {
     _targets1.add(TutorialUtils.makeTargetFocus(
       key: _tutorialKey1,
-      title: '画像を決めよう！',
-      explanation:
-          // ignore: lines_longer_than_80_chars
-          '端末に保存されている画像の一覧が表示されます。\nお気に入りの画像を選択しよう！',
+      title: widget.store.l10n.tutorialTitle1ForImagePicker,
+      explanation: widget.store.l10n.tutorialExplanation1ForImagePicker,
       align: AlignContent.top,
       shape: ShapeLightFocus.Circle,
     ));
@@ -163,18 +161,14 @@ class _BgImagePickerState extends State<BgImagePicker> {
     _targets2
       ..add(TutorialUtils.makeTargetFocus(
         key: _tutorialKey2a,
-        title: '画像を変更する場合',
-        explanation:
-            // ignore: lines_longer_than_80_chars
-            '画像を変更したい場合は、右上のボタンからもう一度画像を選択できるよ！',
+        title: widget.store.l10n.tutorialTitle2aForImagePicker,
+        explanation: widget.store.l10n.tutorialExplanation2aForImagePicker,
         shape: ShapeLightFocus.Circle,
       ))
       ..add(TutorialUtils.makeTargetFocus(
         key: _tutorialKey2b,
-        title: '画像を決定！',
-        explanation:
-            // ignore: lines_longer_than_80_chars
-            '画像が決まったらグラデーションを重ねてみよう！',
+        title: widget.store.l10n.tutorialTitle2bForImagePicker,
+        explanation: widget.store.l10n.tutorialExplanation2bForImagePicker,
         align: AlignContent.top,
         shape: ShapeLightFocus.Circle,
       ));

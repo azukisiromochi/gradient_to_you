@@ -90,10 +90,8 @@ class _GradientFilterState extends State<GradientFilter> {
   void _initTargets() {
     _targets.add(TutorialUtils.makeTargetFocus(
       key: _tutorialKey,
-      title: 'グラデーションの調整',
-      explanation:
-          // ignore: lines_longer_than_80_chars
-          'スライダーを左右に移動させると、グラデーションの濃さを調整できるよ！',
+      title: widget.store.l10n.tutorialTitleForGradientFilter,
+      explanation: widget.store.l10n.tutorialExplanationForGradientFilter,
       align: AlignContent.top,
     ));
   }

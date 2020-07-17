@@ -1,7 +1,6 @@
 import 'package:angles/angles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:gradient_to_you/l10n/l10n.dart';
 import 'file:///C:/Users/kuramoto/Documents/workspace/github.com/azukisiromochi/gradient_to_you/lib/common/size_listenable_container.dart';
 import 'package:mobx/mobx.dart';
 
@@ -52,7 +51,7 @@ class _MessageState extends State<Message> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = widget.store.l10n;
 
     _message = widget.store.message ?? l10n.messageDefault;
     _offset = widget.store.offset ?? const Offset(80, 180);
