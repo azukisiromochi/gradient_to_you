@@ -35,7 +35,7 @@ class TutorialUtils {
                   padding: const EdgeInsets.only(top: 10),
                   child: Text(
                     explanation,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),
@@ -66,6 +66,7 @@ class TutorialUtils {
       context,
       targets: targets,
       colorShadow: colorShadow ?? Colors.black,
+      alignSkip: Alignment.topLeft,
       paddingFocus: 10,
       opacityShadow: 0.8,
       finish: finish,
