@@ -46,7 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tooltipTextSelectGradient" : MessageLookupByLibrary.simpleMessage("グラデーションを決定"),
     "tooltipTextSelectImage" : MessageLookupByLibrary.simpleMessage("画像を決定"),
     "tooltipTextSetFilter" : MessageLookupByLibrary.simpleMessage("フィルターを設定"),
-    "tutorialExplanation1ForImagePicker" : MessageLookupByLibrary.simpleMessage("端末に保存されている画像の一覧が表示されます。\\nお気に入りの画像を選択しよう！"),
+    "tutorialExplanation1ForImagePicker" : MessageLookupByLibrary.simpleMessage("端末に保存されている画像の一覧が表示されます。\nお気に入りの画像を選択しよう！"),
     "tutorialExplanation1ForSaveOrShare" : MessageLookupByLibrary.simpleMessage("デバイスに保存したい場合はこちらのボタンから"),
     "tutorialExplanation1ForWriteMessage" : MessageLookupByLibrary.simpleMessage("メッセージを入力できるよ"),
     "tutorialExplanation2ForSaveOrShare" : MessageLookupByLibrary.simpleMessage("シェアしたい場合はこちらのボタンから"),
