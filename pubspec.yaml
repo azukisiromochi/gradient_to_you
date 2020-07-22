@@ -87,6 +87,9 @@ dependencies:
   # https://pub.dev/packages/shared_preferences
   shared_preferences: ^0.5.8
 
+  # https://pub.dev/packages/flutter_native_splash
+  flutter_native_splash: ^0.1.9
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -157,3 +160,9 @@ flutter_icons:
   image_path: "assets/icon/icon.png"
   adaptive_icon_background: "assets/icon/background.png"
   adaptive_icon_foreground: "assets/icon/foreground.png"
+
+flutter_native_splash:
+  image: assets/images/load.png
+  color: "#ffffff"
+  android_disable_fullscreen: true
+  ios: false
