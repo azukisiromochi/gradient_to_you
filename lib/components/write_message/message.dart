@@ -110,7 +110,7 @@ class _MessageState extends State<Message> {
   double _calcRotatedWidth(double x, double y, double degrees) {
     var angle = Angle.fromDegrees(degrees);
     final w = x * angle.cos + y * angle.sin;
-    if (w > 0) {
+    if (w >= 0) {
       return w;
     }
     angle = Angle.fromDegrees(degrees - 180);
@@ -120,7 +120,7 @@ class _MessageState extends State<Message> {
   double _calcRotatedHeight(double x, double y, double degrees) {
     var angle = Angle.fromDegrees(degrees);
     final h = x * angle.sin + y * angle.cos;
-    if (h > 0) {
+    if (h >= 0) {
       return h;
     }
     angle = Angle.fromDegrees(degrees - 180);
