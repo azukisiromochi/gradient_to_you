@@ -49,59 +49,12 @@ class _MessageBarState extends State<MessageBar> {
               borderSide: BorderSide(color: widget.store.baseColor),
             ),
           ),
-          keyboardType: TextInputType.multiline,
-          maxLines: 3,
-          minLines: 1,
+//          keyboardType: TextInputType.multiline,
+//          maxLines: 3,
+//          minLines: 1,
           onChanged: widget.store.setMessage,
         ),
       ),
-    );
-  }
-}
-
-class MessageTextField extends StatefulWidget {
-  const MessageTextField({
-    Key key,
-    @required this.store,
-  }) : super(key: key);
-
-  @override
-  _MessageTextFieldState createState() => _MessageTextFieldState();
-
-  final AppStore store;
-}
-
-class _MessageTextFieldState extends State<MessageTextField> {
-  TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(text: widget.store.message ?? '');
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: _controller,
-      autofocus: true,
-      decoration: InputDecoration(
-        labelText: widget.store.l10n.hintText,
-//        hintText: l10n.hintText,
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: widget.store.baseColor),
-        ),
-      ),
-      keyboardType: TextInputType.multiline,
-      maxLines: 3,
-      minLines: 1,
-      onChanged: widget.store.setMessage,
     );
   }
 }
