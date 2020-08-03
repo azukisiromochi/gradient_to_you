@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppThemeUtils {
   static AssetImage splashImage(int no) {
@@ -99,53 +98,47 @@ class AppThemeUtils {
   }
 
   static TextStyle logoStyle(int no) {
-    return googleFonts(no)(
-      textStyle: const TextStyle(
-        color: Colors.white,
-        decoration: TextDecoration.none,
-      ),
+    return TextStyle(
+      color: Colors.white,
+      decoration: TextDecoration.none,
       fontSize: _logoFontSize(no),
       fontWeight: FontWeight.bold,
+      fontFamily: fontFamily(no),
     );
   }
 
   static TextStyle appBarStyle(int no, [Color titleColor]) {
-    return googleFonts(no)(
-      textStyle: TextStyle(
-        color: titleColor ?? Colors.white,
-        decoration: TextDecoration.none,
-      ),
+    return TextStyle(
+      color: titleColor ?? Colors.white,
+      decoration: TextDecoration.none,
       fontWeight: FontWeight.bold,
+      fontFamily: fontFamily(no),
     );
   }
 
-  static TextStyle Function(
-      {double fontSize,
-      FontStyle fontStyle,
-      FontWeight fontWeight,
-      TextStyle textStyle}) googleFonts(int no) {
+  static String fontFamily(int no) {
     switch (no) {
       case 1:
         {
-          return GoogleFonts.charmonman;
+          return 'Charmonman';
         }
         break;
 
       case 2:
         {
-          return GoogleFonts.balooBhai;
+          return 'Baloo Bhai 2';
         }
         break;
 
       case 3:
         {
-          return GoogleFonts.loveYaLikeASister;
+          return 'Love Ya Like A Sister';
         }
         break;
 
       default:
         {
-          return GoogleFonts.charmonman;
+          return 'Charmonman';
         }
         break;
     }
@@ -188,16 +181,6 @@ class AppThemeUtils {
       fontSize: fontSize,
       color: fontColor ?? Colors.white,
     );
-
-    if (fontFamily == 'Sawarabi Gothic') {
-      return GoogleFonts.sawarabiGothic(textStyle: style);
-    }
-    if (fontFamily == 'Noto Serif JP') {
-      return GoogleFonts.notoSerifJP(textStyle: style);
-    }
-    if (fontFamily == 'Kosugi Maru') {
-      return GoogleFonts.kosugiMaru(textStyle: style);
-    }
 
     return style.copyWith(fontFamily: fontFamily);
   }

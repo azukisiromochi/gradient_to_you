@@ -31,9 +31,6 @@ dependencies:
   # https://pub.dev/packages/gradient_app_bar
   gradient_app_bar: ^0.0.1
 
-  # https://pub.dev/packages/google_fonts
-  google_fonts: ^0.2.0
-
   # https://mobx.pub/getting-started
   mobx: ^0.4.0
   flutter_mobx: ^0.3.4
@@ -121,12 +118,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/icon/icon.png
-    - assets/images/splash1.webp
-    - assets/images/thumbnail1.webp
-    - assets/images/splash2.webp
-    - assets/images/thumbnail2.webp
-    - assets/images/splash3.webp
-    - assets/images/thumbnail3.webp
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -153,6 +145,27 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Charmonman
+      fonts:
+        - asset: fonts/Charmonman-Regular.ttf
+        - asset: fonts/Charmonman-Bold.ttf
+    - family: Baloo Bhai 2
+      fonts:
+        - asset: fonts/BalooBhai2-Regular.ttf
+        - asset: fonts/BalooBhai2-Bold.ttf
+    - family: Love Ya Like A Sister
+      fonts:
+        - asset: fonts/LoveYaLikeASister-Regular.ttf
+    - family: Sawarabi Gothic
+      fonts:
+        - asset: fonts/SawarabiGothic-Regular.ttf
+    - family: Noto Serif JP
+      fonts:
+        - asset: fonts/NotoSerifJP-Regular.otf
+    - family: Kosugi Maru
+      fonts:
+        - asset: fonts/KosugiMaru-Regular.ttf
 
 flutter_icons:
   android: "launcher_icon"

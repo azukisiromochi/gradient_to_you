@@ -1,7 +1,7 @@
 import 'package:angles/angles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'file:///C:/Users/kuramoto/Documents/workspace/github.com/azukisiromochi/gradient_to_you/lib/common/size_listenable_container.dart';
+import 'package:gradient_to_you/common/size_listenable_container.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../app_store.dart';

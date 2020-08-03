@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_to_you/app_store.dart';
 import 'package:gradient_to_you/common/input_item.dart';
 import 'package:gradient_to_you/l10n/l10n.dart';
@@ -89,7 +88,7 @@ class _FontFamilyDropdownState extends State<_FontFamilyDropdown> {
 //                    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
-                      style: _styleBy(value),
+                      style: TextStyle(fontFamily: value),
                     ),
                   );
                 },
@@ -112,19 +111,6 @@ class _FontFamilyDropdownState extends State<_FontFamilyDropdown> {
       return widget.store.l10n.googleFontsKosugiMaru;
     }
     return fontFamily;
-  }
-
-  TextStyle _styleBy(String fontFamily) {
-    if (fontFamily == 'Sawarabi Gothic') {
-      return GoogleFonts.sawarabiGothic();
-    }
-    if (fontFamily == 'Noto Serif JP') {
-      return GoogleFonts.notoSerifJP();
-    }
-    if (fontFamily == 'Kosugi Maru') {
-      return GoogleFonts.kosugiMaru();
-    }
-    return TextStyle(fontFamily: fontFamily);
   }
 }
 
