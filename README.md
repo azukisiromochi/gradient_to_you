@@ -36,12 +36,7 @@ SNS で「お誕生日おめでとう！」<br>
 デバイスへ保存することもできるので、自分へのプレゼントもできますよ！
 </div>
 
-<div style="display: flex; justify-content: space-evenly; padding-left: 15vw; padding-right: 15vw;" >
-<img src="https://user-images.githubusercontent.com/45185896/89200983-c9eced80-d5eb-11ea-9994-74be818aa5e9.png" style="height: 40vh;" />
-<img src="https://user-images.githubusercontent.com/45185896/89201015-d3765580-d5eb-11ea-85cd-da963cff88e5.png" style="height: 40vh;" />
-<img src="https://user-images.githubusercontent.com/45185896/89201043-dd985400-d5eb-11ea-839c-f5e770db51a5.png" style="height: 40vh;" />
-<img src="https://user-images.githubusercontent.com/45185896/89201066-e5f08f00-d5eb-11ea-8de3-d9aa03bc012f.png" style="height: 40vh;" />
-</div>
+![スクリーンショット](https://user-images.githubusercontent.com/45185896/89201355-57304200-d5ec-11ea-9cbf-a33bf1b35d77.png)
 
 ## アピールポイント
 
